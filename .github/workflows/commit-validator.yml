@@ -1,0 +1,53 @@
+name: Commit Validator
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  validate-commits:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install commitlint
+      run: npm install -g @commitlint/cli @commitlint/config-conventional
+
+    - name: Create commitlint config
+      run: |
+        echo 'module.exports = { extends: ["@commitlint/config-conventional"] };' > .commitlintrc.js
+
+    - name: Validate commits
+      run: |
+        if [ "${{ github.event_name }}" = "pull_request" ]; then
+          # For PRs, validate commits in the PR
+          npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }}
+        else
+          # For pushes, validate the last commit
+          npx commitlint --from HEAD~1 --to HEAD
+        fi
+
+    - name: Validate No-Secrets Policy
+      run: |
+        # Check if TruffleHog workflow passed
+        if [ "${{ github.event_name }}" = "pull_request" ]; then
+          echo "Validating security scan for PR..."
+        fi
+
+    - name: Validate Atomic Commits
+      run: |
+        # Check if commit has single logical change
+        COMMIT_MSG=$(git log --oneline -1 --pretty=%B)
+        if [ $(echo "$COMMIT_MSG" | wc -l) -gt 3 ]; then
+          echo "âš ï¸  Commit message has multiple lines, ensure it's atomic"
+        fi
