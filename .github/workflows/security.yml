@@ -19,4 +19,4 @@ jobs:
         path: ./
         base: main
         head: HEAD
-        extra_args: --results=verified,unknown --debug
+        extra_args: filesystem --results=verified,unknown --debug
