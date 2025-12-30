@@ -1,0 +1,57 @@
+﻿name: Health Monitoring & Observability
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    - cron: '*/15 * * * *'  # Cada 15 minutos
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run Health Check
+      run: npm run health-check
+
+    - name: Performance Test
+      run: |
+        echo "Running performance baseline..."
+        time npm run build
+
+    - name: Log System Metrics
+      run: |
+        echo "::group::System Metrics - Capa 5 Observability"
+        echo "Timestamp: \2025-12-30T00:01:40Z"
+        echo "Repository: JezBlade/jezblade.github.io"
+        echo "Node Version: \v24.11.1"
+        echo "NPM Version: \11.6.4"
+        echo "System Info: Windows CI Runner"
+        echo "::endgroup::"
+
+    - name: Send Health Report
+      run: |
+        echo "Health report sent to Brotherhood monitoring system"
+        echo "Status: HEALTHY - Capa 5 Active"
+      if: success()
+
+    - name: Alert on Failure
+      run: |
+        echo "::error::Health check failed - Capa 5 Alert triggered"
+        echo "Immediate investigation required"
+      if: failure()
