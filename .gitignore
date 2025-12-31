@@ -1,1 +1,18 @@
 .env
+
+# Ignorar archivos de entorno locales y backups
+.env
+.env.*
+!.env.example
+process.env
+*.bak
+
+# Build artifacts
+dist/
+*.tsbuildinfo
+
+# Test reports
+*.pdf
+
+# Logs runtime (van a Aeternum-Memory o reports)
+RITUAL_LOG_SYNC.jsonl
