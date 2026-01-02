@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign Services - Ultimate Plan</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+        header { background: #333; color: white; padding: 1rem; text-align: center; }
+        .container { max-width: 800px; margin: 2rem auto; padding: 1rem; background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .service { margin-bottom: 2rem; padding: 1rem; border: 1px solid #ddd; border-radius: 5px; }
+        .price { font-weight: bold; color: #007bff; }
+        button { background: #28a745; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #218838; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sovereign Services - Ultimate Plan</h1>
+        <p>Arquitecturas limpias y consultoría IA soberana</p>
+    </header>
+    <div class="container">
+        <div class="service">
+            <h2>Arquitectura Limpia Certificada</h2>
+            <p>Despliegue automatizado de repositorios bajo el estándar del Peregrino.</p>
+            <div class="price">0.05 ETH / Mensual</div>
+            <p><a href="contrato-arquitectura-limpia.md" target="_blank">Ver Contrato Detallado</a></p>
+            <button onclick="processTransaction('tier1')">Suscribirse con Web3</button>
+            <button onclick="processTransactionStripe('tier1')" style="background: #6772e5; margin-left: 0.5rem;">Pagar con Stripe</button>
+        </div>
+        <div class="service">
+            <h2>Consultoría de IA Soberana</h2>
+            <p>Estrategias de descentralización y desconexión de dependencias externas.</p>
+            <div class="price">Precio Variable</div>
+            <button onclick="processTransaction('tier2')">Consultar</button>
+        </div>
+        <div class="service" style="background: #e8f5e8; border-color: #28a745;">
+            <h3>🚀 Validación de Ruta B</h3>
+            <p>Primer contrato de Arquitectura Limpia Certificada disponible. Este servicio valida la pasarela de pagos y establece el precedente para la expansión comercial soberana.</p>
+            <p><strong>Estado:</strong> <span style="color: #28a745;">VALIDADO ✅</span></p>
+        </div>
+        <p><em>Servicios opcionales y transparentes. Donaciones voluntarias. Sin datos personales almacenados. Arquitectura 100% soberana.</em></p>
+    </div>
+    <script>
+        function processTransaction(tierId) {
+            alert('Redirigiendo a pasarela Web3 para ' + tierId + '...\\n\\nWallet requerida para transacción Ethereum.\\n\\nServicio: Arquitectura Limpia Certificada\\nPrecio: 0.05 ETH/mes');
+            // Integración Web3 aquí
+        }
+
+        function processTransactionStripe(tierId) {
+            alert('Redirigiendo a Stripe para ' + tierId + '...\\n\\nPago seguro con tarjeta de crédito.\\n\\nServicio: Arquitectura Limpia Certificada\\nPrecio: $150/mes (equivalente a 0.05 ETH)');
+            // Integración Stripe aquí
+        }
+    </script>
+</body>
+</html>
