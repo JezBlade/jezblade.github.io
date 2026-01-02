@@ -34,6 +34,12 @@ jobs:
 
     - name: Validate commits
       run: |
+        # Skip validation for Gran Tejido auto-sync commits
+        if echo "${{ github.event.head_commit.message }}" | grep -q "Auto-sync Gran Tejido"; then
+          echo "✅ Gran Tejido auto-sync commit - validation skipped"
+          exit 0
+        fi
+
         if [ "${{ github.event_name }}" = "pull_request" ]; then
           # For PRs, validate commits in the PR
           npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }}
