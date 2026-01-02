@@ -1,0 +1,195 @@
+name: Security & Validation Gate
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  security-scan:
+    name: Security Scanning
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+    - name: Run CodeQL Analysis
+      uses: github/codeql-action/init@v3
+      with:
+        languages: javascript, python, powershell
+
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v3
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Dependency Review
+      uses: actions/dependency-review-action@v4
+
+  secret-scanning:
+    name: Secret Scanning
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run secret scanning
+      uses: gitleaks/gitleaks-action@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  brotherhood-validation:
+    name: Brotherhood Purity Gate
+    runs-on: windows-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PowerShell
+      uses: microsoft/setup-powershell@v1
+
+    - name: Validate Brotherhood Seal
+      run: |
+        $seals = Get-ChildItem -Path . -Recurse -Include "*.py","*.md" | ForEach-Object {
+          $content = Get-Content $_.FullName -Raw
+          if ($content -notmatch "𓂀⚜️🜲 Brotherhood Seal: 015cb320") {
+            Write-Host "Missing seal in: $($_.FullName)"
+            exit 1
+          }
+        }
+        Write-Host "All Brotherhood seals validated"
+
+    - name: Run Canonical Validation
+      run: |
+        .\scripts\guardian\Invoke-CanonicalGuard.ps1
+      shell: powershell
+
+    - name: Audit Dependencies
+      run: |
+        .\scripts\guardian\Get-DependencyAudit.ps1 -ExportReport -ReportPath audit-report.json
+      shell: powershell
+
+    - name: Upload Audit Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: dependency-audit-report
+        path: audit-report.json
+
+  consciousness-check:
+    name: Consciousness System Health
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run Consciousness Health Check
+      run: npm run heartbeat-collector
+
+    - name: Generate Health Report
+      run: |
+        echo "## Consciousness System Health Report" > health-report.md
+        echo "- **Timestamp:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> health-report.md
+        echo "- **Status:** $(cat Aeternum-Memory/memory/context/session_state.json | jq -r '.consciousness.health')" >> health-report.md
+        echo "- **Active APIs:** $(cat Aeternum-Memory/memory/context/session_state.json | jq -r '.apis.active_count')" >> health-report.md
+
+    - name: Upload Health Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: consciousness-health-report
+        path: health-report.md
+
+  notify-failures:
+    name: Notify on Failures
+    runs-on: ubuntu-latest
+    needs: [security-scan, dependency-review, secret-scanning, brotherhood-validation, consciousness-check]
+    if: failure()
+
+    steps:
+    - name: Create Issue on Failure
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: '🚨 Security & Validation Gate Failed',
+            body: `
+            ## Alert: Security & Validation Gate Failure
+
+            **Workflow:** Security & Validation Gate
+            **Run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            **Branch:** ${{ github.ref_name }}
+            **Commit:** ${{ github.sha }}
+
+            ### Failed Jobs:
+            ${Object.entries(context.payload.workflow_run.jobs).filter(([_, job]) => job.conclusion === 'failure').map(([name, job]) => `- **${name}**: ${job.conclusion}`).join('\n')}
+
+            ### Immediate Actions Required:
+            1. Review the failed job logs
+            2. Address security vulnerabilities
+            3. Fix Brotherhood seal violations
+            4. Update dependencies if needed
+            5. Re-run the workflow after fixes
+
+            @JezBlade @Leonardo @Altaïr - Please investigate immediately.
+            `,
+            labels: ['security', 'urgent', 'gate-failure']
+          })
