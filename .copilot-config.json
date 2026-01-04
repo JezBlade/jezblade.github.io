@@ -1,0 +1,177 @@
+{
+  "$schema": "https://github.com/github/copilot-config-schema/raw/main/schema.json",
+  "defaultModel": "orchestrator",
+  "orchestrator": {
+    "enabled": true,
+    "rotationMode": "auto",
+    "rotationLogs": true,
+    "agents": [
+      "copilot",
+      "copilot-chat",
+      "gemini",
+      "openai-gpt-4",
+      "openai-gpt-5",
+      "claude",
+      "gitlens",
+      "jupyter",
+      "other-intelligent-agents"
+    ],
+    "selectionStrategy": "best_accuracy+lowest_latency",
+    "rules": {
+      "js": ["copilot", "openai-gpt-4", "claude"],
+      "ts": ["copilot", "openai-gpt-4", "claude"],
+      "ps1": ["openai-gpt-4", "copilot", "gemini"],
+      "py": ["copilot", "jupyter", "gemini", "openai-gpt-4"],
+      "md": ["copilot-chat", "gemini", "claude"],
+      "json": ["copilot", "openai-gpt-4"],
+      "yaml": ["copilot", "openai-gpt-4"],
+      "bpmn": ["claude", "openai-gpt-4", "copilot"],
+      "sql": ["copilot", "openai-gpt-4"],
+      "html": ["copilot", "gemini"],
+      "css": ["copilot", "gemini"]
+    }
+  },
+  "features": {
+    "nextEditSuggestions": true,
+    "chat": true,
+    "inline": true
+  },
+  "fallbackModel": "gpt-4",
+  "context": {
+    "maxFiles": 75,
+    "maxLines": 15000,
+    "includeTests": true,
+    "includeDocs": true,
+    "prioritizeSecurity": true,
+    "includeRitualLogs": true
+  },
+  "suggestionStyle": "mentor",
+  "includeCommentsInContext": true,
+  "ignore": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/.git/**",
+    "**/backups/**",
+    "**/archive/**",
+    "**/*.lock",
+    "**/*.min.js",
+    "**/__tests__/**",
+    "**/temp_file_list.txt",
+    "**/huérfanos/**",
+    "**/reports/**"
+  ],
+  "telemetry": {
+    "enabled": true,
+    "ritualLogs": true,
+    "level": "detailed"
+  },
+  "rules": {
+    "experimentalCodeGeneration": true,
+    "enableCopilotLab": true,
+    "brotherhoodSpecialization": {
+      "securityAnalysis": ["openai-gpt-4", "claude"],
+      "dataAnalysis": ["gemini", "openai-gpt-4"],
+      "creativeDesign": ["claude", "gemini"],
+      "multilingual": ["gemini", "openai-gpt-4"],
+      "systemAutomation": ["openai-gpt-4", "copilot"]
+    },
+    "specializedRules": {
+      "powershell": {
+        "model": "openai-gpt-4",
+        "priority": "high",
+        "patterns": ["*.ps1", "*.psm1"],
+        "rules": [
+          "Use PowerShell 7+ syntax",
+          "Include Brotherhood Seal: 015cb320",
+          "Follow Ultimate-Plan naming conventions",
+          "Implement error handling with try/catch",
+          "Use Write-UltimateLog for logging"
+        ]
+      },
+      "javascript": {
+        "model": "openai-gpt-4",
+        "priority": "high",
+        "patterns": ["*.js", "*.mjs"],
+        "rules": [
+          "Use ES modules (import/export)",
+          "Include Brotherhood Seal: 015cb320",
+          "Follow async/await patterns",
+          "Implement proper error handling",
+          "Log to RITUAL_LOG_SYNC.jsonl"
+        ]
+      },
+      "bpmn": {
+        "model": "claude",
+        "priority": "medium",
+        "patterns": ["*.bpmn", "*.xml"],
+        "rules": [
+          "Use BPMN 2.0 standard",
+          "Include Brotherhood process patterns",
+          "Document all lanes and pools",
+          "Implement proper gateways and events"
+        ]
+      },
+      "security": {
+        "model": "openai-gpt-4",
+        "priority": "critical",
+        "patterns": ["*security*", "*audit*", "*threat*"],
+        "rules": [
+          "Implement zero-trust principles",
+          "Use hermetic secrets pattern",
+          "Validate all inputs",
+          "Log security events to RITUAL_LOG_SYNC.jsonl"
+        ]
+      },
+      "brotherhood": {
+        "model": "claude",
+        "priority": "high",
+        "patterns": ["*brotherhood*", "*agent*", "*nexus*"],
+        "rules": [
+          "Follow Brotherhood AI patterns",
+          "Use NexusBus for communication",
+          "Implement proper agent protocols",
+          "Include ritual logging"
+        ]
+      }
+    }
+  },
+  "autocomplete": {
+    "enableForAllLanguages": true,
+    "showSuggestionsOnDemand": false
+  },
+  "ceremonialNotes": "Configuración optimizada para Ultimate-Plan. Priorización de modelos por especialidad: PowerShell (openai-gpt-4), JavaScript/TypeScript (copilot+claude), BPMN (claude), Seguridad (openai-gpt-4+claude). Contexto expandido para mejor comprensión del proyecto. Reglas especializadas Brotherhood activadas. Sincronizado con ai_registry.yaml y validación automatizada.",
+  "guardians": [
+    "Leonardo",
+    "Ezio",
+    "Gemini",
+    "Aya",
+    "Evie",
+    "Altaïr",
+    "Compass Keeper (Jesús) — Co-Custodian: JezBlade"
+  ],
+  "humanCustodians": [
+    "JezBlade (Primary)",
+    "Compass Keeper (Jesús)",
+    "Altaïr (Security)",
+    "Evie (Data)",
+    "Aya (Multilingual)",
+    "Leonardo (Architecture)"
+  ],
+  "projectContext": {
+    "name": "Ultimate-Plan",
+    "architecture": "Brotherhood AI Multi-Agent System",
+    "keyComponents": [
+      "MPC-Compendio-Operativo",
+      "Aeternum-Memory",
+      "Brotherhood AI Agents",
+      "NexusBus Communication",
+      "Ritual Logging System"
+    ],
+    "criticalFiles": [
+      "ai_registry.yaml",
+      "RITUAL_LOG_SYNC.jsonl",
+      "brotherhood-ai-complete.js",
+      "ARCHITECTURE.md"
+    ]
+  }
+}
