@@ -1,0 +1,27 @@
+# Brotherhood Seal: 015cb320
+name: 🛡️ Security Scan
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 🔍 Scan Static Site
+        run: |
+          echo "🛡️ jezblade.github.io Security"
+          PATTERNS="api[_-]?key.*=|ghp_|firebase.*="
+
+          if grep -rEi "$PATTERNS" . \
+             --include="*.html" --include="*.js" --include="*.json" \
+             --exclude-dir=node_modules --exclude-dir=_site 2>/dev/null; then
+            echo "❌ Secrets in public site"
+            exit 1
+          fi
+          echo "✅ Zero Exposure: COMPLIANT"
