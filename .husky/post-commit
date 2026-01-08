@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/h"
+
+# Autonomous Sync Protocol Trigger
+node "D:\Ultimate-Plan\scripts\trigger-autonomous-sync.js"
