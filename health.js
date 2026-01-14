@@ -1,4 +1,4 @@
-﻿const express = require('express');
+const express = require('express');
 const router = express.Router();
 
 // Health Check Endpoint - Capa 5: Observabilidad
@@ -13,9 +13,9 @@ router.get('/health', (req, res) => {
         capa: 'Capa 5: Observabilidad Activa'
     };
 
-    // Verificaciones bÃ¡sicas
+    // Verificaciones básicas
     const checks = {
-        database: true, // Simulado - en producciÃ³n verificar conexiÃ³n real
+        database: true, // Simulado - en producción verificar conexión real
         external_apis: true, // Simulado
         filesystem: true
     };
@@ -29,3 +29,4 @@ router.get('/health', (req, res) => {
 });
 
 module.exports = router;
+
