@@ -60,3 +60,5 @@ jobs:
         echo "::error::Health check failed - Capa 5 Alert triggered"
         echo "Immediate investigation required"
       if: failure()
+
+# Brotherhood Seal: 015cb320

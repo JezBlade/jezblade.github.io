@@ -19,3 +19,5 @@ jobs:
           fail-on-severity: high
           # Bloquear licencias no comerciales si fuera necesario (opcional)
           # deny-licenses: GPL-3.0, AGPL-3.0
+
+# Brotherhood Seal: 015cb320

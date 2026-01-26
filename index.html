@@ -3,38 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JezBlade - VS Code Extension Publisher</title>
+    <meta name="description" content="JezBlade - Professional VS Code Extension Publisher. Advanced AI-powered development tools for modern software engineering.">
+    <meta name="keywords" content="VS Code, extensions, AI, development tools, JezBlade, software engineering">
+    <meta name="author" content="JezBlade">
+    <meta name="robots" content="index, follow">
+    <title>JezBlade - VS Code Extension Publisher & AI Development Tools</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <style>
+        * {
+            box-sizing: border-box;
+        }
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f5f5f5;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
         }
         .header {
             text-align: center;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 40px;
-            border-radius: 10px;
+            padding: 60px 40px;
+            border-radius: 15px;
             margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 3em;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 1.2em;
+            opacity: 0.9;
         }
         .content {
             background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
         }
         .extension-list {
-            margin: 20px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
         }
         .extension-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .extension-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        .extension-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .extension-item h3 {
+            margin-top: 0;
+            color: #495057;
+            font-size: 1.3em;
+        }
+        .extension-item p {
+            margin: 8px 0;
+            color: #6c757d;
+        }
+        .status-published {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .status-ready {
+            color: #ffc107;
+            font-weight: bold;
+        }
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .link-card {
             background: #f8f9fa;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #dee2e6;
+        }
+        .link-card:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .link-card a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .link-card a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+            .content {
+                padding: 20px;
+            }
+            .extension-list {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -45,26 +144,111 @@
     </div>
 
     <div class="content">
-        <h2>🚀 Extensions</h2>
+        <h2>🚀 Published Extensions</h2>
         <div class="extension-list">
             <div class="extension-item">
                 <h3>Intelligent Extension Orchestrator</h3>
-                <p>Advanced AI-powered extension management and orchestration for VS Code.</p>
-                <p><strong>Version:</strong> 1.0.5</p>
-                <p><strong>Status:</strong> Ready for Publishing ✅</p>
+                <p>Advanced AI-powered extension management and orchestration for VS Code with real-time context detection and profile switching.</p>
+                <p><strong>Version:</strong> 5.0.0</p>
+                <p><strong>Status:</strong> <span class="status-published">✅ Published to Marketplace</span></p>
+                <p><strong>Size:</strong> 2.4 MB</p>
+            </div>
+            <div class="extension-item">
+                <h3>El Gran Tejido de Evie</h3>
+                <p>Collaborative development environment with shared memory bridges and dual AI orchestration.</p>
+                <p><strong>Version:</strong> 2.0.0</p>
+                <p><strong>Status:</strong> <span class="status-published">✅ Published to Marketplace</span></p>
+                <p><strong>Size:</strong> 310 KB</p>
             </div>
         </div>
 
-        <h2>📦 About</h2>
-        <p>This domain is verified for publishing VS Code extensions to the marketplace.</p>
-        <p>Part of the Nexus Brotherhood ecosystem.</p>
+        <h2>📦 About JezBlade</h2>
+        <p>JezBlade is a professional publisher of high-quality VS Code extensions, specializing in AI-powered development tools and collaborative coding environments. Our extensions are designed to enhance productivity and streamline the development workflow.</p>
+        <p>Part of the Nexus Brotherhood ecosystem, committed to advancing software engineering through innovative tools and methodologies.</p>
 
-        <h2>🔗 Links</h2>
-        <ul>
-            <li><a href="https://marketplace.visualstudio.com/publishers/jezblade">VS Code Marketplace</a></li>
-            <li><a href="https://github.com/JezBlade">GitHub Profile</a></li>
-            <li><a href="https://github.com/JezBlade/Codex_Aeternum-Hidden_Pulse_Brotherhood">Codex Aeternum Repository</a></li>
-        </ul>
+        <h2>🔗 Important Links</h2>
+        <div class="links-grid">
+            <div class="link-card">
+                <a href="https://marketplace.visualstudio.com/publishers/jezblade" target="_blank" rel="noopener">
+                    🏪 VS Code Marketplace
+                </a>
+            </div>
+            <div class="link-card">
+                <a href="https://github.com/JezBlade" target="_blank" rel="noopener">
+                    💻 GitHub Profile
+                </a>
+            </div>
+            <div class="link-card">
+                <a href="https://github.com/JezBlade/Codex_Aeternum-Hidden_Pulse_Brotherhood" target="_blank" rel="noopener">
+                    📚 Codex Aeternum Repository
+                </a>
+            </div>
+            <div class="link-card">
+                <a href="mailto:contact@jezblade.dev">
+                    📧 Contact
+                </a>
+            </div>
+        </div>
     </div>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animations to extension items
+        document.querySelectorAll('.extension-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(item);
+        });
+
+        // Add loading animation to header
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.querySelector('.header');
+            header.style.opacity = '0';
+            header.style.transform = 'translateY(-20px)';
+            header.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+
+            setTimeout(() => {
+                header.style.opacity = '1';
+                header.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Performance monitoring
+        if ('performance' in window && 'getEntriesByType' in performance) {
+            window.addEventListener('load', () => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                console.log('Page load time:', perfData.loadEventEnd - perfData.fetchStart, 'ms');
+            });
+        }
+    </script>
 </body>
 </html>
