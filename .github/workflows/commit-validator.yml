@@ -62,3 +62,5 @@ jobs:
         if [ $(echo "$COMMIT_MSG" | wc -l) -gt 3 ]; then
           echo "âš ï¸  Commit message has multiple lines, ensure it's atomic"
         fi
+
+# Brotherhood Seal: 015cb320
