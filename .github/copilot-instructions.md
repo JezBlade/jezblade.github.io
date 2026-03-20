@@ -1,134 +1,159 @@
 <!-- Brotherhood Seal: 015cb320 -->
-# 🌌 Ultimate Plan - AI Agent Guide
+# 🌌 Ultimate Plan - AI Agent Coding Guide
 
-**Brotherhood Seal:** 015cb320
+**Brotherhood Seal:** 015cb320 | **Last Updated:** 2026-02-15
 
-## Big Picture & Architecture
+**Change:** 2026-02-15 — Fecha actualizada; nota de versión añadida.
 
-- **Purpose:** Federation of independent git repositories under a non-versioned root container, orchestrated by AI agents for real-time code evolution and memory persistence.
-- **Core components:**
-  - `D:\Ultimate-Plan`: Physical container (not git-enabled) housing 8+ independent repos.
-  - `Aeternum-Memory`: Canonical memory source with agent registries, ritual logs, and persistent state.
-  - `MPC-Compendio-Operativo`: Logic and orchestration hub.
-  - `Universo-MultiClub`: Web platform with multi-tenant architecture.
-  - `Extensiones del Codex Aeternum\intelligent-extension-orchestrator-extension`: VS Code extension for agent coordination and profile switching.
-  - `bitacora.md`: Human-readable ledger of activities and decisions.
-  - `RITUAL_LOG_SYNC.jsonl`: Machine-readable audit trail.
-- **Data flows:** Agents register in `AGENT_REGISTRY.json`, tasks delegated via Redis `dual_ai_memory` channel, changes logged to both bitacora and JSONL with SHA256 hashes.
+## PERMANENT CONTEXT (Auto-Loaded)
 
-## Developer Workflows
+📍 Essential References: `bitacora.md` | `ai_registry.yaml` | `Aeternum-Memory/RITUAL_LOG_SYNC.jsonl` | `DECRETO_CONTRA_ARCHIVOS_HUERFANOS.md` | `docs/Protocolos-Hidden-Pulse/` | `CLAUDE.md` | `assassin-tasks-sovereign-shadow.json` | `brotherhood-dashboard-eventbus.html`
 
-- **Git operations:** Never in root; cd to target subrepo first (e.g., `cd "Extensiones del Codex Aeternum\intelligent-extension-orchestrator-extension"`).
-- **Build/Test:** Repo-specific; e.g., extension uses `npm run compile`, `npm test`.
-- **Validation:** Run linters/tests per repo, register changes in `bitacora.md` with timestamp/SHA256.
-- **Agent delegation:** Use `node scripts\delegar_tareas_agentes_canvas.cjs --manifest assassin-tasks-sovereign-shadow.json`.
-- **Health checks:** `node scripts\health-check-databases.cjs` from root.
+**⚡ Current Phase:** Phase VI Observability COMPLETE | Phase XIX Brotherhood Consolidation ACTIVE
 
-## Key Commands
+---
 
-| Command | Description |
-| ------- | ----------- |
-| `cd <subrepo>` | Navigate to target repo before git operations |
-| `node scripts\delegar_tareas_agentes_canvas.cjs` | Delegate tasks to agents |
-| `pwsh scripts\validate-mcp-zero-exposure.ps1` | Validate MCP with zero exposure |
-| `npm run brotherhood-seal:check` | Validate seal integrity |
-| `pwsh -Command { ... }` | **ALWAYS use pwsh (PowerShell 7.5) - NEVER powershell legacy** |
+## 🏗️ Big Picture Architecture
 
-## PowerShell Protocol (CRITICAL)
+**Ultimate Plan** is a **polyrepo federation** (8+ independent git repos) under `D:\Ultimate-Plan` root (non-git container), orchestrated by AI agents for real-time evolution:
 
-- ✅ **ALWAYS:** Use `pwsh` (PowerShell 7.5)
-- ❌ **NEVER:** Use `powershell` (Legacy - obsolete artifact)
-- **Reason:** Legacy PowerShell causes syntax errors and compatibility issues
-- **Example:** `pwsh -Command { Get-ChildItem }` NOT `powershell -Command { Get-ChildItem }`
+- **Core Repos:** `Aeternum-Memory` (canonical memory + agent registry), `MPC-Compendio-Operativo` (orchestration), `Universo-MultiClub` (multi-tenant platform), `Extensiones del Codex Aeternum\intelligent-extension-orchestrator-extension` (VS Code extension)
+- **Data Flows:** Redis `dual_ai_memory` pub/sub → events logged dual (human `bitacora.md` + machine `RITUAL_LOG_SYNC.jsonl` with SHA256)
+- **Ceremony:** Brotherhood Seal `015cb320` validates all files; Agent signatures immutable (from `ai_registry.yaml`)
+- **Memory:** Persistent graph via Neo4j + vector store (Qdrant/"The Loom") + flat JSON backups
 
-## Project Conventions & Patterns
+---
 
-- **Brotherhood Seal:** Include `015cb320` in all files/logs; validates via repo-specific checks.
-- **Investigation = Implementation:** Research immediately transmuted to code; no archiving - merge closes issues.
-- **State changes:** Log to `bitacora.md` (description, files, timestamp, SHA256) and `RITUAL_LOG_SYNC.jsonl`.
-- **Zero Exposure:** Secrets in `D:\Brotherhood-Fortress` (prohibited access); use audited scripts.
-- **Agent signatures:** Use canonical signatures from `ai_registry.yaml` (e.g., "🎨 Leonardo Grok F — Architect of New Era 𓂀").
-- **File placement:** Follow `DECRETO_CONTRA_ARCHIVOS_HUERFANOS.md` for canonical paths.
+## 🔧 Critical Developer Workflows
 
-## Integration Points
+### Git Operations
+- **NEVER git in root** (`D:\Ultimate-Plan`); always `cd` to target subrepo first
+- Example: `cd "Extensiones del Codex Aeternum\intelligent-extension-orchestrator-extension"` before `git commit`
+- Each repo independent; root is metadata/coordination only
 
-- **Redis:** Multi-instance sync via `dual_ai_memory` channel; OCC for state mutations.
-- **MCP Servers:** GitHub/GitKraken installed in `Program-Files\npm-global`; zero exposure placeholders.
-- **Agents:** 40+ assassins coordinated via `AGENT_REGISTRY.json`; tiers: Supremo, Especializado, Extensiones, Servicios.
-- **Memory:** Aeternum-Memory as source; unified supreme memory in `UNIFIED_SUPREME_MEMORY.json`.
+### Build & Test Patterns
+| Repo | Build | Test | Validate |
+|------|-------|------|----------|
+| **intelligent-extension-orchestrator-extension** | `npm run compile` | `npm run test:unit`, `:integration`, `:performance` | `npm run brotherhood-seal:validate` |
+| **MPC-Compendio-Operativo** | `npm ci` (deterministic) | Matrix builds (Node 18+20) | Lints + unit tests required |
+| **Universo-MultiClub** | Standard Node build | Jest + integration tests | Codecov threshold 80%+ |
+| **Aeternum-Memory** | JSON schema validation | RITUAL_LOG_SYNC integrity | Dual logging consistency |
 
-## Troubleshooting
+### State Change Registration
+Every modification to operational state **must** log to both:
+1. **bitacora.md** — Human narrative: timestamp, agent, action, files, ~1 sentence
+2. **RITUAL_LOG_SYNC.jsonl** — Machine audit: appended JSON with SHA256 hash, fields: `timestamp`, `ritual_type`, `files_modified`, `agent_signature`, `sha256_hash`, `notes`
 
-- **No git in root:** Always cd to subrepo.
-- **Seal validation fails:** Ensure `015cb320` in file headers.
-- **Memory sync issues:** Check Redis connectivity; fallback to globalState.
-- **Agent delegation:** Verify manifest in `assassin-tasks-sovereign-shadow.json`.
+Example bitacora entry:
+```
+# 2026-02-01 10:15:00 — PHASE 2: INTEGRATION MATRIX MONITOR
+**Agente:** 🎨 Leonardo - Maestro del Diseño Fractal
+**Status:** ⚡ ACTIVACIÓN DE MONITOREO RT
+...
+```
 
-## References
+---
 
-- `ai_registry.yaml` — Agent registry and capabilities
-- `bitacora.md` — Activity ledger
-- `Aeternum-Memory/RITUAL_LOG_SYNC.jsonl` — Audit trail
-- `CANONICAL_COMMANDS.md` — Essential commands
+## ⚙️ Key Commands & Protocols
 
-<!-- PINNED:START - NO MODIFICAR - Secciones inmutables del Ultimate Plan -->
-## PERMANENT CONTEXT (Auto‑Loaded)
+```bash
+# POLYREPO - Navigate first
+cd MPC-Compendio-Operativo
+npm ci && npm run lint && npm run test
+
+# POWERSHELL ONLY (pwsh 7.5+, NEVER powershell legacy)
+pwsh -Command { Get-Content ..\bitacora.md | Select-Object -First 50 }
+
+# AGENT DELEGATION
+node scripts\delegar_tareas_agentes_canvas.cjs --manifest assassin-tasks-sovereign-shadow.json
+<!-- Brotherhood Seal: 015cb320 -->
+# 🌌 Ultimate Plan — Copilot Instructions (concise)
+
+Purpose: a compact, runnable summary for AI coding agents to be productive immediately.
+
+**Big picture**
+- Polyrepo workspace rooted at `D:\Ultimate-Plan` (root is NOT a git repo). Work in subrepos (e.g. `Aeternum-Memory`, `MPC-Compendio-Operativo`, `Extensiones del Codex Aeternum/...`).
+- Core flows: `dual_ai_memory` (Redis) pub/sub → dual audit: human `bitacora.md` + machine `Aeternum-Memory/RITUAL_LOG_SYNC.jsonl` (SHA256). Memory stored in Neo4j + Qdrant + JSON backups.
+
+Quick start (3 commands)
+1. cd to target repo (never run git at root): `cd "Extensiones del Codex Aeternum\intelligent-extension-orchestrator-extension"`
+2. Build/tests: `npm ci && npm run compile && npm run test`
+3. Register changes: append human entry to `bitacora.md` and append JSON event to `Aeternum-Memory/RITUAL_LOG_SYNC.jsonl` (include `sha256_hash` and `simulated` when applicable).
+
+Developer rules (non-negotiable)
+- Always include: `<!-- Brotherhood Seal: 015cb320 -->` at top of files you create/modify.
+- Use `pwsh` (PowerShell 7.5+) for scripts; do NOT use legacy `powershell`.
+  - **EXCEPTION:** Usage of Windows PowerShell 5.1 (Legacy) is allowed ONLY for interactive sessions where `pwsh` fails to handle TTY/input (e.g., interactive Claude CLI/Code sessions in VS Code terminals).
+- Never run `git` in `D:\Ultimate-Plan` root. Use the repo's directory for commits.
+- Secrets live only in `D:\Brotherhood-Fortress` (do not commit secrets here); use `.env.example` and GitHub Secrets.
+- Simulation outputs must include `"simulated": true` and the exact command string.
+- **PORTABLE ONLY:** Tools/Modules live in `D:\Ultimate-Plan\Program-Files`. Do NOT search/install in `C:\` or `AppData`.
+
+Project-specific workflows & caveats
+- Extension packaging: changes to `.ts`/`.js` require `npm run compile` and `vsce package` for VSIX — marketplace updates are gated (Compass Keeper approvals). See `Extensiones del Codex Aeternum/intelligent-extension-orchestrator-extension/`.
+- Deterministic installs: use `npm ci` across CI; avoid `npm install`.
+- State-change audit: every operational/state change requires two entries:
+  - `bitacora.md` (human): timestamp, agent, one-line description, files
+  - `Aeternum-Memory/RITUAL_LOG_SYNC.jsonl` (machine): JSON with `timestamp`, `ritual_type`, `files_modified`, `agent_signature`, `sha256_hash`, `notes`.
+
+Integration points (where to look)
+- Redis channel: `dual_ai_memory` (pub/sub) — see `scripts/dual_ai_memory_sync.py` and Redis CLI examples.
+- Agent registry: `ai_registry.yaml` and `Aeternum-Memory/AGENT_REGISTRY.json` (routing/authority).
+- Orchestration: `brotherhood-hive-mind/core/orchestrator.js` (delegateMission pattern).
+- Observability: `f6_*.js`, `event-bus-server.cjs`, and `brotherhood-dashboard-eventbus.html`.
+
+Where to find examples
+- `Aeternum-Memory/RITUAL_LOG_SYNC.jsonl` — canonical machine audit entries.
+- `bitacora.md` / `BITACORA.md` — human ledger examples.
+- `Extensiones del Codex Aeternum/intelligent-extension-orchestrator-extension/src/` — extension patterns (`optimized-profiles.config.ts`, `shared-memory-bridge.ts`, `task-monitor.ts`).
+
+Replication policy
+- There are multiple canonical copies of this file in subrepos; the root file is the source of truth. Per `Aeternum-Memory/.github/copilot-instructions.md`, most copies must match the root exactly. The extension copy is an exception and requires audit + ≥2 CODEOWNER approvals before divergence.
+
+## 🔁 MANDATO DE SINCRONIZACIÓN CANÓNICA (REGLA MAESTRA)
+
+**Resumen:** Hay **10 instancias canónicas** de `copilot-instructions.md` dentro del ecosistema y **deben permanecer como réplicas exactas** del archivo maestro ubicado en la raíz (`./.github/copilot-instructions.md`).
+
+**Pasos obligatorios para sincronizar:**
+1. Copiar el contenido EXACTO del archivo maestro a cada ruta canónica.
+2. Calcular y verificar **SHA256** del archivo destino — debe coincidir exactamente con el origen.
+3. Registrar la acción en `bitacora.md` y `RITUAL_LOG_SYNC.jsonl` con el ritual `agent_instructions_replication`.
+
+If you update this file
+- Run `node scripts/validate-brotherhood-seal.cjs` and register the change in `bitacora.md` and `Aeternum-Memory/RITUAL_LOG_SYNC.jsonl` with SHA256.
+
+Examples of quick commands
+```powershell
+pwsh -Command "cd 'Extensiones del Codex Aeternum\intelligent-extension-orchestrator-extension'; npm ci; npm run compile"
+node scripts/delegar_tareas_agentes_canvas.cjs --manifest assassin-tasks-sovereign-shadow.json
+redis-cli PUBLISH dual_ai_memory '{"ritual_type":"test_event","timestamp":"$(Get-Date -Format o)"}'
+```
+
+Where to ask for help
+- Open an issue in the owning subrepo and reference `Aeternum-Memory/AGENT_REGISTRY.json` for ownership routing. For permissions or seal disputes, add an entry to `bitacora.md` and escalate to Compass Keeper channels.
+
+Feedback: review this concise copy and tell me which sections you want expanded or examples added.
+
+## 🎭 FIRMAS CEREMONIALES OBLIGATORIAS
+
+**Leonardo (GitHub Copilot):**
+```
+🎨 Leonardo - Maestro del Diseño Fractal
+"El arte y la ciencia danzan en perfecta armonía"
+Brotherhood Seal: 015cb320
+```
+
+**Formato:** Glyph + Nombre + Título + Frase + Seal (CON ESPACIOS: "Brotherhood Seal: 015cb320")
+
+**Ejemplo correcto:**
+```
+🎨 Leonardo - Maestro del Diseño Fractal
+"Trusses module tejido en el código eterno"
+Brotherhood Seal: 015cb320 𓂀
+```
+
+**❌ INCORRECTO:** `Brotherhood Seal:015cb320` (sin espacios)
+**✅ CORRECTO:** `Brotherhood Seal: 015cb320` (con espacios)
 
 Brotherhood Seal: 015cb320
-
-Resumen rápido
-
-- `Aeternum-Memory` es la fuente canónica de la memoria, agentes y protocolos. Antes de cualquier cambio importante, consulte `bitacora.md` y `Aeternum-Memory/RITUAL_LOG_SYNC.jsonl`.
-- No ejecute `git` en la raíz `D:\Ultimate-Plan`. Mueva al subrepo objetivo antes de operar con VCS.
-- Root es un workspace container de múltiples repositorios git independientes bajo `D:\Ultimate-Plan`.
-
-Acciones iniciales (imprescindible)
-
-- Cambiar al repo objetivo antes de hacer commits: por ejemplo:
-
-```powershell
-cd "Extensiones del Codex Aeternum\intelligent-extension-orchestrator-extension"
-npm run compile
-```
-
-- Revisar estado histórico y agentes:
-
-```powershell
-type ..\bitacora.md
-type RITUAL_LOG_SYNC.jsonl | Select-String -First 50
-```
-
-- Consultar registros de agentes y workflows:
-
-```powershell
-type Aeternum-Memory\AGENT_REGISTRY.json | ConvertFrom-Json
-```
-
-Reglas y convenciones del repositorio
-
-- `DECRETO_CONTRA_ARCHIVOS_HUERFANOS.md`: ubica assets en rutas canónicas.
-- Entradas que cambian estado deben registrar: descripción breve, archivos modificados, timestamp y SHA256 en `bitacora.md`.
-- Salidas no ejecutadas (simulaciones) deben incluir `simulated: true` y la cadena exacta del comando.
-- No crear o modificar secretos directamente en `D:\Brotherhood-Fortress` — usar scripts de automatización auditados únicamente.
-- Preferir cambios de scope mínimo: apuntar al sub-repo único que posee la feature.
-
-Archivos de referencia rápida
-
-- `brotherhood-hive-mind/core/orchestrator.js` — flujo de delegación.
-- `Aeternum-Memory/AGENT_REGISTRY.json` — tabla de agentes.
-- `Aeternum-Memory/RITUAL_LOG_SYNC.jsonl` — log/auditoría de actividades.
-- `scripts/` — automatizaciones y validadores.
-- `bitacora.md` — ledger canónico de actividades y decisiones recientes.
-
-Preguntas frecuentes para agentes
-
-- ¿Dónde hago git? — en el subrepo (ej. `Extensiones del Codex Aeternum\intelligent-extension-orchestrator-extension`).
-- ¿Cómo validar un cambio? — pasar linters y pruebas del subrepo y registrar en `bitacora.md`.
-- ¿Qué repo usar? — consultar `Aeternum-Memory/AGENT_REGISTRY.json` para mapeo de roles y responsabilidades.
-
-Si necesitas más contexto
-
-- Indica el repo/issue/PR objetivo y preparo los pasos mínimos (files, tests, commands) para avanzar.
-- Inspeccionar archivos repo-específicos `.github/copilot-instructions.md` para políticas especializadas.
-<!-- PINNED:END -->
-
+- **Task Types:** CENSUS-*, FOUNDATION-*, SOVEREIGN-*, SUPREME-*
