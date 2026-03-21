@@ -11,7 +11,7 @@ on:
   pull_request:
     branches: [ main, master ]
   schedule:
-    - cron: '*/15 * * * *'  # Cada 15 minutos
+    - cron: '0 6,14,22 * * *'  # 3x/day
   workflow_dispatch:
 
 jobs:
