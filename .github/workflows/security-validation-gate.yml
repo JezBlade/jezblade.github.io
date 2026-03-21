@@ -105,8 +105,10 @@ jobs:
         Write-Host "All Brotherhood seals validated"
 
     - name: Run Canonical Validation
+      # TODO: Implement scripts\guardian\Invoke-CanonicalGuard.ps1 or remove this step
+      # Removed: phantom script reference (script does not exist)
       run: |
-        .\scripts\guardian\Invoke-CanonicalGuard.ps1
+        Write-Host "Canonical validation skipped — script not yet implemented"
       shell: powershell
 
     - name: Audit Dependencies
