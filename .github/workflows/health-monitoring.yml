@@ -11,7 +11,7 @@ on:
   pull_request:
     branches: [ main, master ]
   schedule:
-    - cron: '0 6,14,22 * * *'  # 3x/day
+    - cron: '0 14 * * *'  # 1x/day (optimized for Pro budget)
   workflow_dispatch:
 
 jobs:
