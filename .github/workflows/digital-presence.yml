@@ -109,4 +109,7 @@ jobs:
 
     - name: 📊 Log Content Event
       run: |
-        echo "{\"timestamp\":\"$(date -Iseconds)\",\"ritual_type\":\"workflow_execution\",\"agent\":\"content-auditor\",\"repo\":\"jezblade.github.io\",\"action\":\"content_audit\",\"status\":\"success\",\"ritual_seal\":\"015cb320\"}" >> ../Aeternum-Memory/RITUAL_LOG_SYNC.jsonl
+        # Log content event (cross-repo path not available in Actions — log locally)
+        RITUAL_EVENT="{\"timestamp\":\"$(date -Iseconds)\",\"ritual_type\":\"workflow_execution\",\"agent\":\"content-auditor\",\"repo\":\"jezblade.github.io\",\"action\":\"content_audit\",\"status\":\"success\",\"ritual_seal\":\"015cb320\"}"
+        echo "$RITUAL_EVENT"
+        echo "$RITUAL_EVENT" >> content-audit-events.log || true
