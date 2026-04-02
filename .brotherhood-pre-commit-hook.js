@@ -1,7 +1,6 @@
-# Brotherhood Pre-Commit Validation Hook
-# Brotherhood Seal: 015cb320
-
-#!/usr/bin/env node
+// Brotherhood Pre-Commit Validation Hook
+// Brotherhood Seal: 015cb320
+//#!/usr/bin/env node
 
 /**
  * Pre-commit hook for Brotherhood AI compliance validation
