@@ -29,6 +29,7 @@ jobs:
         fetch-depth: 0
 
     - name: 🔧 Setup Ruby
+      if: hashFiles('Gemfile') != ''
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.1'
@@ -85,8 +86,8 @@ jobs:
         fi
 
     - name: 🚀 Deploy to GitHub Pages
-      if: github.ref == 'refs/heads/main'
-      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main' && hashFiles('_site') != ''
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./_site
