@@ -39,10 +39,8 @@ jobs:
   dependency-review:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/dependency-check_action@main
-        with:
-          project: 'Ultimate-Plan'
-          path: '.'
-          format: 'JSON'
+      - uses: actions/dependency-review-action@v4
