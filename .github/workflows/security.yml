@@ -1,27 +1,49 @@
-permissions:
-  contents: read
-  actions: read
-  security-events: write
-  id-token: write
-name: Security CI
+<!-- Brotherhood Seal: 015cb320 -->
+# Master Security Workflow Template
+name: security
 
 on:
   push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main, develop ]
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly
 
 jobs:
-  security-scan:
+  secret-scan:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    - name: Run TruffleHog OSS
-      uses: trufflesecurity/trufflehog@main
-      with:
-        path: ./
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --debug --only-verified
 
-        extra_args: filesystem --results=verified,unknown --debug
-# Brotherhood Seal: 015cb320
+  codeql:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    strategy:
+      matrix:
+        language: ['javascript', 'python']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
+      - uses: github/codeql-action/autobuild@v2
+      - uses: github/codeql-action/analyze@v2
+
+  dependency-review:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/dependency-check_action@main
+        with:
+          project: 'Ultimate-Plan'
+          path: '.'
+          format: 'JSON'
