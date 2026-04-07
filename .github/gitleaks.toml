@@ -1,0 +1,9 @@
+# Brotherhood Seal: 015cb320
+# Gitleaks configuration for jezblade.github.io
+title = "gitleaks config"
+
+[allowlist]
+  paths = [
+    '''process\.env\.bak''',
+    '''\.env\.example''',
+  ]
