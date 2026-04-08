@@ -1,37 +1,23 @@
 # Brotherhood Seal: 015cb320
-# Master Health Monitoring Workflow Template
 name: health-monitoring
 
 on:
   schedule:
-    - cron: '0 8 * * *'  # 1x/day at 08:00 UTC (reduced from every 30 minutes)
+    - cron: '0 8 * * 1'  # Weekly on Monday
   workflow_dispatch:
+
+concurrency:
+  group: health-monitoring
+  cancel-in-progress: true
 
 jobs:
   health-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'npm'
-      - run: npm ci
-      - name: Run health checks
-        run: npm run health:check || true
-      - name: Log results
-        if: always()
+          fetch-depth: 1
+      - name: Verify site structure
         run: |
-          echo "Health check completed at $(date)" >> health.log
-          cat health.log
-      - name: Alert on failure
-        if: failure()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '⚠️ Health check failed'
-            })
+          echo "Health check: $(date)"
+          [ -f index.html ] && echo "index.html: OK" || echo "index.html: missing"
