@@ -1,6 +1,6 @@
 # Brotherhood Seal: 015cb320
 name: health-monitoring
-
+`npermissions:`n  contents: read`n
 on:
   schedule:
     - cron: '0 8 * * 1'  # Weekly on Monday
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+- name: Checkout`n      uses: actions/checkout@v4`n      with:`n        fetch-depth: 0
         with:
           fetch-depth: 1
       - name: Verify site structure

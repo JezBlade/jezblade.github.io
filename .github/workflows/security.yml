@@ -1,7 +1,7 @@
 # Brotherhood Seal: 015cb320
 # Master Security Workflow Template
 name: security
-
+`npermissions:`n  contents: read`n
 on:
   push:
     branches: [main]
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+- name: Checkout`n      uses: actions/checkout@v4`n      with:`n        fetch-depth: 0
         with:
           fetch-depth: 0
       - uses: trufflesecurity/trufflehog@main
@@ -32,7 +32,7 @@ jobs:
       matrix:
         language: ['javascript']
     steps:
-      - uses: actions/checkout@v4
+- name: Checkout`n      uses: actions/checkout@v4`n      with:`n        fetch-depth: 0
       - uses: github/codeql-action/init@v4
         with:
           languages: ${{ matrix.language }}
@@ -46,5 +46,5 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+- name: Checkout`n      uses: actions/checkout@v4`n      with:`n        fetch-depth: 0
       - uses: actions/dependency-review-action@v4
