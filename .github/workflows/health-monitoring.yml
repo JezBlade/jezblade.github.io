@@ -1,9 +1,12 @@
 # Brotherhood Seal: 015cb320
 name: health-monitoring
-`npermissions:`n  contents: read`n
+
+permissions:
+  contents: read
+
 on:
   schedule:
-    - cron: '0 8 * * 1'  # Weekly on Monday
+    - cron: '0 8 * * 1'
   workflow_dispatch:
 
 concurrency:
@@ -15,7 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-- name: Checkout`n      uses: actions/checkout@v4`n      with:`n        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v6
         with:
           fetch-depth: 1
       - name: Verify site structure
