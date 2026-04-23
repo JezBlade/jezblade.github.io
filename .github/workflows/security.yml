@@ -1,19 +1,22 @@
 # Brotherhood Seal: 015cb320
-# Master Security Workflow Template
 name: security
-`npermissions:`n  contents: read`n
+
+permissions:
+  contents: read
+
 on:
   push:
     branches: [main]
   schedule:
-    - cron: '0 0 * * 0'  # Weekly
+    - cron: '0 0 * * 0'
 
 jobs:
   secret-scan:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-- name: Checkout`n      uses: actions/checkout@v4`n      with:`n        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: trufflesecurity/trufflehog@main
@@ -32,12 +35,15 @@ jobs:
       matrix:
         language: ['javascript']
     steps:
-- name: Checkout`n      uses: actions/checkout@v4`n      with:`n        fetch-depth: 0
-      - uses: github/codeql-action/init@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
-      - uses: github/codeql-action/autobuild@v4
-      - uses: github/codeql-action/analyze@v4
+      - uses: github/codeql-action/autobuild@v3
+      - uses: github/codeql-action/analyze@v3
 
   dependency-review:
     runs-on: ubuntu-latest
@@ -46,5 +52,8 @@ jobs:
     permissions:
       contents: read
     steps:
-- name: Checkout`n      uses: actions/checkout@v4`n      with:`n        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/dependency-review-action@v4
