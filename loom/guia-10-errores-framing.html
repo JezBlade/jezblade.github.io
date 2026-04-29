@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los 10 Errores de Framing que Te Van a Costar $1,000</title>
+    <style>
+        @page { size: letter; margin: 0.7in 0.8in; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', -apple-system, Arial, sans-serif;
+            color: #1a1a2e;
+            line-height: 1.55;
+            font-size: 11pt;
+        }
+
+        /* COVER */
+        .cover {
+            text-align: center;
+            padding: 120px 40px 80px;
+            page-break-after: always;
+        }
+        .cover-badge {
+            display: inline-block;
+            background: #FF6D00;
+            color: #fff;
+            font-size: 10pt;
+            font-weight: 700;
+            padding: 6px 20px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+        .cover h1 {
+            font-size: 28pt;
+            font-weight: 800;
+            color: #1a1a2e;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        .cover h1 span { color: #FF6D00; }
+        .cover .subtitle {
+            font-size: 13pt;
+            color: #546E7A;
+            margin-bottom: 48px;
+        }
+        .cover-line {
+            width: 60px;
+            height: 4px;
+            background: #FF6D00;
+            margin: 0 auto 48px;
+            border-radius: 2px;
+        }
+        .cover-desc {
+            font-size: 11pt;
+            color: #555;
+            max-width: 420px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+        .cover-footer {
+            font-size: 9pt;
+            color: #999;
+            margin-top: 80px;
+        }
+        .cover-footer strong { color: #FF6D00; }
+
+        /* PAGES */
+        .error-page {
+            page-break-after: always;
+            padding: 0;
+        }
+        .error-header {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            margin-bottom: 6px;
+            border-bottom: 3px solid #FF6D00;
+            padding-bottom: 10px;
+        }
+        .error-num {
+            font-size: 32pt;
+            font-weight: 800;
+            color: #FF6D00;
+            line-height: 1;
+        }
+        .error-title {
+            font-size: 16pt;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+        .error-cost {
+            display: inline-block;
+            background: #FFEBEE;
+            color: #C62828;
+            font-size: 9pt;
+            font-weight: 700;
+            padding: 3px 12px;
+            border-radius: 12px;
+            margin: 10px 0 16px;
+        }
+
+        h3 {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #37474F;
+            margin: 18px 0 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        p, li { font-size: 10.5pt; color: #333; margin-bottom: 6px; }
+        ul { margin-left: 18px; margin-bottom: 10px; }
+        li { margin-bottom: 4px; }
+
+        .tip-box {
+            background: #FFF3E0;
+            border-left: 4px solid #FF6D00;
+            padding: 12px 16px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tip-box strong { color: #E65100; }
+
+        .code-ref {
+            background: #E3F2FD;
+            border-left: 4px solid #1565C0;
+            padding: 10px 16px;
+            margin: 12px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 10pt;
+        }
+        .code-ref strong { color: #0D47A1; }
+
+        .solution-box {
+            background: #E8F5E9;
+            border-left: 4px solid #2E7D32;
+            padding: 12px 16px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .solution-box strong { color: #1B5E20; }
+
+        /* BACK PAGE */
+        .back-page { padding-top: 60px; text-align: center; }
+        .back-page h2 {
+            font-size: 20pt;
+            font-weight: 800;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+        }
+        .back-page .cta {
+            display: inline-block;
+            background: #FF6D00;
+            color: #fff;
+            font-size: 12pt;
+            font-weight: 700;
+            padding: 14px 36px;
+            border-radius: 12px;
+            text-decoration: none;
+            margin: 24px 0;
+        }
+        .feature-list {
+            text-align: left;
+            max-width: 380px;
+            margin: 30px auto;
+        }
+        .feature-list li {
+            list-style: none;
+            padding: 6px 0;
+            font-size: 10.5pt;
+            border-bottom: 1px solid #eee;
+        }
+        .feature-list li::before {
+            content: "\2713  ";
+            color: #2E7D32;
+            font-weight: 700;
+        }
+
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+    <div class="cover-badge">Guia Gratuita</div>
+    <h1>Los 10 Errores de Framing<br>que Te Van a Costar <span>$1,000</span></h1>
+    <p class="subtitle">Y como evitarlos antes de la inspeccion</p>
+    <div class="cover-line"></div>
+    <p class="cover-desc">
+        Cada error en esta guia es real. Le ha pasado a crews en Idaho.
+        Y cada uno se pudo prevenir con la informacion correcta en el momento correcto.
+    </p>
+    <p class="cover-desc">
+        Esta guia esta basada en los articulos de la Base de Conocimiento de
+        <strong>Loom Framing App</strong> y en las fallas de inspeccion mas frecuentes
+        reportadas en Treasure Valley, Idaho.
+    </p>
+    <p class="cover-footer">
+        <strong>Loom Framing App</strong> &mdash; jezblade.github.io/loom<br>
+        &copy; 2026 JezBlade. Hecha para la obra.
+    </p>
+</div>
+
+<!-- ERROR 1 -->
+<div class="error-page">
+    <div class="error-header">
+        <span class="error-num">01</span>
+        <span class="error-title">Clavos Overdriven en Sheathing</span>
+    </div>
+    <span class="error-cost">Costo: $500 - $2,000 en rework</span>
+
+    <p>Los clavos metidos mas de 1/16" bajo la superficie del sheathing rompen la fibra de la madera y reducen la capacidad de shear del panel. El inspector lo detecta con un gauge de profundidad.</p>
+
+    <h3>Por que pasa</h3>
+    <ul>
+        <li>Presion del nail gun demasiado alta</li>
+        <li>No se ajusta la profundidad al cambiar de material (OSB vs plywood)</li>
+        <li>Apuro por terminar antes de la inspeccion</li>
+    </ul>
+
+    <h3>Que dice el codigo</h3>
+    <div class="code-ref">
+        <strong>IRC R602.3:</strong> Los clavos no deben penetrar mas de 1/16" bajo la superficie del panel. Un clavo overdriven no cuenta como punto de clavado y debe agregarse uno adicional.
+    </div>
+
+    <div class="solution-box">
+        <strong>Solucion:</strong> Usa un gauge de profundidad en tu nail gun. Revisa despues de cada 50 pies de sheathing. Si encuentras clavos overdriven, agrega clavos nuevos a 3" del original.
+    </div>
+
+    <div class="tip-box">
+        <strong>Pro Tip:</strong> Marca con crayon los clavos overdriven que encuentres. El inspector va a revisarlos.
+    </div>
+</div>
+
+<!-- ERROR 2 -->
+<div class="error-page">
+    <div class="error-header">
+        <span class="error-num">02</span>
+        <span class="error-title">Nailing Pattern Equivocado en Shear Walls</span>
+    </div>
+    <span class="error-cost">Costo: $1,000 - $3,000 + rojo garantizado</span>
+
+    <p>Los shear walls resisten fuerzas laterales (viento y sismo). El patron de clavado del sheathing es el elemento estructural principal. Un error aqui es rojo automatico.</p>
+
+    <h3>El error comun</h3>
+    <ul>
+        <li>Clavar el campo primero y olvidar aumentar el clavado en los bordes del shear wall</li>
+        <li>Usar 6" OC cuando el schedule dice 4" OC</li>
+        <li>Confundir el spacing de bordes con el spacing de campo</li>
+        <li>No instalar blocking donde los paneles se juntan</li>
+    </ul>
+
+    <h3>Como leer el shear wall schedule</h3>
+    <div class="code-ref">
+        <strong>Ejemplo:</strong> SW-1 = 8d comun @ 6" bordes / 12" campo. Esto significa: clavos 8d common, cada 6 pulgadas en los bordes del panel, cada 12 pulgadas en el campo. Si el schedule dice 4" en bordes, eso es 4" &mdash; no 6".
+    </div>
+
+    <div class="solution-box">
+        <strong>Solucion:</strong> Marca los limites del shear wall con crayon de color en el sheathing ANTES de clavar. Lee el schedule completo. Si dice 4/12, es 4/12 &mdash; no 6/12.
+    </div>
+</div>
+
+<!-- ERROR 3 -->
+<div class="error-page">
+    <div class="error-header">
+        <span class="error-num">03</span>
+        <span class="error-title">Headers Subdimensionados</span>
+    </div>
+    <span class="error-cost">Costo: $800 - $2,500 + retraso de obra</span>
+
+    <p>Usar un header de 2x6 doble para todos los openins sin importar el span es uno de los errores mas comunes y peligrosos. La Tabla R602.7 del IRC especifica tamanos minimos segun span, carga de nieve y numero de pisos.</p>
+
+    <h3>Ejemplo real</h3>
+    <p>Un openin de ventana de garaje de 6 pies en una casa de un piso con 30 psf de carga de nieve requiere un minimo de <strong>2x10 doble</strong>. Poner un 2x6 doble = rojo + reemplazo.</p>
+
+    <h3>Errores comunes</h3>
+    <ul>
+        <li>Usar el mismo tamano de header para muros exteriores e interiores sin verificar carga</li>
+        <li>No considerar la carga de nieve de Idaho (McCall: 100+ psf vs Boise: 20 psf)</li>
+        <li>Confundir header de "solo techo" con header de "techo + piso"</li>
+    </ul>
+
+    <div class="solution-box">
+        <strong>Solucion:</strong> Siempre consulta la Tabla IRC R602.7 antes de cortar. Loom Framing App tiene la calculadora de Header Sizing &mdash; ingresa span, tipo de carga, y obtienes la respuesta en 15 segundos.
+    </div>
+</div>
+
+<!-- ERROR 4 -->
+<div class="error-page">
+    <div class="error-header">
+        <span class="error-num">04</span>
+        <span class="error-title">Crown al Reves en Rafters y Joists</span>
+    </div>
+    <span class="error-cost">Costo: $400 - $1,200 en correccion</span>
+
+    <p>Cada pieza de madera aserrada tiene una curvatura natural (crown). El crown SIEMPRE debe instalarse mirando hacia arriba. Instalarlo hacia abajo causa deflexion acelerada, pandeo y transferencia de carga desigual.</p>
+
+    <h3>Como identificar el crown</h3>
+    <p>Mira a lo largo del stud o joist de 16 pies con un ojo. El lado alto de la curva es el crown. Marcalo con un lapiz antes de instalar.</p>
+
+    <h3>Consecuencias de instalar al reves</h3>
+    <ul>
+        <li>Deflexion mas rapida &mdash; el piso se siente "esponjoso"</li>
+        <li>Transferencia de carga desigual a los miembros adyacentes</li>
+        <li>El inspector puede detectarlo con un nivel laser</li>
+    </ul>
+
+    <div class="tip-box">
+        <strong>Pro Tip:</strong> En tu crew, asigna a alguien a marcar el crown de cada pieza ANTES de subirla. Es mas rapido que corregir despues.
+    </div>
+</div>
+
+<!-- ERROR 5 -->
+<div class="error-page">
+    <div class="error-header">
+        <span class="error-num">05</span>
+        <span class="error-title">Fire Blocking Faltante</span>
+    </div>
+    <span class="error-cost">Costo: $300 - $800 + rojo</span>
+
+    <p>El fire blocking previene que los espacios ocultos actuen como chimenea para la propagacion del fuego. Es una de las fallas mas frecuentes en inspecciones de Idaho porque es facil de olvidar.</p>
+
+    <h3>Donde se requiere (IRC R302.11)</h3>
+    <ul>
+        <li><strong>Cavidades de studs a la linea del cielo raso</strong> &mdash; en la interseccion de una cavidad vertical y un ensamblaje horizontal de piso/techo</li>
+        <li><strong>Muros de mas de 10 pies</strong> &mdash; blocking solido a la mitad de la altura</li>
+        <li><strong>Soffits verticales y horizontales</strong> &mdash; en la parte superior donde el soffit se une al muro</li>
+        <li><strong>Escaleras abiertas</strong> &mdash; en la parte inferior y superior del stairwell</li>
+    </ul>
+
+    <div class="solution-box">
+        <strong>Solucion:</strong> Antes de cerrar con drywall, recorre toda la casa con la seccion de Fire Blocking del checklist de Pre-Inspeccion en Loom. Son 5 minutos que te ahorran un rojo.
+    </div>
+</div>
+
+<!-- ERROR 6 -->
+<div class="error-page">
+    <div class="error-header">
+        <span class="error-num">06</span>
+        <span class="error-title">Spaciado de Studs Incorrecto Bajo Carga</span>
+    </div>
+    <span class="error-cost">Costo: $1,500 - $4,000 en reconstruccion</span>
+
+    <p>Continuar a 24" OC del primer piso al segundo sin verificar si el muro del segundo piso carga el techo MAS las cargas del segundo piso es un error grave que puede resultar en falla estructural.</p>
+
+    <h3>Cuando se requiere 16" OC obligatorio</h3>
+    <ul>
+        <li>Muros exteriores en zonas de viento fuerte (velocidad > 110 mph)</li>
+        <li>Muros que soportan dos o mas pisos arriba</li>
+        <li>Lineas de shear wall con designaciones de alta carga</li>
+        <li>Muros con studs 2x4 de mas de 10 pies de altura</li>
+    </ul>
+
+    <h3>Error comun en campo</h3>
+    <p>Mezclar 16" y 24" OC en el mismo muro sin reiniciar el layout. Esto desalinea los studs con los joists y trusses de arriba, perdiendo la transferencia directa de carga.</p>
+
+    <div class="solution-box">
+        <strong>Solucion:</strong> Antes de empezar el layout, revisa los planos para condiciones especiales de carga. La Calculadora de Studs en Loom te dice exactamente cuantos studs y a que spacing.
+    </div>
+</div>
+
+<!-- ERROR 7 -->
+<div class="error-page">
+    <div class="error-header">
+        <span class="error-num">07</span>
+        <span class="error-title">Trusses Sin Arriostrado Temporal</span>
+    </div>
+    <span class="error-cost">Costo: $3,000 - $15,000 + riesgo de vida</span>
+
+    <p>Los trusses son resistentes verticalmente pero debiles lateralmente. Sin arriostrado temporal, pueden volcarse y causar un colapso en cadena. Esto ha matado frameros.</p>
+
+    <h3>Que se requiere durante la instalacion</h3>
+    <ul>
+        <li>Braces de 2x4 cada 8-10 pies, corriendo perpendicular a los trusses</li>
+        <li>Clavados al chord superior y arriostrados al suelo o al muro</li>
+        <li>Mantener hasta que el sheathing del techo este instalado y clavado</li>
+    </ul>
+
+    <div class="tip-box">
+        <strong>Pro Tip:</strong> El arriostrado temporal lo pones ANTES de soltar el truss de la grua o del crew. No despues. No "cuando terminemos los demas". ANTES.
+    </div>
+
+    <div class="code-ref">
+        <strong>Modulo de Trusses en Loom:</strong> Arriostrado temporal, permanente, y los requisitos exactos del layout de trusses de tu proyecto &mdash; todo en una pantalla.
+    </div>
+</div>
+
+<!-- ERROR 8 -->
+<div class="error-page">
+    <div class="error-header">
+        <span class="error-num">08</span>
+        <span class="error-title">Hurricane Ties con Clavos Faltantes</span>
+    </div>
+    <span class="error-cost">Costo: $200 - $600 por re-trabajo + rojo</span>
+
+    <p>Las hurricane ties (H1, H2.5, H3) conectan el truss al top plate. Cada hoyo de clavo existe por una razon &mdash; la capacidad del conector se calcula con TODOS los clavos instalados. Saltarte uno reduce la resistencia.</p>
+
+    <h3>Errores comunes</h3>
+    <ul>
+        <li>Dejar hoyos sin clavar &mdash; "ya quedo, tiene suficientes"</li>
+        <li>Sustituir clavos (usar comunes cuando se requiere Simpson 10d x 1.5")</li>
+        <li>Clavar solo al truss y no al top plate (o viceversa)</li>
+        <li>Usar H1 cuando el ingeniero especifico H2.5</li>
+    </ul>
+
+    <div class="solution-box">
+        <strong>Solucion:</strong> Regla simple: <strong>si hay hoyo, lleva clavo.</strong> Sin excepciones. Y usa el clavo que dice el catalogo Simpson, no lo que encuentres en tu bolsa.
+    </div>
+</div>
+
+<!-- ERROR 9 -->
+<div class="error-page">
+    <div class="error-header">
+        <span class="error-num">09</span>
+        <span class="error-title">Lap Splices del Double Top Plate Mal Ubicados</span>
+    </div>
+    <span class="error-cost">Costo: $300 - $900 en correccion</span>
+
+    <p>El double top plate amarra el sistema de muros. Si las juntas del plate inferior y superior quedan alineadas (en vez de traslapadas), pierdes la funcion estructural del double plate.</p>
+
+    <h3>Requisitos IRC R602.3.2</h3>
+    <ul>
+        <li><strong>Offset minimo:</strong> 48" entre juntas del plate inferior y superior</li>
+        <li><strong>Clavado en cada splice:</strong> Minimo 8 clavos 16d dentro de 12" de cada extremo</li>
+        <li>Las esquinas e intersecciones deben tener el traslape del plate superior cubriendo la junta</li>
+    </ul>
+
+    <div class="tip-box">
+        <strong>Pro Tip:</strong> Planea tus cortes de plate para que las juntas nunca queden a menos de 4 pies de distancia entre plate inferior y superior. Es mas facil cortarlos bien que corregir despues.
+    </div>
+</div>
+
+<!-- ERROR 10 -->
+<div class="error-page">
+    <div class="error-header">
+        <span class="error-num">10</span>
+        <span class="error-title">Subfloor: Clavos Equivocados o Sin Pegamento</span>
+    </div>
+    <span class="error-cost">Costo: $500 - $1,500 + pisos que rechinan</span>
+
+    <p>El subfloor lleva clavos ring-shank 8d @ 6" OC en bordes y 12" OC en campo. Los clavos ring-shank tienen 40-50% mas resistencia al pull-out que los common nails. Usar clavos comunes = pisos que rechinan en 2 anos.</p>
+
+    <h3>Errores comunes</h3>
+    <ul>
+        <li>Usar 8d common en vez de 8d ring-shank</li>
+        <li>Saltar el adhesivo de subfloor &mdash; "los clavos aguantan"</li>
+        <li>Clavar paneles clasificados 16 OC sobre framing de 24 OC</li>
+        <li>No dejar gap de 1/8" entre paneles para expansion termica</li>
+    </ul>
+
+    <div class="code-ref">
+        <strong>IRC R503.2.1:</strong> Los paneles estructurales de subfloor deben ser clavados con clavos ring-shank 8d a 6" OC en bordes, 12" OC en campo. Adhesivo de subfloor es requerido cuando se especifica "glued and nailed".
+    </div>
+
+    <div class="solution-box">
+        <strong>Solucion:</strong> Carga tu nail gun con ring-shank ANTES de empezar el subfloor. Aplica una linea continua de adhesivo PL Premium o similar sobre cada joist. Sin excepciones.
+    </div>
+</div>
+
+<!-- BACK PAGE -->
+<div class="back-page">
+    <h2>Estos errores son prevenibles.</h2>
+    <p style="font-size: 12pt; color: #555; max-width: 400px; margin: 0 auto 12px; line-height: 1.6;">
+        Loom Framing App tiene las calculadoras, codigos IRC, y checklists
+        que necesitas para evitarlos &mdash; todo en tu telefono, todo offline.
+    </p>
+
+    <a href="https://jezblade.github.io/loom/" class="cta">Descarga Loom Gratis</a>
+
+    <ul class="feature-list">
+        <li>12+ calculadoras de campo (headers, studs, birdsmouth, escaleras)</li>
+        <li>Checklist de Pre-Inspeccion con 28 items IRC</li>
+        <li>Nailing schedule visual para shear walls</li>
+        <li>Glosario bilingue con 185 terminos</li>
+        <li>39 articulos + 25 consejos pro</li>
+        <li>Visor de planos PDF con Plan Intelligence</li>
+        <li>Funciona 100% offline en la obra</li>
+        <li>Bilingue: espanol + ingles tecnico</li>
+    </ul>
+
+    <p style="margin-top: 40px; font-size: 9pt; color: #999;">
+        <strong style="color: #FF6D00;">jezblade.github.io/loom</strong><br>
+        Google Play: play.google.com/apps/testing/com.loomframing.app<br><br>
+        &copy; 2026 JezBlade &mdash; Loom Framing App<br>
+        Contenido basado en IRC 2021 y experiencia de campo en Idaho.
+    </p>
+</div>
+
+</body>
+</html>
