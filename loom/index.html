@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Loom Framing App - Calculadora profesional de framing para contratistas. Funciona offline. Bilingue. Codigos IRC. Hecha para la obra.">
+    <meta name="keywords" content="framing, calculadora, constructor, framero, IRC, Idaho, BOM, inspeccion, app">
+    <meta name="author" content="JezBlade">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Loom Framing App - El compañero del framero">
+    <meta property="og:description" content="Calculadora profesional de framing. Offline. Bilingue. Codigos IRC. Hecha para la obra.">
+    <meta property="og:image" content="assets/feature-graphic-1024x500.png">
+    <meta property="og:type" content="website">
+    <title>Loom Framing App - El compañero del framero</title>
+    <link rel="icon" type="image/png" href="assets/app-icon-512.png">
+    <style>
+        :root {
+            --orange: #FF6D00;
+            --orange-light: #FF8C00;
+            --orange-dark: #E65100;
+            --blue: #37474F;
+            --blue-light: #546E7A;
+            --blue-dark: #1a1a2e;
+            --white: #ffffff;
+            --gray-light: #f5f5f5;
+            --gray: #9e9e9e;
+            --green: #4CAF50;
+            --red: #F44336;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #222;
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, var(--blue-light) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 24px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: var(--white);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+        .hero-icon {
+            width: 96px;
+            height: 96px;
+            border-radius: 22px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .hero h1 span { color: var(--orange); }
+        .hero .tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 500px;
+            margin: 0 auto 28px;
+        }
+
+        /* CTAs */
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            max-width: 340px;
+            margin: 0 auto;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px 24px;
+            border-radius: 14px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
+        .btn:active { transform: translateY(0); }
+        .btn-orange {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: var(--white);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+        .btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+        .btn-green {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: var(--white);
+        }
+        .btn-icon { font-size: 1.3rem; }
+
+        /* BADGES */
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            padding: 32px 24px 16px;
+        }
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--blue);
+        }
+        .badge-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+        .badge-icon.offline { background: #E3F2FD; }
+        .badge-icon.bilingual { background: #FFF3E0; }
+        .badge-icon.irc { background: #E8F5E9; }
+
+        /* SECTIONS */
+        .section {
+            padding: 48px 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--blue-dark);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--gray);
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        /* FEATURES GRID */
+        .features {
+            background: var(--gray-light);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .feature-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--orange);
+            transition: transform 0.2s;
+        }
+        .feature-card:hover { transform: translateY(-3px); }
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--blue-dark);
+            margin-bottom: 6px;
+        }
+        .feature-card p {
+            font-size: 0.92rem;
+            color: #555;
+            line-height: 1.5;
+        }
+        .feature-emoji {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* SCREENSHOTS CAROUSEL */
+        .screenshots {
+            overflow-x: auto;
+            display: flex;
+            gap: 16px;
+            padding: 0 24px 20px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .screenshots::-webkit-scrollbar { display: none; }
+        .screenshots img {
+            width: 220px;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            scroll-snap-align: center;
+            flex-shrink: 0;
+        }
+
+        /* STATS */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            text-align: center;
+            padding: 32px 24px;
+            background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
+            color: var(--white);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--orange);
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.85;
+            margin-top: 2px;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+        }
+        .faq-q {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--blue-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-q::after {
+            content: '+';
+            font-size: 1.4rem;
+            color: var(--orange);
+            font-weight: 300;
+            transition: transform 0.3s;
+        }
+        .faq-q.open::after { transform: rotate(45deg); }
+        .faq-a {
+            font-size: 0.92rem;
+            color: #555;
+            margin-top: 12px;
+            display: none;
+            line-height: 1.6;
+        }
+        .faq-a.show { display: block; }
+
+        /* DOWNLOAD SECTION */
+        .download-section {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 56px 24px;
+        }
+        .download-section h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .download-section p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 28px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .download-section .btn-white {
+            background: var(--white);
+            color: var(--orange-dark);
+            max-width: 340px;
+            margin: 0 auto 12px;
+        }
+        .download-section .btn-ghost {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.5);
+            max-width: 340px;
+            margin: 0 auto;
+        }
+        .download-section .btn-ghost:hover { border-color: var(--white); }
+
+        /* FOOTER */
+        footer {
+            background: var(--blue-dark);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.85rem;
+        }
+        footer a { color: rgba(255,255,255,0.9); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* RESPONSIVE */
+        @media (min-width: 640px) {
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 { font-size: 2.8rem; }
+            .cta-group { flex-direction: row; max-width: 500px; }
+            .btn { width: auto; min-width: 200px; }
+            .screenshots img { width: 260px; }
+        }
+        @media (min-width: 960px) {
+            .features-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <img src="assets/app-icon-512.png" alt="Loom Framing App" class="hero-icon" loading="eager">
+    <h1>Loom <span>Framing</span> App</h1>
+    <p class="tagline">El compañero que sabe mas &mdash; en tu bolsa, en la obra.</p>
+    <div class="cta-group">
+        <a href="https://play.google.com/apps/testing/com.loomframing.app" class="btn btn-orange" target="_blank" rel="noopener">
+            <span class="btn-icon">&#9654;</span> Descargar en Google Play
+        </a>
+        <a href="#comunidad" class="btn btn-outline">
+            <span class="btn-icon">&#128172;</span> Unete al grupo
+        </a>
+    </div>
+</section>
+
+<!-- TRUST BADGES -->
+<div class="badges">
+    <div class="badge">
+        <span class="badge-icon offline">&#128225;</span>
+        Funciona sin internet
+    </div>
+    <div class="badge">
+        <span class="badge-icon bilingual">&#127758;</span>
+        Bilingue ES/EN
+    </div>
+    <div class="badge">
+        <span class="badge-icon irc">&#9989;</span>
+        Codigos IRC 2021
+    </div>
+</div>
+
+<!-- SCREENSHOTS -->
+<section class="section" style="padding-bottom: 24px;">
+    <h2 class="section-title">Hecha para el jobsite</h2>
+    <p class="section-subtitle">Calculadoras, codigos, checklists &mdash; todo en tu telefono, todo offline.</p>
+</section>
+<div class="screenshots">
+    <img src="assets/screenshot-1-calculator.png" alt="Calculadora de framing" loading="lazy">
+    <img src="assets/screenshot-2-bom.png" alt="Lista de materiales BOM" loading="lazy">
+    <img src="assets/screenshot-3-knowledge.png" alt="Base de conocimiento" loading="lazy">
+    <img src="assets/screenshot-4-inspection.png" alt="Checklist de inspeccion" loading="lazy">
+</div>
+
+<!-- STATS -->
+<div class="stats">
+    <div>
+        <div class="stat-number">12+</div>
+        <div class="stat-label">Calculadoras de campo</div>
+    </div>
+    <div>
+        <div class="stat-number">185</div>
+        <div class="stat-label">Terminos bilingues</div>
+    </div>
+    <div>
+        <div class="stat-number">28</div>
+        <div class="stat-label">Items de inspeccion</div>
+    </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section features">
+    <h2 class="section-title">Lo que hace Loom por ti</h2>
+    <p class="section-subtitle">No es una app generica. Es tu guia de campo profesional.</p>
+    <div class="features-grid">
+        <div class="feature-card">
+            <span class="feature-emoji">&#128208;</span>
+            <h3>Calculadoras de Campo</h3>
+            <p>Headers, studs, birdsmouth, rake wall, escaleras, OC layout, cargas. Resultado en menos de 3 segundos.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-emoji">&#128203;</span>
+            <h3>Lista de Materiales (BOM)</h3>
+            <p>Genera tu bill of materials completo y exporta a PDF. Mandalo al supplier desde la obra.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-emoji">&#128270;</span>
+            <h3>Checklist de Inspeccion</h3>
+            <p>28 items en 7 categorias. Pasa la inspeccion a la primera. Las top 5 causas de rojo incluidas.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-emoji">&#128214;</span>
+            <h3>Codigos IRC Idaho</h3>
+            <p>Nailing schedule, header tables, Simpson hardware, common fails. Todo referenciado a IRC 2021.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-emoji">&#128218;</span>
+            <h3>Manual del Framer</h3>
+            <p>39 articulos + 25 consejos pro. Lectura de planos, trusses, pisos, escaleras, errores comunes.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-emoji">&#127968;</span>
+            <h3>Visor de Planos PDF</h3>
+            <p>Abre tus planos en el telefono. X-ray, navegador de secciones, capas. Plan Intelligence detecta LVLs, trusses y hangers.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOR WHOM -->
+<section class="section">
+    <h2 class="section-title">Para frameros reales</h2>
+    <p class="section-subtitle">Hecha para el que esta en la obra, no en la oficina.</p>
+    <div class="features-grid" style="grid-template-columns: 1fr;">
+        <div class="feature-card" style="border-left-color: var(--green);">
+            <h3>&#128119; El Caporal &mdash; Lead Framer</h3>
+            <p>Calcula headers sin llamar al super. Da precio rapido al GC. Llega a la inspeccion con confianza. Tu crew no te interrumpe cada 20 minutos.</p>
+        </div>
+        <div class="feature-card" style="border-left-color: var(--blue-light);">
+            <h3>&#128188; The Estimator &mdash; General Contractor</h3>
+            <p>BOMs en PDF para cotizaciones inmediatas. Historial de proyectos accesible. Menos errores caros de tu crew.</p>
+        </div>
+        <div class="feature-card" style="border-left-color: var(--red);">
+            <h3>&#128269; The Inspector</h3>
+            <p>Referencia rapida a IRC, nailing schedules, snow loads locales. Recomienda la app a los contratistas que inspeccionas.</p>
+        </div>
+    </div>
+</section>
+
+<!-- COMMUNITY / WHATSAPP -->
+<section class="section" id="comunidad" style="background: var(--gray-light); max-width: 100%; padding: 56px 24px;">
+    <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+        <h2 class="section-title">Comunidad Frameros Loom</h2>
+        <p class="section-subtitle">Unete al grupo de WhatsApp. Comparte tips, resuelve dudas, reporta bugs. Somos frameros ayudando frameros.</p>
+        <a href="#" class="btn btn-green" style="max-width: 340px; margin: 0 auto 16px; display: flex;" id="whatsapp-btn">
+            <span class="btn-icon">&#128172;</span> Unirse al grupo de WhatsApp
+        </a>
+        <p style="font-size: 0.85rem; color: var(--gray);">Grupo exclusivo para frameros profesionales. Cero spam.</p>
+    </div>
+</section>
+
+<!-- FREE GUIDE -->
+<section class="section" style="text-align: center;">
+    <h2 class="section-title">Guia Gratuita</h2>
+    <p class="section-subtitle" style="max-width: 500px; margin: 0 auto 24px;">Los 10 errores de framing que te van a costar $1,000. Aprende a evitarlos antes de la inspeccion.</p>
+    <a href="mailto:DameEvieFrye@proton.me?subject=Quiero%20la%20guia%20gratuita%20de%20Loom&body=Hola%2C%20quiero%20recibir%20la%20guia%20gratuita%20de%20los%2010%20errores%20de%20framing." class="btn btn-orange" style="max-width: 340px; margin: 0 auto; display: inline-flex;">
+        <span class="btn-icon">&#128228;</span> Recibir guia gratis por email
+    </a>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+    <h2 class="section-title">Preguntas Frecuentes</h2>
+    <p class="section-subtitle">Lo que los frameros nos preguntan.</p>
+
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Funciona sin internet?</div>
+        <div class="faq-a">Si. Todas las funciones principales &mdash; calculadoras, BOM, codigos, checklists &mdash; funcionan 100% offline. No necesitas senal en la obra.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">De verdad esta en espanol?</div>
+        <div class="faq-a">Si. La interfaz y las explicaciones estan en espanol. Los terminos tecnicos (shear wall, LVL, Simpson H1, etc.) se quedan en ingles &mdash; porque asi es como se habla en la obra y como aparecen en los planos.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Cubre codigos de Idaho especificamente?</div>
+        <div class="faq-a">Si. Loom incluye mapas de snow load de Idaho, requisitos de zona sismica, y referencias a codigos locales de Boise, Nampa, Meridian y otras ciudades.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Puedo exportar a PDF?</div>
+        <div class="faq-a">Si. Genera una lista de materiales completa y exportala a PDF con un solo tap. Comparte por email, texto o AirDrop directo al supplier.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Es gratis?</div>
+        <div class="faq-a">La app esta en fase de testing cerrado. Puedes descargarla gratis en Google Play. Estamos buscando frameros profesionales que la prueben y den feedback.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Funciona en iPhone?</div>
+        <div class="faq-a">Por ahora solo esta disponible en Android. La version iOS esta en camino.</div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="download-section">
+    <h2>Descarga Loom hoy</h2>
+    <p>La app que tu crew necesitaba. Funciona offline, habla tu idioma, conoce los codigos.</p>
+    <a href="https://play.google.com/apps/testing/com.loomframing.app" class="btn btn-white" target="_blank" rel="noopener" style="display: flex;">
+        <span class="btn-icon">&#9654;</span> Descargar en Google Play
+    </a>
+    <a href="#comunidad" class="btn btn-ghost" style="display: flex; margin-top: 12px;">
+        <span class="btn-icon">&#128172;</span> Unirse a la comunidad
+    </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-links">
+        <a href="../privacy-policy.html">Politica de Privacidad</a>
+        <a href="mailto:DameEvieFrye@proton.me">Contacto</a>
+        <a href="https://github.com/JezBlade" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p>&copy; 2026 JezBlade &mdash; Loom Framing App. Hecha para la obra.</p>
+</footer>
+
+<script>
+function toggleFaq(el) {
+    el.classList.toggle('open');
+    const answer = el.nextElementSibling;
+    answer.classList.toggle('show');
+}
+</script>
+
+</body>
+</html>
