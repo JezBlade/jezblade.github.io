@@ -5,9 +5,7 @@ permissions:
   contents: read
 
 on:
-  schedule:
-    - cron: '0 8 * * 1'
-  workflow_dispatch:
+  workflow_dispatch:  # Manual only — weekly cron disabled 2026-05-01 (~300 min/month saved)
 
 concurrency:
   group: health-monitoring
