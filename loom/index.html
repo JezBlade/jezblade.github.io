@@ -397,7 +397,10 @@
                 <div style="padding: 20px; background: var(--white);">
                     <h3 style="font-size: 1rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 8px;">Paredes Complejas en Segundos</h3>
                     <p style="font-size: 0.9rem; color: #555; line-height: 1.5; margin-bottom: 12px;">Calcula headers, studs, alturas en geometrías que la mayoría de calculadoras no pueden.</p>
-                    <a href="https://www.tiktok.com/@loomframing" target="_blank" rel="noopener" style="color: var(--orange); text-decoration: none; font-weight: 600; font-size: 0.9rem;">Ver en TikTok →</a>
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                        <a href="https://www.tiktok.com/@loomframing" target="_blank" rel="noopener" style="color: var(--orange); text-decoration: none; font-weight: 600; font-size: 0.9rem;">Ver en TikTok →</a>
+                        <a href="https://youtube.com/shorts/MU0_B0TYXbs" target="_blank" rel="noopener" style="color: #FF0000; text-decoration: none; font-weight: 600; font-size: 0.9rem;">Ver en YouTube →</a>
+                    </div>
                 </div>
             </div>
 
@@ -563,36 +566,42 @@
         
         <!-- OPT-IN FORM -->
         <div style="background: rgba(255,255,255,0.95); border-radius: 12px; padding: 20px; color: var(--blue-dark); text-align: left;">
-            <form id="tester-form" style="display: flex; flex-direction: column; gap: 12px;" onsubmit="handleTesterSubmit(event)">
-                <input 
-                    type="text" 
+            <form id="tester-form" action="https://formsubmit.co/chuchangero@hotmail.com" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
+                <!-- FormSubmit config -->
+                <input type="hidden" name="_subject" value="🎯 Nuevo Tester — Loom Framing App">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="box">
+                <input type="hidden" name="_next" value="https://jezblade.github.io/loom/?tester=ok">
+
+                <input
+                    type="text"
                     name="name"
-                    placeholder="Tu nombre completo" 
+                    placeholder="Tu nombre completo"
                     style="padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem;"
                     required
                 />
-                <input 
-                    type="email" 
+                <input
+                    type="email"
                     name="email"
-                    placeholder="Tu email" 
+                    placeholder="Tu email"
                     style="padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem;"
                     required
                 />
-                <input 
-                    type="tel" 
+                <input
+                    type="tel"
                     name="phone"
-                    placeholder="Tu teléfono (para enviar app link)" 
+                    placeholder="Tu teléfono (para enviar app link)"
                     style="padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem;"
                     required
                 />
-                <textarea 
+                <textarea
                     name="experience"
-                    placeholder="¿En qué tipo de framing trabajas? (ej: Residential, light commercial, trusses, etc)" 
+                    placeholder="¿En qué tipo de framing trabajas? (ej: Residential, light commercial, trusses, etc)"
                     style="padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem; min-height: 80px; font-family: inherit;"
                     required
                 ></textarea>
-                <button 
-                    type="submit" 
+                <button
+                    type="submit"
                     style="padding: 12px 24px; background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%); color: white; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer;"
                 >
                     🎯 Aplicar Como Tester
@@ -693,6 +702,13 @@
 <!-- FOOTER -->
 <footer>
     <div class="footer-links">
+        <a href="https://www.tiktok.com/@loomframing" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.instagram.com/loom_framing/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@LoomFraming" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.facebook.com/profile.php?id=61560599675507" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.linkedin.com/company/loom-framing/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-links" style="margin-bottom: 16px;">
         <a href="../privacy-policy.html">Politica de Privacidad</a>
         <a href="mailto:chuchangero@hotmail.com">Contacto</a>
         <a href="https://github.com/JezBlade" target="_blank" rel="noopener">GitHub</a>
@@ -707,41 +723,13 @@ function toggleFaq(el) {
     answer.classList.toggle('show');
 }
 
-function handleTesterSubmit(event) {
-    event.preventDefault();
-    
-    const form = event.target;
-    const formData = new FormData(form);
-    const data = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        experience: formData.get('experience'),
-        timestamp: new Date().toISOString()
-    };
-    
-    // Option 1: Send via GitHub Issues (if you have a private repo set up)
-    // Option 2: Send via email (FormSubmit.co or similar service)
-    // For now, we'll use a simple fetch to a backend endpoint or show success
-    
-    // Show success message
-    const successMsg = document.createElement('div');
-    successMsg.style.cssText = 'padding: 12px 16px; background: #4CAF50; color: white; border-radius: 8px; margin-top: 12px; text-align: center; font-weight: 600;';
-    successMsg.textContent = '✅ ¡Solicitud enviada! Te contactaremos en 24 horas.';
-    form.parentElement.appendChild(successMsg);
-    
-    // Clear form
-    form.reset();
-    
-    // Log to console for debugging
-    console.log('Tester application:', data);
-    
-    // Optional: Send to a backend API or email service
-    // fetch('https://your-api.com/testers', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(data)
-    // });
+// Show success message if redirected back after form submit
+if (new URLSearchParams(window.location.search).get('tester') === 'ok') {
+    const msg = document.createElement('div');
+    msg.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);padding:14px 24px;background:#4CAF50;color:white;border-radius:12px;font-weight:700;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.2);';
+    msg.textContent = '✅ ¡Solicitud enviada! Te contactaremos en 24 horas.';
+    document.body.appendChild(msg);
+    setTimeout(() => msg.remove(), 5000);
 }
 </script>
 
