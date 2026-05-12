@@ -56,4 +56,4 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/dependency-review-action@v4
+      - uses: actions/dependency-review-action@v5
