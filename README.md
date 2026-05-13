@@ -1,24 +1,27 @@
 # jezblade.github.io
 
-Public web presence and portfolio for JezBlade — GitHub Pages site.
+Public web presence for JezBlade — GitHub Pages site.
+
+## Contents
+
+- **[Loom Framing App](https://jezblade.github.io/loom/)** — Landing page for Loom Framing App, a professional Android app for wood framers.
+- **[Developer Profile](https://jezblade.github.io/)** — VS Code extensions and published projects.
+- **[Privacy Policy](https://jezblade.github.io/privacy-policy.html)** — Privacy policy for Loom Framing App.
+
+## Loom Framing App
+
+Professional framing calculator app for Android. Built for Hispanic framers in Idaho.
+
+- 15+ field calculators (headers, studs, birdsmouth, rake wall, vaulted wall, and more)
+- IRC 2021 code reference — nailing schedules, header tables, Simpson hardware
+- Inspection checklist — 29 items across 7 categories
+- BOM generator with PDF export
+- Plan viewer with Plan Intelligence (detects LVLs, trusses, hangers)
+- 42 technical articles + 63 pro tips — fully bilingual (ES/EN)
+- 100% offline
+
+**Download:** [Google Play](https://play.google.com/apps/testing/com.loomframing.app)
 
 ---
 
-## 🌌 Ultimate Plan Ecosystem
-
-This repository is part of the **Ultimate Plan** — a multi-agent AI orchestration ecosystem.
-
-| Repo | Role | Description |
-|------|------|-------------|
-| [Aeternum-Memory](https://github.com/JezBlade/Aeternum-Memory) | 💾 The Heart | Persistent memory & audit trail for all agents |
-| [MPC-Compendio-Operativo](https://github.com/JezBlade/MPC-Compendio-Operativo) | 🧠 The Brain | Central orchestration hub, task routing |
-| [Codex Aeternum](https://github.com/JezBlade/Codex_Aeternum-Hidden_Pulse_Brotherhood) | 📜 The Soul | Core philosophy, knowledge, governance |
-| [Evie Mental Weave](https://github.com/JezBlade/Evie-of-The-Mental-Weave) | 🌀 The Consciousness | Visualization, night-cycle analysis |
-| [Loom-Framing-App](https://github.com/JezBlade/Loom-Framing-App) | 🏗️ The Hands | Commercial Flutter app (Idaho framers) |
-| [Sovereign-Hub](https://github.com/JezBlade/Sovereign-Hub) | ⚔️ The Muscle | Self-hosted runners, autonomous execution |
-| [Universo-MultiClub](https://github.com/JezBlade/Universo-MultiClub) | ♟️ The Community | Chess.com club management |
-| [jezblade.github.io](https://github.com/JezBlade/jezblade.github.io) | 🌍 The Face | Public web presence |
-| [ultimate-plan-docs](https://github.com/JezBlade/ultimate-plan-docs) | 📚 The Library | Documentation cloud |
-| [JezBlade-ultimate-plan-media](https://github.com/JezBlade/JezBlade-ultimate-plan-media) | 🎨 The Gallery | Media & ceremonial artifacts |
-
-> _Brotherhood Seal: 015cb320_
+&copy; 2026 JezBlade
