@@ -223,7 +223,7 @@
         /* STATS */
         .stats {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 16px;
             text-align: center;
             padding: 32px 24px;
@@ -328,6 +328,7 @@
         /* RESPONSIVE */
         @media (min-width: 640px) {
             .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats { grid-template-columns: repeat(4, 1fr); }
             .hero h1 { font-size: 2.8rem; }
             .cta-group { flex-direction: row; max-width: 500px; }
             .btn { width: auto; min-width: 200px; }
@@ -374,6 +375,10 @@
     <div class="badge">
         <span class="badge-icon irc">&#9989;</span>
         Codigos IRC 2021
+    </div>
+    <div class="badge">
+        <span class="badge-icon" style="background: #F3E5F5;">&#127919;</span>
+        Quiz del Framero
     </div>
 </div>
 
@@ -427,7 +432,12 @@
             <div style="flex: 0 0 auto; max-width: 325px; width: 100%; min-height: 300px; background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; padding: 32px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.12);">
                 <div style="font-size: 3rem; margin-bottom: 16px;">🎥</div>
                 <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">Más Videos en Camino</h3>
-                <p style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 20px;">BOM a PDF, Nailing Schedules, Inspection Checklists</p>
+                <div style="font-size: 0.82rem; opacity: 0.9; margin-bottom: 20px; text-align: left; line-height: 1.7;">
+                    <div>&#127919; Quiz del Framero — 21 preguntas</div>
+                    <div>&#128203; BOM a PDF en la obra</div>
+                    <div>&#9989; Inspection Checklist completo</div>
+                    <div>&#129521; Backing &amp; Blocking en accion</div>
+                </div>
                 <a href="https://www.tiktok.com/@loomframing" target="_blank" rel="noopener"
                    style="padding: 10px 20px; background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.6); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 0.9rem;">
                     Seguir en TikTok →
@@ -441,7 +451,7 @@
 <!-- SCREENSHOTS -->
 <section class="section" style="padding-bottom: 24px;">
     <h2 class="section-title">Hecha para el jobsite</h2>
-    <p class="section-subtitle">Calculadoras, codigos, checklists &mdash; todo en tu telefono, todo offline.</p>
+    <p class="section-subtitle">15+ calculadoras, 42 articulos, 63 tips pro, codigos IRC &mdash; todo en tu telefono, todo offline.</p>
 </section>
 <div class="screenshots">
     <img src="assets/screenshot-1-calculator.png" alt="Calculadora de framing" loading="lazy">
@@ -453,16 +463,33 @@
 <!-- STATS -->
 <div class="stats">
     <div>
-        <div class="stat-number">12+</div>
+        <div class="stat-number">15+</div>
         <div class="stat-label">Calculadoras de campo</div>
     </div>
     <div>
-        <div class="stat-number">185</div>
-        <div class="stat-label">Terminos bilingues</div>
+        <div class="stat-number">105+</div>
+        <div class="stat-label">Articulos y tips pro</div>
     </div>
     <div>
-        <div class="stat-number">28</div>
+        <div class="stat-number">29</div>
         <div class="stat-label">Items de inspeccion</div>
+    </div>
+    <div>
+        <div class="stat-number">20+</div>
+        <div class="stat-label">Tablas IRC 2021</div>
+    </div>
+</div>
+
+<!-- WHAT'S NEW BAND -->
+<div style="background: linear-gradient(90deg, #1a1a2e 0%, #263238 100%); padding: 20px 24px; text-align: center; border-top: 1px solid rgba(255,109,0,0.2);">
+    <div style="font-size: 0.72rem; font-weight: 700; color: var(--orange); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 12px;">&#9733; Nuevo en v3.9.2</div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
+        <span style="background: rgba(255,109,0,0.12); border: 1px solid rgba(255,109,0,0.35); color: #fff; padding: 5px 13px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">&#128736; Gable End &amp; Vaulted Wall</span>
+        <span style="background: rgba(255,109,0,0.12); border: 1px solid rgba(255,109,0,0.35); color: #fff; padding: 5px 13px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">&#129521; Backing &amp; Blocking</span>
+        <span style="background: rgba(255,109,0,0.12); border: 1px solid rgba(255,109,0,0.35); color: #fff; padding: 5px 13px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">&#128689; Rough Openings</span>
+        <span style="background: rgba(255,109,0,0.12); border: 1px solid rgba(255,109,0,0.35); color: #fff; padding: 5px 13px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">&#129504; Plan Intelligence AI</span>
+        <span style="background: rgba(255,109,0,0.12); border: 1px solid rgba(255,109,0,0.35); color: #fff; padding: 5px 13px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">&#127919; Quiz del Framero</span>
+        <span style="background: rgba(255,109,0,0.12); border: 1px solid rgba(255,109,0,0.35); color: #fff; padding: 5px 13px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">&#128218; 63 Tips Pro</span>
     </div>
 </div>
 
@@ -474,32 +501,47 @@
         <div class="feature-card">
             <span class="feature-emoji">&#128208;</span>
             <h3>Calculadoras de Campo</h3>
-            <p>Headers, studs, birdsmouth, rake wall, escaleras, OC layout, cargas. Resultado en menos de 3 segundos.</p>
+            <p>Headers, studs, birdsmouth, rake wall, OC layout, cargas, conversiones, Framer Pro y mas. Resultado en menos de 3 segundos. Sin internet.</p>
+        </div>
+        <div class="feature-card" style="border-left-color: var(--orange);">
+            <span class="feature-emoji">&#128736;</span>
+            <h3>Gable End &amp; Vaulted Wall <span style="font-size: 0.7rem; background: var(--orange); color: white; padding: 2px 8px; border-radius: 10px; font-weight: 700; vertical-align: middle;">NUEVO</span></h3>
+            <p>Calcula paredes angled y vaulted en segundos: ridge height, stud heights, plate angles y backing. 5 outputs instantaneos para paredes complejas.</p>
         </div>
         <div class="feature-card">
             <span class="feature-emoji">&#128203;</span>
             <h3>Lista de Materiales (BOM)</h3>
-            <p>Genera tu bill of materials completo y exporta a PDF. Mandalo al supplier desde la obra.</p>
+            <p>Genera tu bill of materials completo y exporta a PDF. Manda la lista al supplier directamente desde la obra. Historial de proyectos incluido.</p>
         </div>
         <div class="feature-card">
             <span class="feature-emoji">&#128270;</span>
             <h3>Checklist de Inspeccion</h3>
-            <p>28 items en 7 categorias. Pasa la inspeccion a la primera. Las top 5 causas de rojo incluidas.</p>
+            <p>29 items en 7 categorias — fundacion, muros, pisos, techo, hardware, conexiones. Pasa la inspeccion a la primera. Captura fotos de evidencia.</p>
         </div>
         <div class="feature-card">
             <span class="feature-emoji">&#128214;</span>
-            <h3>Codigos IRC Idaho</h3>
-            <p>Nailing schedule, header tables, Simpson hardware, common fails. Todo referenciado a IRC 2021.</p>
+            <h3>Codigos IRC Idaho 2021</h3>
+            <p>Nailing schedule, header tables, Simpson hardware guide, snow loads por condado, common fails del inspector. Todo referenciado a IRC 2021. Sin paywall.</p>
         </div>
         <div class="feature-card">
             <span class="feature-emoji">&#128218;</span>
             <h3>Manual del Framer</h3>
-            <p>39 articulos + 25 consejos pro. Lectura de planos, trusses, pisos, escaleras, errores comunes.</p>
+            <p>42 articulos tecnicos + 63 tips pro en 12 categorias. Pisos, muros, techos, escaleras, trusses, shear wall, secuencia de build. Bilingue. Todo offline.</p>
         </div>
         <div class="feature-card">
             <span class="feature-emoji">&#127968;</span>
             <h3>Visor de Planos PDF</h3>
-            <p>Abre tus planos en el telefono. X-ray, navegador de secciones, capas. Plan Intelligence detecta LVLs, trusses y hangers.</p>
+            <p>Abre tus planos en el telefono. Modo X-ray, navegador de secciones. Plan Intelligence detecta LVLs, trusses y hangers automaticamente. Sube PDFs desde la obra.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-emoji">&#128736;</span>
+            <h3>Modulo de Trusses</h3>
+            <p>Tipos de trusses, layout, bracing requirements, pitch calculator, hardware guide y errores comunes. Todo lo que necesitas del techo en un solo lugar.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-emoji">&#127919;</span>
+            <h3>Quiz del Framero</h3>
+            <p>21 preguntas tecnicas — snow loads, IRC codes, nailing, lectura de planos. Pon a prueba tu conocimiento. 3 niveles de dificultad. ¿Cuanto sabes realmente?</p>
         </div>
     </div>
 </section>
@@ -733,7 +775,7 @@
 
     <div class="faq-item">
         <div class="faq-q" onclick="toggleFaq(this)">Funciona sin internet?</div>
-        <div class="faq-a">Si. Todas las funciones principales &mdash; calculadoras, BOM, codigos, checklists &mdash; funcionan 100% offline. No necesitas senal en la obra.</div>
+        <div class="faq-a">Si. Todas las funciones principales funcionan 100% offline: las 15+ calculadoras, los 42 articulos, los 63 tips pro, BOM, codigos IRC, checklists, quiz. No necesitas senal en la obra.</div>
     </div>
 
     <div class="faq-item">
