@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Brotherhood Architecture Services — AI multi-agent systems, MCP integration, and clean architecture consultancy by JezBlade.">
+    <meta name="author" content="JezBlade">
+    <meta name="robots" content="index, follow">
+    <title>Brotherhood Services — JezBlade</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <style>
+        :root {
+            --orange: #FF6D00;
+            --orange-dark: #E65100;
+            --blue-dark: #1a1a2e;
+            --blue: #37474F;
+            --blue-light: #546E7A;
+            --gray-bg: #f5f7fa;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* NAV */
+        .nav { margin-bottom: 20px; }
+        .nav a {
+            color: var(--blue);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            opacity: 0.7;
+        }
+        .nav a:hover { opacity: 1; }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, var(--blue-light) 100%);
+            color: white;
+            padding: 60px 40px 52px;
+            border-radius: 16px;
+            margin-bottom: 28px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,109,0,0.15);
+            border: 1px solid rgba(255,109,0,0.4);
+            color: var(--orange);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+        .hero h1 { margin: 0 0 12px; font-size: 2.8em; font-weight: 800; letter-spacing: -1px; }
+        .hero h1 span { color: var(--orange); }
+        .hero p { margin: 0; font-size: 1.1em; opacity: 0.75; max-width: 560px; margin: 0 auto; }
+
+        /* SECTION TITLE */
+        .section-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--blue-light);
+            margin: 0 0 16px;
+        }
+
+        /* SERVICE CARDS */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px 28px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 3px solid transparent;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .service-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+        }
+        .service-card.featured { border-top-color: var(--orange); }
+        .service-card.tier2 { border-top-color: #667eea; }
+        .service-card.tier3 { border-top-color: #26A69A; }
+        .service-card.tier4 { border-top-color: #78909C; }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .service-card h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--blue-dark);
+            margin: 0 0 10px;
+        }
+        .service-card p {
+            color: #666;
+            font-size: 0.92rem;
+            margin: 0 0 16px;
+            line-height: 1.55;
+        }
+        .service-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+        .chip {
+            background: var(--gray-bg);
+            border: 1px solid #e0e0e0;
+            color: #555;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .price-tag {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--orange);
+            margin-bottom: 16px;
+        }
+        .price-tag small {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #999;
+        }
+
+        /* FEATURED CARD */
+        .featured-card {
+            background: linear-gradient(135deg, var(--blue-dark) 0%, #263238 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .featured-card h2 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 0 10px;
+        }
+        .featured-card h2 span { color: var(--orange); }
+        .featured-card p { color: rgba(255,255,255,0.75); margin: 0 0 20px; }
+        .featured-chip {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.85);
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            padding: 12px 22px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-orange {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: white;
+            box-shadow: 0 4px 16px rgba(255,109,0,0.3);
+        }
+        .btn-orange:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,109,0,0.45); }
+        .btn-ghost {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+        }
+        .btn-ghost:hover { background: rgba(255,255,255,0.15); }
+        .btn-contact {
+            background: white;
+            color: var(--blue-dark);
+            border: 2px solid var(--blue-dark);
+        }
+        .btn-contact:hover { background: var(--blue-dark); color: white; transform: translateY(-2px); }
+        .btn-sm { padding: 9px 18px; font-size: 0.83rem; }
+
+        /* CONTACT CARD */
+        .contact-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .contact-card h2 { font-size: 1.4rem; font-weight: 800; color: var(--blue-dark); margin: 0 0 10px; }
+        .contact-card p { color: #666; margin: 0 0 24px; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #999;
+        }
+        footer a { color: #777; }
+    </style>
+</head>
+<body>
+
+    <div class="nav">
+        <a href="/">&#8592; JezBlade Home</a>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-badge">Brotherhood Architecture Services</div>
+        <h1>Build With <span>Sovereign</span> AI</h1>
+        <p>Multi-agent systems, MCP integration, and clean architecture — designed for autonomy and scale.</p>
+    </div>
+
+    <!-- FEATURED SERVICE -->
+    <div class="featured-card">
+        <p class="section-title" style="color: rgba(255,255,255,0.45);">Flagship Offering</p>
+        <h2>Clean Architecture <span>as a Service</span></h2>
+        <p>Full deployment of your repository under the Brotherhood clean architecture standard — multi-agent orchestration, Redis event bus, Neo4j graph memory, and MCP integration included.</p>
+        <div class="service-chips" style="margin-bottom: 24px;">
+            <span class="featured-chip">Multi-Agent</span>
+            <span class="featured-chip">Neo4j Graph</span>
+            <span class="featured-chip">Redis Events</span>
+            <span class="featured-chip">MCP Protocol</span>
+            <span class="featured-chip">Zero Exposure Secrets</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+            <div style="color: var(--orange); font-size: 1.8rem; font-weight: 800;">0.05 ETH<span style="font-size: 1rem; color: rgba(255,255,255,0.5); font-weight: 600;"> / month</span></div>
+            <a href="mailto:DameEvieFrye@proton.me?subject=Clean%20Architecture%20as%20a%20Service" class="btn btn-orange">Contact to Start</a>
+            <a href="contrato-arquitectura-limpia.md" target="_blank" class="btn btn-ghost btn-sm">View Contract</a>
+        </div>
+    </div>
+
+    <!-- 3 SERVICE CARDS -->
+    <p class="section-title">Additional Services</p>
+    <div class="services-grid">
+
+        <div class="service-card tier2">
+            <span class="service-icon">&#129504;</span>
+            <h2>AI Brotherhood Architecture</h2>
+            <p>Design and implementation of sovereign multi-agent systems. Claude, Gemini, Codex, and custom agents working as a coordinated organism via Redis pub/sub and Neo4j knowledge graph.</p>
+            <div class="service-chips">
+                <span class="chip">Agent Design</span>
+                <span class="chip">Orchestration</span>
+                <span class="chip">Neo4j</span>
+                <span class="chip">Redis</span>
+            </div>
+            <a href="mailto:DameEvieFrye@proton.me?subject=AI%20Brotherhood%20Architecture" class="btn btn-contact btn-sm">Get a Quote</a>
+        </div>
+
+        <div class="service-card tier3">
+            <span class="service-icon">&#128268;</span>
+            <h2>MCP Integration</h2>
+            <p>Connect your tools to any AI agent via the Model Context Protocol. Custom MCP servers for GitHub, Notion, databases, APIs, and internal systems — with zero-exposure secret management.</p>
+            <div class="service-chips">
+                <span class="chip">MCP Servers</span>
+                <span class="chip">Tool Use</span>
+                <span class="chip">API Bridge</span>
+                <span class="chip">Vault Secrets</span>
+            </div>
+            <a href="mailto:DameEvieFrye@proton.me?subject=MCP%20Integration" class="btn btn-contact btn-sm">Get a Quote</a>
+        </div>
+
+        <div class="service-card tier4">
+            <span class="service-icon">&#127775;</span>
+            <h2>Multi-Agent Orchestration</h2>
+            <p>Task routing, delegation protocols, and resonance systems so your AI agents collaborate autonomously. Includes ritual logging, health monitoring, and self-audit capabilities.</p>
+            <div class="service-chips">
+                <span class="chip">Task Router</span>
+                <span class="chip">Delegation</span>
+                <span class="chip">Health Daemon</span>
+                <span class="chip">RITUAL_LOG</span>
+            </div>
+            <a href="mailto:DameEvieFrye@proton.me?subject=Multi-Agent%20Orchestration" class="btn btn-contact btn-sm">Get a Quote</a>
+        </div>
+
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact-card">
+        <h2>Ready to build something sovereign?</h2>
+        <p>Send a message with your project scope — response within 24h.</p>
+        <a href="mailto:DameEvieFrye@proton.me?subject=Brotherhood%20Services%20Inquiry" class="btn btn-orange">
+            &#9993; DameEvieFrye@proton.me
+        </a>
+    </div>
+
+    <footer>
+        <p>&#169; 2026 JezBlade &mdash; <a href="/">Home</a> &mdash; <a href="/loom">Loom Framing App</a></p>
+        <p style="margin-top: 4px; font-size: 0.72rem; opacity: 0.5;">Brotherhood Seal: 015cb320 &mdash; Sovereign infrastructure. No data stored. Transparent pricing.</p>
+    </footer>
+
+</body>
+</html>
