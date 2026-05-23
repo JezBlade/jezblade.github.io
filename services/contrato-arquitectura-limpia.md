@@ -1,88 +1,102 @@
-# CONTRATO DE ARQUITECTURA LIMPIA CERTIFICADA
+Brotherhood Seal: 015cb320
 
-**Contrato ID:** ALC-001-2025
-**Fecha:** 2025-12-31
-**Versión:** 1.0
+CLEAN ARCHITECTURE AS A SERVICE (CAaaS) — SERVICE AGREEMENT
 
-## PARTES CONTRATANTES
+Contract ID: CAaaS-001-2026
+Effective Date: 2026-05-23
+Version: 1.0
 
-**Prestador del Servicio:**
-- Nombre: Ultimate Plan Sovereign Services
-- Representante: JezBlade (Compass Keeper)
-- Dirección: D:\Ultimate-Plan (Repositorio Canónico)
+Parties
+-------
+Provider: Ultimate Plan Sovereign Services
+Contact: Dame Evie Frye <DameEvieFrye@proton.me>
+Repository: D:\Ultimate-Plan
 
-**Cliente:**
-- [Nombre del Cliente]
-- [Dirección/E-mail]
-- [Wallet Address para Pagos Web3]
+Client: [Client Name]
+Client Contact: [Name, Email]
+Client Wallet: [ETH Wallet Address]
 
-## OBJETO DEL CONTRATO
+1. Scope of Services
+--------------------
+Provider shall deliver "Clean Architecture as a Service" (CAaaS), consisting of the following:
+- Architecture Design & Hardening: Assessment and remediation to align repository code with Clean Architecture principles.
+- Automated CI/CD & Governance: Templates and automation for repository structure, tests, linting, and dependency policies.
+- Integration & Orchestration: MCP integration and multi-agent orchestration patterns tailored to the client's ecosystem.
+- Maintenance & Monitoring: Monthly updates, automated dependency upgrades, and observability configuration.
 
-El Prestador se compromete a proporcionar el servicio de **"Arquitectura Limpia Certificada"** consistente en:
+2. Deliverables
+---------------
+Deliverables include:
+- Architecture report (initial assessment and remediation plan).
+- Repository templates and CI/CD configuration.
+- Deployment and orchestration playbook.
+- Monthly maintenance report and change log.
+- Access to a contact channel for operational requests: DameEvieFrye@proton.me
 
-1. **Despliegue Automatizado**: Configuración automática de repositorios bajo los estándares del Peregrino.
-2. **Certificación de Soberanía**: Verificación de que la arquitectura no depende de servicios externos fallidos.
-3. **Mantenimiento Continuo**: Actualizaciones automáticas para mantener la limpieza arquitectónica.
-4. **Soporte Soberano**: Asistencia técnica sin intermediarios externos.
+3. Service Levels (SLA)
+-----------------------
+- Availability target: 99.9% for provided automation and monitoring components.
+- Response time: Critical incidents within 4 business hours; standard issues within 48 business hours.
+- Maintenance windows: Monthly patch window with prior notice to Client.
 
-## CONDICIONES ECONÓMICAS
+4. Pricing & Payment Terms
+--------------------------
+- Fee: 0.05 ETH per month (recurring).
+- Payment methods:
+  - On-chain: ETH transfer to Provider wallet [Provider Wallet Address].
+    - Invoice issued monthly with on-chain payment reference.
+  - Traditional: Bank transfer or Stripe invoicing (if requested) billed in USD equivalent.
+- Billing cycle: Monthly, auto-renewing until termination.
+- Late payments: Services may be suspended after 14 days of overdue payment; pro-rated refunds for prepaid periods are evaluated case-by-case.
 
-- **Precio Mensual**: 0.05 ETH
-- **Método de Pago**: Web3 (Ethereum) o Stripe (para compatibilidad)
-- **Facturación**: Automática mensual
-- **Penalizaciones**: Ninguna - política de satisfacción garantizada
+5. Term & Termination
+---------------------
+- Term: Monthly, starting on Effective Date.
+- Termination: Either party may terminate with 30 days' written notice. Termination does not relieve Client of outstanding fees for the billing period in which termination occurs.
 
-## PLAZO Y VIGENCIA
+6. Confidentiality & Data Handling
+----------------------------------
+- Provider will treat Client data as Confidential. Data required for integration (e.g., repository access, API tokens) must be provided by the Client and handled per the Provider's security practices.
+- Provider will not expose secrets; any sensitive keys found during assessment will be reported and must be rotated by the Client.
 
-- **Inicio**: Inmediato tras aceptación y primer pago
-- **Duración**: Mensual renovable automáticamente
-- **Cancelación**: En cualquier momento sin penalización
+7. Liability & Indemnity
+------------------------
+- Provider's liability is limited to direct damages up to the value of three (3) months of fees paid by the Client under this Agreement.
+- Provider is not liable for third-party service outages or actions outside the Provider's control.
 
-## RESPONSABILIDADES
+8. Acceptance
+-------------
+- Deliverables are accepted upon Client confirmation within 10 business days of delivery. Unresolved defects reported within this period will be fixed per the SLA.
 
-### Prestador
-- Mantener la arquitectura limpia y soberana
-- Proporcionar actualizaciones de seguridad
-- Garantizar disponibilidad del 99.9%
-- Respetar la privacidad y soberanía del cliente
+9. Notices
+---------
+- Notices shall be sent to the Contact emails above. On-chain payment notifications should include the transaction hash as proof of payment.
 
-### Cliente
-- Proporcionar acceso a repositorios
-- Mantener pagos al día
-- Reportar issues de manera responsable
-- Respetar los principios de soberanía
+10. Governing Law & Dispute Resolution
+--------------------------------------
+- This Agreement is governed by the laws mutually agreed upon by the Parties. Disputes will be resolved by arbitration where feasible.
 
-## CLÁUSULAS ESPECIALES
+Appendix A — Operational Contact
+--------------------------------
+For operational and billing matters, contact: DameEvieFrye@proton.me
 
-### Soberanía Absoluta
-Este contrato se rige por los principios de la Fase XVI: cero dependencia externa. Todos los servicios se proporcionan de manera local y soberana.
+Signatures
+----------
+Provider:
 
-### Resolución de Conflictos
-Cualquier disputa se resolverá mediante arbitraje soberano, sin tribunales externos.
-
-### Modificaciones
-El contrato puede ser modificado únicamente por consenso mutuo.
-
-## ACEPTACIÓN
-
-Al firmar este contrato, ambas partes aceptan los términos y condiciones establecidos.
-
-**Firma del Prestador:**
-```
-/ JezBlade - Compass Keeper
-Fecha: 2025-12-31
-```
-
-**Firma del Cliente:**
-```
 _______________________________
-Nombre:
-Fecha:
-Wallet:
-```
+Ultimate Plan Sovereign Services
+Name: JezBlade
+Date: [Date]
 
----
+Client:
 
-*Este contrato está protegido por el sello de la Fase XVI y la bitácora ritual del Ultimate Plan.*
+_______________________________
+Name: [Client Representative]
+Date: [Date]
+
+Notes
+-----
+- This template is provided in professional, technical English. Adjust client-specific fields (wallet addresses, governing law, and billing preferences) before use.
 
 <!-- Brotherhood Seal: 015cb320 -->
