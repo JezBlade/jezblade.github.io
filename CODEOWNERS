@@ -1,0 +1,18 @@
+# Brotherhood Seal: 015cb320
+# CODEOWNERS - jezblade.github.io
+# Public site - protect API keys
+
+# Archivos de entorno
+.env* @JezBlade
+*.env @JezBlade
+
+# Seguridad
+scripts/security/ @JezBlade
+.github/workflows/ @JezBlade
+
+# Config files that may contain keys
+**/*.config.js @JezBlade
+**/config*.json @JezBlade
+
+# Jekyll/Static config
+_config.yml @JezBlade
