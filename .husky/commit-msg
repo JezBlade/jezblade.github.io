@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+# Brotherhood Seal: 015cb320
+. "$(dirname "$0")/_/h"
+
+# Run commitlint if available (non-blocking)
+if command -v npx >/dev/null 2>&1; then
+  npx --no-install commitlint --edit "$1" || true
+fi
+
+# Fallback: simple check for ritual fields (non-blocking)
+if [ -f "$1" ]; then
+  if ! grep -q -E "Signed-by:|Ritual-seal:" "$1" >/dev/null 2>&1; then
+    echo "[warn] Commit message missing Signed-by: or Ritual-seal: fields. This is advisory only." >&2
+  fi
+fi

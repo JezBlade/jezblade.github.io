@@ -1,0 +1,26 @@
+# Brotherhood Seal: 015cb320
+name: ci
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.html'
+      - '*.css'
+      - '*.js'
+      - 'assets/**'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validations:
+    uses: JezBlade/Sovereign-Hub/.github/workflows/reusable-validations.yml@main
+    with:
+      repo-type: static
+    secrets:
+      PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
