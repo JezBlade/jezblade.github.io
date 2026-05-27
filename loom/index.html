@@ -13,6 +13,620 @@
     <meta property="og:type" content="website">
     <title>Loom Framing App - El compañero del framero</title>
     <link rel="icon" type="image/png" href="assets/app-icon-512.png">
+
+    <!-- ═══════ V4 PATCH — FONTS ═══════ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style id="loom-v4-tokens">
+/* ════════════════════════════════════════════════════════════════════
+   LOOM V4 PATCH · SCOPED TOKENS + STYLES  ·  Brotherhood Seal 015cb320
+   Every selector starts with .loom-v4-patch — safe to drop into any
+   page without bleeding into existing CSS.
+   ════════════════════════════════════════════════════════════════════ */
+
+.loom-v4-patch {
+  /* ---- Color (Brand layer — gold + café + cream) ---- */
+  --gold-100: #f7eed1;
+  --gold-200: #ecdda0;
+  --gold-300: #d9bf6a;
+  --gold-400: #c8a440;
+  --gold-500: #b8941f;
+  --gold-600: #a07f15;
+  --gold-700: #816710;
+  --gold-800: #604c0b;
+
+  --cafe-50:  #efeae0;
+  --cafe-100: #ddd3bf;
+  --cafe-300: #8b7c61;
+  --cafe-500: #5a4f3a;
+  --cafe-700: #3d3422;
+  --cafe-800: #2a2418;
+  --cafe-900: #1c1810;
+
+  --cream:    #faf9f7;
+  --canvas:   #f0ead6;
+  --canvas-2: #e4dcc2;
+
+  --confirm:  #4a7c3a;
+  --confirm-100: #d8e6cf;
+  --critical: #a82a2a;
+  --warning:  #a06820;
+
+  --line:        #d9d3c1;
+  --line-strong: #b8af96;
+  --mute:        #8a7f66;
+
+  /* ---- Type ---- */
+  --font-display: "Big Shoulders Display", "Oswald", "Arial Narrow", sans-serif;
+  --font-body:    "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono:    "JetBrains Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
+
+  /* ---- Motion ---- */
+  --ease-out:    cubic-bezier(0.2, 0.6, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.5, 0, 0.5, 1);
+
+  /* ---- Reset within scope ---- */
+  box-sizing: border-box;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--cafe-800);
+}
+.loom-v4-patch *,
+.loom-v4-patch *::before,
+.loom-v4-patch *::after { box-sizing: border-box; }
+
+.loom-v4-patch h1,
+.loom-v4-patch h2,
+.loom-v4-patch h3,
+.loom-v4-patch p,
+.loom-v4-patch ul { margin: 0; padding: 0; }
+.loom-v4-patch ul { list-style: none; }
+
+/* ───── Shared atoms ───── */
+.loom-v4-patch .eyebrow {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-700);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.loom-v4-patch .eyebrow svg { width: 16px; height: 16px; stroke: var(--gold-500); }
+.loom-v4-patch .eyebrow--on-dark { color: var(--gold-500); }
+.loom-v4-patch .eyebrow--on-dark svg { stroke: var(--gold-500); }
+
+.loom-v4-patch .display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--cafe-900);
+}
+.loom-v4-patch .display--on-dark { color: var(--cream); }
+
+.loom-v4-patch .sub {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--cafe-700);
+  max-width: 60ch;
+}
+.loom-v4-patch .sub--on-dark { color: rgba(250, 249, 247, 0.78); }
+
+/* code refs inline */
+.loom-v4-patch .code-ref {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  color: var(--gold-700);
+  font-weight: 500;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+/* CTAs */
+.loom-v4-patch .cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 64px;
+  padding: 18px 28px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 14px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: background 180ms var(--ease-out), color 180ms var(--ease-out), border-color 180ms var(--ease-out);
+}
+.loom-v4-patch .cta--primary {
+  background: var(--gold-500);
+  color: var(--cafe-900);
+  box-shadow: 0 6px 22px rgba(184, 148, 31, 0.35);
+}
+.loom-v4-patch .cta--primary:hover { background: var(--gold-600); }
+.loom-v4-patch .cta--primary:active { background: var(--gold-700); }
+
+.loom-v4-patch .cta--ghost-on-dark {
+  background: transparent;
+  color: var(--cream);
+  border-color: rgba(250, 249, 247, 0.4);
+}
+.loom-v4-patch .cta--ghost-on-dark:hover {
+  border-color: var(--gold-500);
+  color: var(--gold-300);
+}
+
+.loom-v4-patch .cta--ghost-on-cream {
+  background: transparent;
+  color: var(--cafe-900);
+  border-color: var(--cafe-300);
+}
+.loom-v4-patch .cta--ghost-on-cream:hover {
+  border-color: var(--gold-500);
+  color: var(--gold-700);
+}
+
+.loom-v4-patch .cta:focus-visible {
+  outline: 2px solid var(--gold-500);
+  outline-offset: 3px;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   SECTION 1 — V4.0.0 EN CAMINO ESTA SEMANA
+   ════════════════════════════════════════════════════════════════════ */
+.loom-v4-patch.loom-v4-coming {
+  background: var(--canvas);
+  border-top: 2px solid var(--gold-500);
+  border-bottom: 1px solid var(--line);
+  padding: 64px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.loom-v4-patch.loom-v4-coming::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(184,148,31,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,148,31,0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+.loom-v4-patch.loom-v4-coming > * { position: relative; }
+
+.loom-v4-patch .v4-coming__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.loom-v4-patch .v4-coming__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 40px;
+  max-width: 720px;
+}
+.loom-v4-patch .v4-coming__title { font-size: 44px; }
+.loom-v4-patch .v4-coming__sub {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--cafe-700);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.loom-v4-patch .v4-coming__sub::before {
+  content: "";
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold-500);
+  box-shadow: 0 0 0 4px rgba(184,148,31,0.18);
+  animation: loom-pulse 2s var(--ease-in-out) infinite;
+}
+@keyframes loom-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(184,148,31,0.18); }
+  50%      { box-shadow: 0 0 0 9px rgba(184,148,31,0.04); }
+}
+
+/* Card grid — 1col mobile, 2x2 ≥720px */
+.loom-v4-patch .v4-coming__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+@media (min-width: 720px) {
+  .loom-v4-patch .v4-coming__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+.loom-v4-patch .v4-card {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 26px 26px 24px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: background 180ms var(--ease-out), border-color 180ms var(--ease-out);
+}
+.loom-v4-patch .v4-card::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--gold-500);
+}
+.loom-v4-patch .v4-card:hover { background: var(--gold-100); border-color: var(--line-strong); }
+
+.loom-v4-patch .v4-card__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.loom-v4-patch .v4-card__icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: var(--cafe-900);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.loom-v4-patch .v4-card__icon svg {
+  width: 22px; height: 22px;
+  stroke: var(--gold-500);
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.loom-v4-patch .v4-card__tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--gold-700);
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+.loom-v4-patch .v4-card__title {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cafe-900);
+  line-height: 1.2;
+}
+.loom-v4-patch .v4-card__body {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--cafe-700);
+}
+
+/* CTA row */
+.loom-v4-patch .v4-coming__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px dashed var(--line-strong);
+}
+@media (min-width: 720px) {
+  .loom-v4-patch .v4-coming__footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+}
+.loom-v4-patch .v4-coming__footer-copy {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--cafe-700);
+  max-width: 44ch;
+}
+.loom-v4-patch .v4-coming__footer-copy strong {
+  color: var(--cafe-900);
+  font-weight: 700;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   SECTION 2 — NUEVO EN (VARIANT A: v3.9.2 · VARIANT B: v4.0.0)
+   Toggle: data-variant="a" (pre-merge) / data-variant="b" (post-merge)
+   ════════════════════════════════════════════════════════════════════ */
+.loom-v4-patch.loom-v4-whatsnew {
+  background: var(--cream);
+  padding: 56px 28px;
+  border-bottom: 1px solid var(--line);
+}
+.loom-v4-patch .whatsnew__inner {
+  max-width: 920px;
+  margin: 0 auto;
+}
+.loom-v4-patch .whatsnew__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.loom-v4-patch .whatsnew__title {
+  font-size: 38px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.loom-v4-patch .whatsnew__title-star { color: var(--gold-500); }
+
+.loom-v4-patch .whatsnew__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.loom-v4-patch .whatsnew__chip--shipped {
+  background: var(--confirm-100);
+  color: #2d4a23;
+  border: 1px solid rgba(74, 124, 58, 0.3);
+}
+.loom-v4-patch .whatsnew__chip--shipped svg {
+  width: 14px; height: 14px;
+  stroke: var(--confirm); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+}
+.loom-v4-patch .whatsnew__chip--incoming {
+  background: var(--gold-100);
+  color: var(--gold-800);
+  border: 1px solid rgba(184, 148, 31, 0.4);
+}
+.loom-v4-patch .whatsnew__chip--incoming svg {
+  width: 14px; height: 14px;
+  stroke: var(--gold-700); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* Bullet list */
+.loom-v4-patch .whatsnew__list {
+  display: grid;
+  gap: 12px;
+}
+.loom-v4-patch .whatsnew__item {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 18px 20px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  min-height: 72px;
+}
+.loom-v4-patch .whatsnew__item::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--gold-500);
+}
+.loom-v4-patch .whatsnew__item--shipped::before { background: var(--confirm); }
+
+.loom-v4-patch .whatsnew__icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: var(--canvas);
+  display: flex; align-items: center; justify-content: center;
+}
+.loom-v4-patch .whatsnew__icon svg {
+  width: 22px; height: 22px;
+  stroke: var(--gold-700);
+  fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+}
+.loom-v4-patch .whatsnew__item--shipped .whatsnew__icon { background: var(--confirm-100); }
+.loom-v4-patch .whatsnew__item--shipped .whatsnew__icon svg { stroke: #2d4a23; }
+
+.loom-v4-patch .whatsnew__text { display: flex; flex-direction: column; gap: 4px; }
+.loom-v4-patch .whatsnew__text-title {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cafe-900);
+  line-height: 1.3;
+}
+.loom-v4-patch .whatsnew__text-body {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--cafe-700);
+  line-height: 1.5;
+}
+
+/* Variant switch */
+.loom-v4-patch.loom-v4-whatsnew[data-variant="a"] .whatsnew__list--b,
+.loom-v4-patch.loom-v4-whatsnew[data-variant="b"] .whatsnew__list--a { display: none; }
+.loom-v4-patch.loom-v4-whatsnew[data-variant="a"] .whatsnew__chip--incoming,
+.loom-v4-patch.loom-v4-whatsnew[data-variant="b"] .whatsnew__chip--shipped { display: none; }
+.loom-v4-patch.loom-v4-whatsnew[data-variant="a"] .whatsnew__version--b,
+.loom-v4-patch.loom-v4-whatsnew[data-variant="b"] .whatsnew__version--a { display: none; }
+
+/* ════════════════════════════════════════════════════════════════════
+   SECTION 3 — TESTER COUNTER (OPEN · CLOSED)
+   Toggle: data-state="open" / data-state="closed"
+   ════════════════════════════════════════════════════════════════════ */
+.loom-v4-patch.loom-v4-counter {
+  background: var(--cafe-800);
+  background-image:
+    linear-gradient(rgba(184,148,31,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,148,31,0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  color: var(--cream);
+  padding: 56px 28px;
+  border-top: 2px solid var(--gold-500);
+  border-bottom: 2px solid var(--gold-500);
+}
+.loom-v4-patch .counter__inner {
+  max-width: 920px;
+  margin: 0 auto;
+  display: grid;
+  gap: 28px;
+}
+@media (min-width: 720px) {
+  .loom-v4-patch .counter__inner {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    gap: 48px;
+  }
+}
+
+.loom-v4-patch .counter__left { display: flex; flex-direction: column; gap: 14px; }
+.loom-v4-patch .counter__eyebrow { color: var(--gold-500); }
+
+.loom-v4-patch .counter__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+.loom-v4-patch .counter__copy {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(250, 249, 247, 0.78);
+  max-width: 38ch;
+}
+
+.loom-v4-patch .counter__right { display: flex; flex-direction: column; gap: 20px; }
+
+/* Big number readout */
+.loom-v4-patch .counter__readout {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+.loom-v4-patch .counter__taken {
+  font-size: 96px;
+  font-weight: 900;
+  color: var(--gold-500);
+  font-variant-numeric: tabular-nums;
+}
+.loom-v4-patch .counter__sep {
+  font-size: 72px;
+  font-weight: 700;
+  color: rgba(250, 249, 247, 0.35);
+}
+.loom-v4-patch .counter__total {
+  font-size: 72px;
+  font-weight: 700;
+  color: rgba(250, 249, 247, 0.55);
+  font-variant-numeric: tabular-nums;
+}
+.loom-v4-patch .counter__label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(250, 249, 247, 0.6);
+  margin-left: 8px;
+  align-self: end;
+  padding-bottom: 10px;
+}
+
+/* Progress bar */
+.loom-v4-patch .counter__bar {
+  width: 100%;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(250, 249, 247, 0.08);
+  border: 1px solid rgba(184, 148, 31, 0.2);
+  overflow: hidden;
+  position: relative;
+}
+.loom-v4-patch .counter__bar-fill {
+  height: 100%;
+  background: var(--gold-500);
+  border-radius: 999px;
+  width: 0%;
+  transition: width 1.2s var(--ease-out);
+  box-shadow: 0 0 14px rgba(184, 148, 31, 0.55);
+}
+.loom-v4-patch .counter__meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: rgba(250, 249, 247, 0.55);
+}
+.loom-v4-patch .counter__meta strong { color: var(--gold-500); font-weight: 700; }
+
+/* CTA cluster */
+.loom-v4-patch .counter__cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
+}
+.loom-v4-patch .counter__locality {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: rgba(250, 249, 247, 0.5);
+  letter-spacing: 0.02em;
+}
+
+/* Closed-state microcopy */
+.loom-v4-patch .counter__closed-note {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(250, 249, 247, 0.7);
+  padding: 14px 16px;
+  border-left: 3px solid var(--gold-500);
+  background: rgba(184, 148, 31, 0.06);
+  border-radius: 0 6px 6px 0;
+}
+.loom-v4-patch .counter__closed-note strong { color: var(--cream); font-weight: 700; }
+
+/* State switch */
+.loom-v4-patch.loom-v4-counter[data-state="open"]   .counter__when-closed,
+.loom-v4-patch.loom-v4-counter[data-state="closed"] .counter__when-open { display: none; }
+
+.loom-v4-patch.loom-v4-counter[data-state="closed"] .counter__taken { color: var(--confirm); }
+.loom-v4-patch.loom-v4-counter[data-state="closed"] .counter__bar-fill { background: var(--confirm); box-shadow: 0 0 14px rgba(74, 124, 58, 0.55); }
+
+/* ────────── Reduce motion ────────── */
+@media (prefers-reduced-motion: reduce) {
+  .loom-v4-patch *,
+  .loom-v4-patch *::before,
+  .loom-v4-patch *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+    </style>
+
     <style>
         :root {
             --orange: #FF6D00;
@@ -347,11 +961,6 @@
     <h1>Loom <span>Framing</span> App</h1>
     <p class="tagline">El compañero que sabe mas &mdash; en tu bolsa, en la obra.</p>
     
-    <!-- URGENCY BADGE -->
-    <div style="display: inline-block; background: rgba(255,193,7,0.15); border: 1px solid #FFC107; border-radius: 20px; padding: 8px 16px; margin-bottom: 20px; font-size: 0.85rem; font-weight: 600; color: #FFC107;">
-        ⚡ 9 / 12 testers — 3 spots disponibles
-    </div>
-    
     <div class="cta-group">
         <a href="#unete-como-tester" class="btn btn-orange" style="background: linear-gradient(135deg, #FF6D00 0%, #FF8C00 100%); font-weight: 800;">
             <span class="btn-icon">⭐</span> Sé un Tester — Primer Año Gratis
@@ -360,6 +969,82 @@
             <span class="btn-icon">&#9654;</span> Descargar Ahora
         </a>
     </div>
+</section>
+
+<!-- ═══════════ SECTION 3 — TESTER COUNTER ═══════════
+     Owner: change data-state="open"→"closed" and data-counter-taken="9"→"12" when cupo se cierre
+     ═══════════════════════════════════════════════════ -->
+<section class="loom-v4-patch loom-v4-counter" data-state="open" data-counter-taken="9" data-counter-total="12" aria-labelledby="counter-title">
+  <div class="counter__inner">
+
+    <div class="counter__left">
+      <span class="eyebrow eyebrow--on-dark">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0-3-3.87"/>
+        </svg>
+        Closed Testing · Idaho
+      </span>
+      <h2 class="counter__title" id="counter-title">
+        <span class="counter__when-open">Sé un tester de Loom v4</span>
+        <span class="counter__when-closed">El cupo está lleno</span>
+      </h2>
+      <p class="counter__copy counter__when-open">
+        Buscamos frameros activos en Boise, Nampa y Meridian. Probás v4 en obra real durante 2 semanas, mandás feedback en español, recibís acceso permanente gratis.
+      </p>
+      <p class="counter__copy counter__when-closed">
+        Los 12 frameros de la primera ola ya están adentro probando v4 en obra. Si querés entrar a la siguiente ola — Open Testing v4.1 — anotate y te avisamos.
+      </p>
+      <div class="counter__cta-row counter__when-open">
+        <a class="cta cta--primary"
+           href="https://chat.whatsapp.com/BDcrzrwxvbi9P3w14SLedw"
+           target="_blank" rel="noopener"
+           aria-label="Postularse como tester de Loom v4">
+          Sé un tester
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+        <a class="cta cta--ghost-on-dark" href="#features" aria-label="Ver qué incluye v4">
+          Qué incluye v4
+        </a>
+      </div>
+      <div class="counter__cta-row counter__when-closed">
+        <a class="cta cta--primary"
+           href="https://chat.whatsapp.com/BDcrzrwxvbi9P3w14SLedw"
+           target="_blank" rel="noopener"
+           aria-label="Notificarme cuando se abra la próxima ola">
+          Notifícame
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+          </svg>
+        </a>
+        <a class="cta cta--ghost-on-dark" href="#features" aria-label="Ver qué incluye v4">
+          Qué incluye v4
+        </a>
+      </div>
+    </div>
+
+    <div class="counter__right">
+      <div class="counter__readout" aria-live="polite">
+        <span class="counter__taken" data-counter-display="taken">9</span>
+        <span class="counter__sep" aria-hidden="true">/</span>
+        <span class="counter__total">12</span>
+        <span class="counter__label">Testers</span>
+      </div>
+      <div class="counter__bar" role="progressbar" aria-valuemin="0" aria-valuemax="12" aria-valuenow="9" aria-label="9 de 12 testers ocupados, 75 por ciento">
+        <div class="counter__bar-fill" data-counter-fill style="width: 0%;"></div>
+      </div>
+      <div class="counter__meta">
+        <span class="counter__when-open"><strong>3 spots</strong> disponibles · 75% lleno</span>
+        <span class="counter__when-closed"><strong>0 spots</strong> · 100% lleno</span>
+        <span class="counter__locality">Boise · Nampa · Meridian</span>
+      </div>
+      <div class="counter__closed-note counter__when-closed">
+        <strong>Programa cerrado.</strong> Próxima ola: Open Testing v4.1 — te avisamos cuando se abra.
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <!-- TRUST BADGES -->
@@ -480,18 +1165,242 @@
     </div>
 </div>
 
-<!-- WHAT'S NEW BAND -->
-<div style="background: linear-gradient(90deg, #1a1a2e 0%, #263238 100%); padding: 20px 24px; text-align: center; border-top: 1px solid rgba(255,109,0,0.2);">
-    <div style="font-size: 0.72rem; font-weight: 700; color: var(--orange); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 12px;">&#9733; Nuevo en v3.9.2</div>
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
-        <span style="background: rgba(255,109,0,0.12); border: 1px solid rgba(255,109,0,0.35); color: #fff; padding: 5px 13px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">&#128736; Gable End &amp; Vaulted Wall</span>
-        <span style="background: rgba(255,109,0,0.12); border: 1px solid rgba(255,109,0,0.35); color: #fff; padding: 5px 13px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">&#129521; Backing &amp; Blocking</span>
-        <span style="background: rgba(255,109,0,0.12); border: 1px solid rgba(255,109,0,0.35); color: #fff; padding: 5px 13px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">&#128689; Rough Openings</span>
-        <span style="background: rgba(255,109,0,0.12); border: 1px solid rgba(255,109,0,0.35); color: #fff; padding: 5px 13px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">&#129504; Plan Intelligence AI</span>
-        <span style="background: rgba(255,109,0,0.12); border: 1px solid rgba(255,109,0,0.35); color: #fff; padding: 5px 13px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">&#127919; Quiz del Framero</span>
-        <span style="background: rgba(255,109,0,0.12); border: 1px solid rgba(255,109,0,0.35); color: #fff; padding: 5px 13px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">&#128218; 63 Tips Pro</span>
+<!-- ═══════════ SECTION 1 — V4.0.0 EN CAMINO ESTA SEMANA ═══════════
+     Insert position: after stats band, before 'Lo que hace Loom por ti'
+     ════════════════════════════════════════════════════════════════════ -->
+<section class="loom-v4-patch loom-v4-coming" aria-labelledby="v4-coming-title">
+  <div class="v4-coming__inner">
+
+    <header class="v4-coming__header">
+      <span class="eyebrow">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+        Versión 4.0 · En camino esta semana
+      </span>
+      <h2 id="v4-coming-title" class="display v4-coming__title">Lo que llega en v4</h2>
+      <p class="v4-coming__sub">Drop estimado: Closed Testing en los próximos 7 días</p>
+    </header>
+
+    <ul class="v4-coming__grid">
+
+      <!-- Card 1 — Custom keyboard -->
+      <li class="v4-card">
+        <div class="v4-card__head">
+          <span class="v4-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h.01M18 14h.01M8 14h8"/></svg>
+          </span>
+          <div>
+            <div class="v4-card__tag">P0 · UI/UX</div>
+            <h3 class="v4-card__title">Teclado custom 3-columnas</h3>
+          </div>
+        </div>
+        <p class="v4-card__body">
+          Pies, pulgadas y fracciones — cada una en su columna. Sin más errores de input: el teclado piensa como el framer, no como una calculadora científica.
+        </p>
+      </li>
+
+      <!-- Card 2 — Dual operator -->
+      <li class="v4-card">
+        <div class="v4-card__head">
+          <span class="v4-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg>
+          </span>
+          <div>
+            <div class="v4-card__tag">P0 · Engine</div>
+            <h3 class="v4-card__title">Doble operador en tiempo real</h3>
+          </div>
+        </div>
+        <p class="v4-card__body">
+          Convierte entre sistemas mientras escribís. Suma <span class="code-ref">feet-and-inches</span> sin abrir calculadora aparte — el resultado se actualiza tap por tap.
+        </p>
+      </li>
+
+      <!-- Card 3 — IRC compliance -->
+      <li class="v4-card">
+        <div class="v4-card__head">
+          <span class="v4-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+          </span>
+          <div>
+            <div class="v4-card__tag">P0 · Compliance</div>
+            <h3 class="v4-card__title">Compliance IRC inline</h3>
+          </div>
+        </div>
+        <p class="v4-card__body">
+          Validación automática de headers, studs y rough openings contra <span class="code-ref">IRC 2021</span> mientras escribís. Sin saltar a otro screen — el check está al lado del input.
+        </p>
+      </li>
+
+      <!-- Card 4 — Lottie tutorial -->
+      <li class="v4-card">
+        <div class="v4-card__head">
+          <span class="v4-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+          </span>
+          <div>
+            <div class="v4-card__tag">P0 · Onboarding</div>
+            <h3 class="v4-card__title">Tutorial interactivo Lottie</h3>
+          </div>
+        </div>
+        <p class="v4-card__body">
+          Aprendé en 30 segundos lo que importa de cada feature. Animaciones offline, sin video pesado — el tutorial pesa lo mismo que una foto.
+        </p>
+      </li>
+
+    </ul>
+
+    <div class="v4-coming__footer">
+      <p class="v4-coming__footer-copy">
+        <strong>¿Querés saber cuándo está live?</strong> Te avisamos en el grupo WhatsApp el día que la build entre a Closed Testing.
+      </p>
+      <a class="cta cta--primary"
+         href="https://chat.whatsapp.com/BDcrzrwxvbi9P3w14SLedw"
+         target="_blank" rel="noopener"
+         aria-label="Unirse al grupo WhatsApp para recibir el aviso de lanzamiento de v4">
+        Te avisamos cuando v4 esté live
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
     </div>
-</div>
+
+  </div>
+</section>
+
+<!-- ═══════════ SECTION 2 — ★ NUEVO EN (VARIANT A pre-merge / VARIANT B post-merge) ═══════════
+     Owner: day 1-5 keep data-variant="a"; day 5b+ switch to data-variant="b"
+     ════════════════════════════════════════════════════════════════════════════════════════════ -->
+<section class="loom-v4-patch loom-v4-whatsnew" data-variant="a" aria-labelledby="whatsnew-title">
+  <div class="whatsnew__inner">
+
+    <header class="whatsnew__head">
+      <h2 class="display whatsnew__title" id="whatsnew-title">
+        <span class="whatsnew__title-star" aria-hidden="true">★</span>
+        <span>Nuevo en
+          <span class="whatsnew__version--a">v3.9.2</span>
+          <span class="whatsnew__version--b">v4.0.0</span>
+        </span>
+      </h2>
+      <span class="whatsnew__chip whatsnew__chip--shipped" aria-label="v3.9.2 shipped">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        v3.9.2 shipped
+      </span>
+      <span class="whatsnew__chip whatsnew__chip--incoming" aria-label="v4.0.0 incoming">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        v4.0.0 incoming
+      </span>
+    </header>
+
+    <!-- VARIANT A bullets — 6 shipped items from v3.9.2 -->
+    <ul class="whatsnew__list whatsnew__list--a">
+      <li class="whatsnew__item whatsnew__item--shipped">
+        <span class="whatsnew__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-5"/></svg>
+        </span>
+        <div class="whatsnew__text">
+          <span class="whatsnew__text-title">15+ calculadoras de campo refinadas</span>
+          <span class="whatsnew__text-body">Headers, studs, birdsmouth, rake wall, gable end y OC layout — todos con resultado en menos de 3 segundos.</span>
+        </div>
+      </li>
+      <li class="whatsnew__item whatsnew__item--shipped">
+        <span class="whatsnew__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M10 13H8"/><path d="M16 13h-4"/><path d="M16 17H8"/></svg>
+        </span>
+        <div class="whatsnew__text">
+          <span class="whatsnew__text-title">BOM → PDF en un tap</span>
+          <span class="whatsnew__text-body">Lista de materiales completa, exportable, mandable al supplier directo desde la obra. <span class="code-ref">IRC R602.3.2</span></span>
+        </div>
+      </li>
+      <li class="whatsnew__item whatsnew__item--shipped">
+        <span class="whatsnew__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </span>
+        <div class="whatsnew__text">
+          <span class="whatsnew__text-title">Checklist de inspección — 29 items en 7 categorías</span>
+          <span class="whatsnew__text-body">Pasa la inspección a la primera. Captura fotos como evidencia y mandalas al GC.</span>
+        </div>
+      </li>
+      <li class="whatsnew__item whatsnew__item--shipped">
+        <span class="whatsnew__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </span>
+        <div class="whatsnew__text">
+          <span class="whatsnew__text-title">42 artículos técnicos + 63 tips pro</span>
+          <span class="whatsnew__text-body">El manual del framer en tu bolsillo. Bilingüe ES/EN. 100% offline.</span>
+        </div>
+      </li>
+      <li class="whatsnew__item whatsnew__item--shipped">
+        <span class="whatsnew__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+        </span>
+        <div class="whatsnew__text">
+          <span class="whatsnew__text-title">Idaho snow load + zona sísmica</span>
+          <span class="whatsnew__text-body">Tablas IRC 2021 con datos locales: Boise, Nampa, Meridian y más.</span>
+        </div>
+      </li>
+      <li class="whatsnew__item whatsnew__item--shipped">
+        <span class="whatsnew__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+        </span>
+        <div class="whatsnew__text">
+          <span class="whatsnew__text-title">Quiz del Framero · 50+ preguntas</span>
+          <span class="whatsnew__text-body">Reforzá tu conocimiento de IRC, Simpson hardware y nailing schedules entre proyecto y proyecto.</span>
+        </div>
+      </li>
+    </ul>
+
+    <!-- VARIANT B bullets — 5 P0 items from v4.0.0 (shown when data-variant="b") -->
+    <ul class="whatsnew__list whatsnew__list--b">
+      <li class="whatsnew__item">
+        <span class="whatsnew__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h.01M18 14h.01M8 14h8"/></svg>
+        </span>
+        <div class="whatsnew__text">
+          <span class="whatsnew__text-title">Teclado custom 3-columnas Pies / Pulgadas / Fracciones</span>
+          <span class="whatsnew__text-body">El input correcto, primer intento. Cada columna es exactamente lo que necesitás escribir.</span>
+        </div>
+      </li>
+      <li class="whatsnew__item">
+        <span class="whatsnew__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg>
+        </span>
+        <div class="whatsnew__text">
+          <span class="whatsnew__text-title">DualOperatorEngine + Measurement value type</span>
+          <span class="whatsnew__text-body">Núcleo nuevo: convierte y suma <span class="code-ref">feet-and-inches</span> con fracciones en una sola pasada — sin pérdida de precisión.</span>
+        </div>
+      </li>
+      <li class="whatsnew__item">
+        <span class="whatsnew__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        <div class="whatsnew__text">
+          <span class="whatsnew__text-title">Compliance Engine JSON · IRC inline</span>
+          <span class="whatsnew__text-body">Headers validados contra <span class="code-ref">IRC R602.7</span> en vivo. El check está al lado del input, no escondido en otro screen.</span>
+        </div>
+      </li>
+      <li class="whatsnew__item">
+        <span class="whatsnew__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+        </span>
+        <div class="whatsnew__text">
+          <span class="whatsnew__text-title">Lottie tutorial system · 3 animaciones iniciales</span>
+          <span class="whatsnew__text-body">Onboarding sin paredes de texto. Animaciones ligeras, 100% offline.</span>
+        </div>
+      </li>
+      <li class="whatsnew__item">
+        <span class="whatsnew__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
+        </span>
+        <div class="whatsnew__text">
+          <span class="whatsnew__text-title">Outbox Pattern · sync offline-first</span>
+          <span class="whatsnew__text-body">Lo que generás en la obra queda guardado y sincroniza cuando llegás a la oficina. Sin pérdida de datos en zona sin señal.</span>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</section>
 
 <!-- FEATURES -->
 <section class="section features">
@@ -839,6 +1748,58 @@
 </footer>
 
 <script async src="https://www.tiktok.com/embed.js"></script>
+
+<script>
+  // ═══════════════════════════════════════════════════════════════════
+  // Loom v4 patch · counter progress-bar fill + count-up animation
+  // Vanilla JS — no framework. Fires once per counter on scroll into view.
+  // ═══════════════════════════════════════════════════════════════════
+  (function () {
+    var counters = document.querySelectorAll('.loom-v4-patch.loom-v4-counter');
+    if (!counters.length) return;
+
+    var animate = function (counter) {
+      var taken = parseInt(counter.dataset.counterTaken, 10) || 0;
+      var total = parseInt(counter.dataset.counterTotal, 10) || 1;
+      var pct   = Math.min(100, Math.round((taken / total) * 100));
+      var fill  = counter.querySelector('[data-counter-fill]');
+      var num   = counter.querySelector('[data-counter-display="taken"]');
+
+      // bar fill
+      requestAnimationFrame(function () { if (fill) fill.style.width = pct + '%'; });
+
+      // count-up
+      if (num && !counter.dataset.counted) {
+        counter.dataset.counted = '1';
+        var target = taken;
+        var dur = 900;
+        var start = performance.now();
+        var tick = function (t) {
+          var k = Math.min(1, (t - start) / dur);
+          var eased = 1 - Math.pow(1 - k, 3); // easeOutCubic
+          num.textContent = Math.round(target * eased);
+          if (k < 1) requestAnimationFrame(tick);
+          else num.textContent = target;
+        };
+        requestAnimationFrame(tick);
+      }
+    };
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animate(entry.target);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      counters.forEach(function (c) { io.observe(c); });
+    } else {
+      counters.forEach(animate);
+    }
+  })();
+</script>
 
 <script>
 function toggleFaq(el) {
