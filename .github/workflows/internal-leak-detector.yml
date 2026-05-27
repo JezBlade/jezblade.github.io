@@ -1,0 +1,94 @@
+name: internal-leak-detector
+
+# Defense against accidentally committing internal-only content to this PUBLIC repo.
+# This repo serves the public web presence for Loom Framing App ONLY.
+# Internal development artifacts belong in the separate private repository.
+
+permissions:
+  contents: read
+  pull-requests: read
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: internal-leak-detector-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  scan:
+    name: Scan diff for internal codenames
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine diff range
+        id: range
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "base=${{ github.event.pull_request.base.sha }}" >> "$GITHUB_OUTPUT"
+            echo "head=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "base=HEAD~1" >> "$GITHUB_OUTPUT"
+            echo "head=HEAD" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Scan changed files for internal patterns
+        id: scan
+        run: |
+          set +e
+          BASE="${{ steps.range.outputs.base }}"
+          HEAD="${{ steps.range.outputs.head }}"
+
+          # Patterns that must never appear in a PUBLIC commit
+          PATTERN='(brotherhood|aeternum|ritual_log_sync|gran[_ -]tejido|silent[_ -]blade|hidden[_ -]pulse|mpc-compendio|fortress[_ -]vault)'
+
+          # Forbidden file paths
+          FORBIDDEN_FILES='^(MISSION\.md|SILENT_BLADE.*|activation-fase.*|\.brotherhood-.*|\.copilot-config\.json|\.copilot-context-.*|\.copilot-specialized-.*|\.github/copilot-instructions\.md|.*CANON_.*\.md)$'
+
+          # Get list of changed files
+          CHANGED_FILES=$(git diff --name-only "$BASE" "$HEAD")
+          echo "=== Changed files in this diff ==="
+          echo "$CHANGED_FILES"
+          echo ""
+
+          FAIL=0
+
+          # Check 1: forbidden file paths
+          FORBIDDEN_HITS=$(echo "$CHANGED_FILES" | grep -E "$FORBIDDEN_FILES" || true)
+          if [ -n "$FORBIDDEN_HITS" ]; then
+            echo "::error::Forbidden file paths in this diff (internal-only — belong in private repo):"
+            echo "$FORBIDDEN_HITS" | while read f; do echo "::error file=$f::Forbidden path: $f"; done
+            FAIL=1
+          fi
+
+          # Check 2: content patterns in diff
+          DIFF_HITS=$(git diff "$BASE" "$HEAD" -- ':(exclude).github/workflows/internal-leak-detector.yml' | grep -i -E "$PATTERN" || true)
+          if [ -n "$DIFF_HITS" ]; then
+            echo "::error::Internal codename patterns detected in diff content:"
+            echo "$DIFF_HITS" | head -20
+            FAIL=1
+          fi
+
+          if [ "$FAIL" -eq 1 ]; then
+            echo ""
+            echo "================================================================"
+            echo "BLOCKED: this PR/commit contains content that belongs"
+            echo "in the private development repository, not this public web repo."
+            echo ""
+            echo "Public repo scope: Loom Framing landing + privacy policy + marketing."
+            echo "Internal artifacts (audits, dispatches, codenames, internal hooks)"
+            echo "must stay in the separate private repository."
+            echo "================================================================"
+            exit 1
+          fi
+
+          echo "✓ No internal-only content detected. Diff is safe for public repo."

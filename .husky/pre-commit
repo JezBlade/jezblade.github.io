@@ -1,0 +1,44 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/h"
+
+# Defense against accidentally committing internal-only content to this PUBLIC repo.
+# Mirrors the GitHub Action in .github/workflows/internal-leak-detector.yml
+# but catches problems before they leave your machine.
+
+STAGED=$(git diff --cached --name-only --diff-filter=ACMR)
+if [ -z "$STAGED" ]; then
+  exit 0
+fi
+
+PATTERN='(brotherhood|aeternum|ritual_log_sync|gran[_ -]tejido|silent[_ -]blade|hidden[_ -]pulse|mpc-compendio|fortress[_ -]vault)'
+FORBIDDEN_FILES='^(MISSION\.md|SILENT_BLADE.*|activation-fase.*|\.brotherhood-.*|\.copilot-config\.json|\.copilot-context-.*|\.copilot-specialized-.*|\.github/copilot-instructions\.md|.*CANON_.*\.md)$'
+
+FAIL=0
+
+# Check 1: forbidden file paths in staged set
+FORBIDDEN_HITS=$(echo "$STAGED" | grep -E "$FORBIDDEN_FILES" || true)
+if [ -n "$FORBIDDEN_HITS" ]; then
+  echo ""
+  echo "  Forbidden file paths staged (internal-only — wrong repo):"
+  echo "$FORBIDDEN_HITS" | sed 's/^/    /'
+  FAIL=1
+fi
+
+# Check 2: content patterns in staged diff (skip this hook file + workflow)
+DIFF_HITS=$(git diff --cached -- ':(exclude).husky/pre-commit' ':(exclude).github/workflows/internal-leak-detector.yml' | grep -i -E "$PATTERN" || true)
+if [ -n "$DIFF_HITS" ]; then
+  echo ""
+  echo "  Internal codename patterns detected in staged diff:"
+  echo "$DIFF_HITS" | head -10 | sed 's/^/    /'
+  FAIL=1
+fi
+
+if [ "$FAIL" -eq 1 ]; then
+  echo ""
+  echo "  ──────────────────────────────────────────────────────────────"
+  echo "  Commit blocked. This is the PUBLIC web repo for Loom Framing."
+  echo "  Internal development artifacts belong in the private repo."
+  echo "  ──────────────────────────────────────────────────────────────"
+  echo ""
+  exit 1
+fi
