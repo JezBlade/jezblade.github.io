@@ -1,4 +1,3 @@
-# Brotherhood Seal: 015cb320
 version: 2
 updates:
   - package-ecosystem: "github-actions"
