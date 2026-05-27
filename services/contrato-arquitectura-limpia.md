@@ -1,4 +1,3 @@
-Brotherhood Seal: 015cb320
 
 CLEAN ARCHITECTURE AS A SERVICE (CAaaS) — SERVICE AGREEMENT
 
@@ -99,4 +98,3 @@ Notes
 -----
 - This template is provided in professional, technical English. Adjust client-specific fields (wallet addresses, governing law, and billing preferences) before use.
 
-<!-- Brotherhood Seal: 015cb320 -->

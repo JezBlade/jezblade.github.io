@@ -28,7 +28,7 @@ Backups/
 .DS_Store
 Thumbs.db
 
-# No .env backups — secrets live in Bitwarden + Brotherhood-Fortress Vault only
+# No .env backups — secrets are managed externally, never committed
 *.env.bak
 *.env.backup
 .env.bak*
