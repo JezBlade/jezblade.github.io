@@ -71,7 +71,13 @@ jobs:
           fi
 
           # Check 2: content patterns in diff
-          DIFF_HITS=$(git diff "$BASE" "$HEAD" -- ':(exclude).github/workflows/internal-leak-detector.yml' | grep -i -E "$PATTERN" || true)
+          # Exclude self-referential files that legitimately contain the patterns
+          # in detection rules (gitignore deny-list, hook code, workflow code)
+          DIFF_HITS=$(git diff "$BASE" "$HEAD" \
+            -- ':(exclude).github/workflows/internal-leak-detector.yml' \
+               ':(exclude).husky/pre-commit' \
+               ':(exclude).gitignore' \
+            | grep -i -E "$PATTERN" || true)
           if [ -n "$DIFF_HITS" ]; then
             echo "::error::Internal codename patterns detected in diff content:"
             echo "$DIFF_HITS" | head -20
