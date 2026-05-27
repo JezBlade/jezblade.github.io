@@ -27,3 +27,9 @@ Backups/
 # OS
 .DS_Store
 Thumbs.db
+
+# No .env backups — secrets live in Bitwarden + Brotherhood-Fortress Vault only
+*.env.bak
+*.env.backup
+.env.bak*
+process.env.bak
