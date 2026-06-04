@@ -14,6 +14,15 @@
     <title>Loom Framing App - El compañero del framero</title>
     <link rel="icon" type="image/png" href="assets/app-icon-512.png">
 
+    <!-- ═══════ GA4 — Analytics ═══════ -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PLACEHOLDER');
+    </script>
+
     <!-- ═══════ V4 PATCH — FONTS ═══════ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1358,7 +1367,7 @@
         </span>
         <div class="whatsnew__text">
           <span class="whatsnew__text-title">Teclado custom 3-columnas Pies / Pulgadas / Fracciones</span>
-          <span class="whatsnew__text-body">El input correcto, primer intento. Cada columna es exactamente lo que necesitás escribir.</span>
+          <span class="whatsnew__text-body">El input correcto, primer intento. Cada columna es exactamente lo que necesitas escribir.</span>
         </div>
       </li>
       <li class="whatsnew__item">
@@ -1816,6 +1825,46 @@ if (new URLSearchParams(window.location.search).get('tester') === 'ok') {
     document.body.appendChild(msg);
     setTimeout(() => msg.remove(), 5000);
 }
+</script>
+
+<!-- ═══════ UTM PARAMETER HANDLER ═══════ -->
+<script>
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign'];
+  var captured = {};
+  var hasUtm = false;
+
+  utmKeys.forEach(function(key) {
+    var val = params.get(key);
+    if (val) {
+      captured[key] = val;
+      hasUtm = true;
+      try { sessionStorage.setItem(key, val); } catch(e) {}
+    } else {
+      try { var stored = sessionStorage.getItem(key); if (stored) captured[key] = stored; } catch(e) {}
+    }
+  });
+
+  if (hasUtm) {
+    // Fire GA4 custom event with UTM data
+    if (typeof gtag === 'function') {
+      gtag('event', 'utm_landing', {
+        utm_source: captured.utm_source || '(none)',
+        utm_medium: captured.utm_medium || '(none)',
+        utm_campaign: captured.utm_campaign || '(none)'
+      });
+    }
+
+    // Clean URL — remove UTM params for aesthetics, keep tester param if present
+    var clean = new URLSearchParams(window.location.search);
+    utmKeys.forEach(function(key) { clean.delete(key); });
+    var newUrl = window.location.pathname + (clean.toString() ? '?' + clean.toString() : '') + window.location.hash;
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', newUrl);
+    }
+  }
+})();
 </script>
 
 </body>
