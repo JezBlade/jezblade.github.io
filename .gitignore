@@ -9,9 +9,8 @@ process.env.*
 dist/
 *.tsbuildinfo
 
-# PDF files (except Loom guide)
+# PDF files
 *.pdf
-!loom/assets/guia-10-errores-framing.pdf
 
 # Editor/IDE
 .vscode/
