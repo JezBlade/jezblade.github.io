@@ -1,1871 +1,1703 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Loom Framing App - Calculadora profesional de framing para contratistas. Funciona offline. Bilingue. Codigos IRC. Hecha para la obra.">
-    <meta name="keywords" content="framing, calculadora, constructor, framero, IRC, Idaho, BOM, inspeccion, app">
-    <meta name="author" content="JezBlade">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Loom Framing App - El compañero del framero">
-    <meta property="og:description" content="Calculadora profesional de framing. Offline. Bilingue. Codigos IRC. Hecha para la obra.">
-    <meta property="og:image" content="assets/feature-graphic-1024x500.png">
-    <meta property="og:type" content="website">
-    <title>Loom Framing App - El compañero del framero</title>
-    <link rel="icon" type="image/png" href="assets/app-icon-512.png">
-
-    <!-- ═══════ GA4 — Analytics ═══════ -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBQ9B5CTEK"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-EBQ9B5CTEK');
-    </script>
-
-    <!-- ═══════ V4 PATCH — FONTS ═══════ -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <style id="loom-v4-tokens">
-/* ════════════════════════════════════════════════════════════════════
-   LOOM V4 PATCH · SCOPED TOKENS + STYLES
-   Every selector starts with .loom-v4-patch — safe to drop into any
-   page without bleeding into existing CSS.
-   ════════════════════════════════════════════════════════════════════ */
-
-.loom-v4-patch {
-  /* ---- Color (Brand layer — gold + café + cream) ---- */
-  --gold-100: #f7eed1;
-  --gold-200: #ecdda0;
-  --gold-300: #d9bf6a;
-  --gold-400: #c8a440;
-  --gold-500: #b8941f;
-  --gold-600: #a07f15;
-  --gold-700: #816710;
-  --gold-800: #604c0b;
-
-  --cafe-50:  #efeae0;
-  --cafe-100: #ddd3bf;
-  --cafe-300: #8b7c61;
-  --cafe-500: #5a4f3a;
-  --cafe-700: #3d3422;
-  --cafe-800: #2a2418;
-  --cafe-900: #1c1810;
-
-  --cream:    #faf9f7;
-  --canvas:   #f0ead6;
-  --canvas-2: #e4dcc2;
-
-  --confirm:  #4a7c3a;
-  --confirm-100: #d8e6cf;
-  --critical: #a82a2a;
-  --warning:  #a06820;
-
-  --line:        #d9d3c1;
-  --line-strong: #b8af96;
-  --mute:        #8a7f66;
-
-  /* ---- Type ---- */
-  --font-display: "Big Shoulders Display", "Oswald", "Arial Narrow", sans-serif;
-  --font-body:    "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono:    "JetBrains Mono", "IBM Plex Mono", ui-monospace, Menlo, monospace;
-
-  /* ---- Motion ---- */
-  --ease-out:    cubic-bezier(0.2, 0.6, 0.2, 1);
-  --ease-in-out: cubic-bezier(0.5, 0, 0.5, 1);
-
-  /* ---- Reset within scope ---- */
-  box-sizing: border-box;
-  font-family: var(--font-body);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: var(--cafe-800);
-}
-.loom-v4-patch *,
-.loom-v4-patch *::before,
-.loom-v4-patch *::after { box-sizing: border-box; }
-
-.loom-v4-patch h1,
-.loom-v4-patch h2,
-.loom-v4-patch h3,
-.loom-v4-patch p,
-.loom-v4-patch ul { margin: 0; padding: 0; }
-.loom-v4-patch ul { list-style: none; }
-
-/* ───── Shared atoms ───── */
-.loom-v4-patch .eyebrow {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold-700);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.loom-v4-patch .eyebrow svg { width: 16px; height: 16px; stroke: var(--gold-500); }
-.loom-v4-patch .eyebrow--on-dark { color: var(--gold-500); }
-.loom-v4-patch .eyebrow--on-dark svg { stroke: var(--gold-500); }
-
-.loom-v4-patch .display {
-  font-family: var(--font-display);
-  font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  color: var(--cafe-900);
-}
-.loom-v4-patch .display--on-dark { color: var(--cream); }
-
-.loom-v4-patch .sub {
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--cafe-700);
-  max-width: 60ch;
-}
-.loom-v4-patch .sub--on-dark { color: rgba(250, 249, 247, 0.78); }
-
-/* code refs inline */
-.loom-v4-patch .code-ref {
-  font-family: var(--font-mono);
-  font-size: 0.88em;
-  color: var(--gold-700);
-  font-weight: 500;
-  letter-spacing: 0;
-  white-space: nowrap;
-}
-
-/* CTAs */
-.loom-v4-patch .cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 64px;
-  padding: 18px 28px;
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-radius: 14px;
-  border: 1.5px solid transparent;
-  cursor: pointer;
-  transition: background 180ms var(--ease-out), color 180ms var(--ease-out), border-color 180ms var(--ease-out);
-}
-.loom-v4-patch .cta--primary {
-  background: var(--gold-500);
-  color: var(--cafe-900);
-  box-shadow: 0 6px 22px rgba(184, 148, 31, 0.35);
-}
-.loom-v4-patch .cta--primary:hover { background: var(--gold-600); }
-.loom-v4-patch .cta--primary:active { background: var(--gold-700); }
-
-.loom-v4-patch .cta--ghost-on-dark {
-  background: transparent;
-  color: var(--cream);
-  border-color: rgba(250, 249, 247, 0.4);
-}
-.loom-v4-patch .cta--ghost-on-dark:hover {
-  border-color: var(--gold-500);
-  color: var(--gold-300);
-}
-
-.loom-v4-patch .cta--ghost-on-cream {
-  background: transparent;
-  color: var(--cafe-900);
-  border-color: var(--cafe-300);
-}
-.loom-v4-patch .cta--ghost-on-cream:hover {
-  border-color: var(--gold-500);
-  color: var(--gold-700);
-}
-
-.loom-v4-patch .cta:focus-visible {
-  outline: 2px solid var(--gold-500);
-  outline-offset: 3px;
-}
-
-/* ════════════════════════════════════════════════════════════════════
-   SECTION 1 — V4.0.0 EN CAMINO ESTA SEMANA
-   ════════════════════════════════════════════════════════════════════ */
-.loom-v4-patch.loom-v4-coming {
-  background: var(--canvas);
-  border-top: 2px solid var(--gold-500);
-  border-bottom: 1px solid var(--line);
-  padding: 64px 28px;
-  position: relative;
-  overflow: hidden;
-}
-.loom-v4-patch.loom-v4-coming::before {
-  content: "";
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(184,148,31,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(184,148,31,0.05) 1px, transparent 1px);
-  background-size: 32px 32px;
-  pointer-events: none;
-}
-.loom-v4-patch.loom-v4-coming > * { position: relative; }
-
-.loom-v4-patch .v4-coming__inner {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.loom-v4-patch .v4-coming__header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 40px;
-  max-width: 720px;
-}
-.loom-v4-patch .v4-coming__title { font-size: 44px; }
-.loom-v4-patch .v4-coming__sub {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--cafe-700);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.loom-v4-patch .v4-coming__sub::before {
-  content: "";
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--gold-500);
-  box-shadow: 0 0 0 4px rgba(184,148,31,0.18);
-  animation: loom-pulse 2s var(--ease-in-out) infinite;
-}
-@keyframes loom-pulse {
-  0%, 100% { box-shadow: 0 0 0 4px rgba(184,148,31,0.18); }
-  50%      { box-shadow: 0 0 0 9px rgba(184,148,31,0.04); }
-}
-
-/* Card grid — 1col mobile, 2x2 ≥720px */
-.loom-v4-patch .v4-coming__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-}
-@media (min-width: 720px) {
-  .loom-v4-patch .v4-coming__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-}
-
-.loom-v4-patch .v4-card {
-  background: var(--cream);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 26px 26px 24px;
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  position: relative;
-  overflow: hidden;
-  transition: background 180ms var(--ease-out), border-color 180ms var(--ease-out);
-}
-.loom-v4-patch .v4-card::before {
-  content: "";
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 4px;
-  background: var(--gold-500);
-}
-.loom-v4-patch .v4-card:hover { background: var(--gold-100); border-color: var(--line-strong); }
-
-.loom-v4-patch .v4-card__head {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.loom-v4-patch .v4-card__icon {
-  width: 44px; height: 44px;
-  border-radius: 10px;
-  background: var(--cafe-900);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.loom-v4-patch .v4-card__icon svg {
-  width: 22px; height: 22px;
-  stroke: var(--gold-500);
-  fill: none;
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.loom-v4-patch .v4-card__tag {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--gold-700);
-  letter-spacing: 0.06em;
-  font-weight: 500;
-}
-.loom-v4-patch .v4-card__title {
-  font-family: var(--font-body);
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--cafe-900);
-  line-height: 1.2;
-}
-.loom-v4-patch .v4-card__body {
-  font-family: var(--font-body);
-  font-size: 14.5px;
-  line-height: 1.55;
-  color: var(--cafe-700);
-}
-
-/* CTA row */
-.loom-v4-patch .v4-coming__footer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-  margin-top: 36px;
-  padding-top: 28px;
-  border-top: 1px dashed var(--line-strong);
-}
-@media (min-width: 720px) {
-  .loom-v4-patch .v4-coming__footer {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-  }
-}
-.loom-v4-patch .v4-coming__footer-copy {
-  font-family: var(--font-body);
-  font-size: 15px;
-  color: var(--cafe-700);
-  max-width: 44ch;
-}
-.loom-v4-patch .v4-coming__footer-copy strong {
-  color: var(--cafe-900);
-  font-weight: 700;
-}
-
-/* ════════════════════════════════════════════════════════════════════
-   SECTION 2 — NUEVO EN (VARIANT A: v3.9.2 · VARIANT B: v4.0.0)
-   Toggle: data-variant="a" (pre-merge) / data-variant="b" (post-merge)
-   ════════════════════════════════════════════════════════════════════ */
-.loom-v4-patch.loom-v4-whatsnew {
-  background: var(--cream);
-  padding: 56px 28px;
-  border-bottom: 1px solid var(--line);
-}
-.loom-v4-patch .whatsnew__inner {
-  max-width: 920px;
-  margin: 0 auto;
-}
-.loom-v4-patch .whatsnew__head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 16px;
-  margin-bottom: 28px;
-}
-.loom-v4-patch .whatsnew__title {
-  font-size: 38px;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-}
-.loom-v4-patch .whatsnew__title-star { color: var(--gold-500); }
-
-.loom-v4-patch .whatsnew__chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.loom-v4-patch .whatsnew__chip--shipped {
-  background: var(--confirm-100);
-  color: #2d4a23;
-  border: 1px solid rgba(74, 124, 58, 0.3);
-}
-.loom-v4-patch .whatsnew__chip--shipped svg {
-  width: 14px; height: 14px;
-  stroke: var(--confirm); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
-}
-.loom-v4-patch .whatsnew__chip--incoming {
-  background: var(--gold-100);
-  color: var(--gold-800);
-  border: 1px solid rgba(184, 148, 31, 0.4);
-}
-.loom-v4-patch .whatsnew__chip--incoming svg {
-  width: 14px; height: 14px;
-  stroke: var(--gold-700); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
-}
-
-/* Bullet list */
-.loom-v4-patch .whatsnew__list {
-  display: grid;
-  gap: 12px;
-}
-.loom-v4-patch .whatsnew__item {
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  gap: 16px;
-  align-items: start;
-  padding: 18px 20px;
-  background: var(--cream);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden;
-  min-height: 72px;
-}
-.loom-v4-patch .whatsnew__item::before {
-  content: "";
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 4px;
-  background: var(--gold-500);
-}
-.loom-v4-patch .whatsnew__item--shipped::before { background: var(--confirm); }
-
-.loom-v4-patch .whatsnew__icon {
-  width: 44px; height: 44px;
-  border-radius: 10px;
-  background: var(--canvas);
-  display: flex; align-items: center; justify-content: center;
-}
-.loom-v4-patch .whatsnew__icon svg {
-  width: 22px; height: 22px;
-  stroke: var(--gold-700);
-  fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
-}
-.loom-v4-patch .whatsnew__item--shipped .whatsnew__icon { background: var(--confirm-100); }
-.loom-v4-patch .whatsnew__item--shipped .whatsnew__icon svg { stroke: #2d4a23; }
-
-.loom-v4-patch .whatsnew__text { display: flex; flex-direction: column; gap: 4px; }
-.loom-v4-patch .whatsnew__text-title {
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--cafe-900);
-  line-height: 1.3;
-}
-.loom-v4-patch .whatsnew__text-body {
-  font-family: var(--font-body);
-  font-size: 14px;
-  color: var(--cafe-700);
-  line-height: 1.5;
-}
-
-/* Variant switch */
-.loom-v4-patch.loom-v4-whatsnew[data-variant="a"] .whatsnew__list--b,
-.loom-v4-patch.loom-v4-whatsnew[data-variant="b"] .whatsnew__list--a { display: none; }
-.loom-v4-patch.loom-v4-whatsnew[data-variant="a"] .whatsnew__chip--incoming,
-.loom-v4-patch.loom-v4-whatsnew[data-variant="b"] .whatsnew__chip--shipped { display: none; }
-.loom-v4-patch.loom-v4-whatsnew[data-variant="a"] .whatsnew__version--b,
-.loom-v4-patch.loom-v4-whatsnew[data-variant="b"] .whatsnew__version--a { display: none; }
-
-/* ════════════════════════════════════════════════════════════════════
-   SECTION 3 — TESTER COUNTER (OPEN · CLOSED)
-   Toggle: data-state="open" / data-state="closed"
-   ════════════════════════════════════════════════════════════════════ */
-.loom-v4-patch.loom-v4-counter {
-  background: var(--cafe-800);
-  background-image:
-    linear-gradient(rgba(184,148,31,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(184,148,31,0.06) 1px, transparent 1px);
-  background-size: 32px 32px;
-  color: var(--cream);
-  padding: 56px 28px;
-  border-top: 2px solid var(--gold-500);
-  border-bottom: 2px solid var(--gold-500);
-}
-.loom-v4-patch .counter__inner {
-  max-width: 920px;
-  margin: 0 auto;
-  display: grid;
-  gap: 28px;
-}
-@media (min-width: 720px) {
-  .loom-v4-patch .counter__inner {
-    grid-template-columns: 1.2fr 1fr;
-    align-items: center;
-    gap: 48px;
-  }
-}
-
-.loom-v4-patch .counter__left { display: flex; flex-direction: column; gap: 14px; }
-.loom-v4-patch .counter__eyebrow { color: var(--gold-500); }
-
-.loom-v4-patch .counter__title {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 38px;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  color: var(--cream);
-}
-.loom-v4-patch .counter__copy {
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.55;
-  color: rgba(250, 249, 247, 0.78);
-  max-width: 38ch;
-}
-
-.loom-v4-patch .counter__right { display: flex; flex-direction: column; gap: 20px; }
-
-/* Big number readout */
-.loom-v4-patch .counter__readout {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  font-family: var(--font-display);
-  letter-spacing: -0.02em;
-  line-height: 0.9;
-}
-.loom-v4-patch .counter__taken {
-  font-size: 96px;
-  font-weight: 900;
-  color: var(--gold-500);
-  font-variant-numeric: tabular-nums;
-}
-.loom-v4-patch .counter__sep {
-  font-size: 72px;
-  font-weight: 700;
-  color: rgba(250, 249, 247, 0.35);
-}
-.loom-v4-patch .counter__total {
-  font-size: 72px;
-  font-weight: 700;
-  color: rgba(250, 249, 247, 0.55);
-  font-variant-numeric: tabular-nums;
-}
-.loom-v4-patch .counter__label {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(250, 249, 247, 0.6);
-  margin-left: 8px;
-  align-self: end;
-  padding-bottom: 10px;
-}
-
-/* Progress bar */
-.loom-v4-patch .counter__bar {
-  width: 100%;
-  height: 12px;
-  border-radius: 999px;
-  background: rgba(250, 249, 247, 0.08);
-  border: 1px solid rgba(184, 148, 31, 0.2);
-  overflow: hidden;
-  position: relative;
-}
-.loom-v4-patch .counter__bar-fill {
-  height: 100%;
-  background: var(--gold-500);
-  border-radius: 999px;
-  width: 0%;
-  transition: width 1.2s var(--ease-out);
-  box-shadow: 0 0 14px rgba(184, 148, 31, 0.55);
-}
-.loom-v4-patch .counter__meta {
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: rgba(250, 249, 247, 0.55);
-}
-.loom-v4-patch .counter__meta strong { color: var(--gold-500); font-weight: 700; }
-
-/* CTA cluster */
-.loom-v4-patch .counter__cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 4px;
-}
-.loom-v4-patch .counter__locality {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: rgba(250, 249, 247, 0.5);
-  letter-spacing: 0.02em;
-}
-
-/* Closed-state microcopy */
-.loom-v4-patch .counter__closed-note {
-  font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 1.5;
-  color: rgba(250, 249, 247, 0.7);
-  padding: 14px 16px;
-  border-left: 3px solid var(--gold-500);
-  background: rgba(184, 148, 31, 0.06);
-  border-radius: 0 6px 6px 0;
-}
-.loom-v4-patch .counter__closed-note strong { color: var(--cream); font-weight: 700; }
-
-/* State switch */
-.loom-v4-patch.loom-v4-counter[data-state="open"]   .counter__when-closed,
-.loom-v4-patch.loom-v4-counter[data-state="closed"] .counter__when-open { display: none; }
-
-.loom-v4-patch.loom-v4-counter[data-state="closed"] .counter__taken { color: var(--confirm); }
-.loom-v4-patch.loom-v4-counter[data-state="closed"] .counter__bar-fill { background: var(--confirm); box-shadow: 0 0 14px rgba(74, 124, 58, 0.55); }
-
-/* ────────── Reduce motion ────────── */
-@media (prefers-reduced-motion: reduce) {
-  .loom-v4-patch *,
-  .loom-v4-patch *::before,
-  .loom-v4-patch *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-    </style>
-
-    <style>
-        :root {
-            --orange: #FF6D00;
-            --orange-light: #FF8C00;
-            --orange-dark: #E65100;
-            --blue: #37474F;
-            --blue-light: #546E7A;
-            --blue-dark: #1a1a2e;
-            --white: #ffffff;
-            --gray-light: #f5f5f5;
-            --gray: #9e9e9e;
-            --green: #4CAF50;
-            --red: #F44336;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            color: #222;
-            line-height: 1.6;
-            background: var(--white);
-        }
-
-        /* HERO */
-        .hero {
-            background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, var(--blue-light) 100%);
-            color: var(--white);
-            text-align: center;
-            padding: 60px 24px 48px;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            right: 0;
-            height: 40px;
-            background: var(--white);
-            clip-path: ellipse(55% 100% at 50% 100%);
-        }
-        .hero-icon {
-            width: 96px;
-            height: 96px;
-            border-radius: 22px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            margin-bottom: 20px;
-        }
-        .hero h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
-        }
-        .hero h1 span { color: var(--orange); }
-        .hero .tagline {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 500px;
-            margin: 0 auto 28px;
-        }
-
-        /* CTAs */
-        .cta-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: center;
-            max-width: 340px;
-            margin: 0 auto;
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            padding: 16px 24px;
-            border-radius: 14px;
-            font-size: 1.05rem;
-            font-weight: 700;
-            text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-            border: none;
-        }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
-        .btn:active { transform: translateY(0); }
-        .btn-orange {
-            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
-            color: var(--white);
-        }
-        .btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255,255,255,0.4);
-        }
-        .btn-outline:hover { border-color: var(--orange); color: var(--orange); }
-        .btn-green {
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-            color: var(--white);
-        }
-        .btn-icon { font-size: 1.3rem; }
-
-        /* BADGES */
-        .badges {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-            padding: 32px 24px 16px;
-        }
-        .badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--blue);
-        }
-        .badge-icon {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85rem;
-        }
-        .badge-icon.offline { background: #E3F2FD; }
-        .badge-icon.bilingual { background: #FFF3E0; }
-        .badge-icon.irc { background: #E8F5E9; }
-
-        /* SECTIONS */
-        .section {
-            padding: 48px 24px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .section-title {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--blue-dark);
-            text-align: center;
-            margin-bottom: 8px;
-        }
-        .section-subtitle {
-            font-size: 1rem;
-            color: var(--gray);
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        /* FEATURES GRID */
-        .features {
-            background: var(--gray-light);
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-        .feature-card {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 28px 24px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            border-left: 4px solid var(--orange);
-            transition: transform 0.2s;
-        }
-        .feature-card:hover { transform: translateY(-3px); }
-        .feature-card h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--blue-dark);
-            margin-bottom: 6px;
-        }
-        .feature-card p {
-            font-size: 0.92rem;
-            color: #555;
-            line-height: 1.5;
-        }
-        .feature-emoji {
-            font-size: 1.6rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        /* SCREENSHOTS CAROUSEL */
-        .screenshots {
-            overflow-x: auto;
-            display: flex;
-            gap: 16px;
-            padding: 0 24px 20px;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-        .screenshots::-webkit-scrollbar { display: none; }
-        .screenshots img {
-            width: 220px;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-            scroll-snap-align: center;
-            flex-shrink: 0;
-        }
-
-        /* STATS */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            text-align: center;
-            padding: 32px 24px;
-            background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
-            color: var(--white);
-        }
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--orange);
-        }
-        .stat-label {
-            font-size: 0.8rem;
-            opacity: 0.85;
-            margin-top: 2px;
-        }
-
-        /* FAQ */
-        .faq-item {
-            border-bottom: 1px solid #eee;
-            padding: 20px 0;
-        }
-        .faq-q {
-            font-weight: 700;
-            font-size: 1rem;
-            color: var(--blue-dark);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .faq-q::after {
-            content: '+';
-            font-size: 1.4rem;
-            color: var(--orange);
-            font-weight: 300;
-            transition: transform 0.3s;
-        }
-        .faq-q.open::after { transform: rotate(45deg); }
-        .faq-a {
-            font-size: 0.92rem;
-            color: #555;
-            margin-top: 12px;
-            display: none;
-            line-height: 1.6;
-        }
-        .faq-a.show { display: block; }
-
-        /* DOWNLOAD SECTION */
-        .download-section {
-            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
-            color: var(--white);
-            text-align: center;
-            padding: 56px 24px;
-        }
-        .download-section h2 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
-        .download-section p {
-            font-size: 1rem;
-            opacity: 0.9;
-            margin-bottom: 28px;
-            max-width: 480px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .download-section .btn-white {
-            background: var(--white);
-            color: var(--orange-dark);
-            max-width: 340px;
-            margin: 0 auto 12px;
-        }
-        .download-section .btn-ghost {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255,255,255,0.5);
-            max-width: 340px;
-            margin: 0 auto;
-        }
-        .download-section .btn-ghost:hover { border-color: var(--white); }
-
-        /* FOOTER */
-        footer {
-            background: var(--blue-dark);
-            color: rgba(255,255,255,0.7);
-            text-align: center;
-            padding: 32px 24px;
-            font-size: 0.85rem;
-        }
-        footer a { color: rgba(255,255,255,0.9); text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-
-        /* RESPONSIVE */
-        @media (min-width: 640px) {
-            .features-grid { grid-template-columns: repeat(2, 1fr); }
-            .stats { grid-template-columns: repeat(4, 1fr); }
-            .hero h1 { font-size: 2.8rem; }
-            .cta-group { flex-direction: row; max-width: 500px; }
-            .btn { width: auto; min-width: 200px; }
-            .screenshots img { width: 260px; }
-        }
-        @media (min-width: 960px) {
-            .features-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-    </style>
-</head>
-<body>
-
-<!-- HERO -->
-<section class="hero">
-    <img src="assets/app-icon-512.png" alt="Loom Framing App" class="hero-icon" loading="eager">
-    <h1>Loom <span>Framing</span> App</h1>
-    <p class="tagline">El compañero que sabe mas &mdash; en tu bolsa, en la obra.</p>
-    
-    <div class="cta-group">
-        <a href="#unete-como-tester" class="btn btn-orange" style="background: linear-gradient(135deg, #FF6D00 0%, #FF8C00 100%); font-weight: 800;">
-            <span class="btn-icon">⭐</span> Sé un Tester — Primer Año Gratis
-        </a>
-        <a href="https://play.google.com/apps/testing/com.loomframing.app" class="btn btn-outline" target="_blank" rel="noopener">
-            <span class="btn-icon">&#9654;</span> Descargar Ahora
-        </a>
-    </div>
-</section>
-
-<!-- ═══════════ SECTION 3 — TESTER COUNTER ═══════════
-     Owner: change data-state="open"→"closed" and data-counter-taken="9"→"12" when cupo se cierre
-     ═══════════════════════════════════════════════════ -->
-<section class="loom-v4-patch loom-v4-counter" data-state="open" data-counter-taken="9" data-counter-total="12" aria-labelledby="counter-title">
-  <div class="counter__inner">
-
-    <div class="counter__left">
-      <span class="eyebrow eyebrow--on-dark">
-        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0-3-3.87"/>
-        </svg>
-        Closed Testing · Idaho
-      </span>
-      <h2 class="counter__title" id="counter-title">
-        <span class="counter__when-open">Sé un tester de Loom v4</span>
-        <span class="counter__when-closed">El cupo está lleno</span>
-      </h2>
-      <p class="counter__copy counter__when-open">
-        Buscamos frameros activos en Boise, Nampa y Meridian. Pruebas v4 en obra real durante 2 semanas, mandas feedback en español, recibes acceso permanente gratis.
-      </p>
-      <p class="counter__copy counter__when-closed">
-        Los 12 frameros de la primera ola ya están adentro probando v4 en obra. Si quieres entrar a la siguiente ola — Open Testing v4.1 — anótate y te avisamos.
-      </p>
-      <div class="counter__cta-row counter__when-open">
-        <a class="cta cta--primary"
-           href="https://chat.whatsapp.com/BDcrzrwxvbi9P3w14SLedw"
-           target="_blank" rel="noopener"
-           aria-label="Postularse como tester de Loom v4">
-          Sé un tester
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-          </svg>
-        </a>
-        <a class="cta cta--ghost-on-dark" href="#features" aria-label="Ver qué incluye v4">
-          Qué incluye v4
-        </a>
-      </div>
-      <div class="counter__cta-row counter__when-closed">
-        <a class="cta cta--primary"
-           href="https://chat.whatsapp.com/BDcrzrwxvbi9P3w14SLedw"
-           target="_blank" rel="noopener"
-           aria-label="Notificarme cuando se abra la próxima ola">
-          Notifícame
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-          </svg>
-        </a>
-        <a class="cta cta--ghost-on-dark" href="#features" aria-label="Ver qué incluye v4">
-          Qué incluye v4
-        </a>
-      </div>
-    </div>
-
-    <div class="counter__right">
-      <div class="counter__readout" aria-live="polite">
-        <span class="counter__taken" data-counter-display="taken">9</span>
-        <span class="counter__sep" aria-hidden="true">/</span>
-        <span class="counter__total">12</span>
-        <span class="counter__label">Testers</span>
-      </div>
-      <div class="counter__bar" role="progressbar" aria-valuemin="0" aria-valuemax="12" aria-valuenow="9" aria-label="9 de 12 testers ocupados, 75 por ciento">
-        <div class="counter__bar-fill" data-counter-fill style="width: 0%;"></div>
-      </div>
-      <div class="counter__meta">
-        <span class="counter__when-open"><strong>3 spots</strong> disponibles · 75% lleno</span>
-        <span class="counter__when-closed"><strong>0 spots</strong> · 100% lleno</span>
-        <span class="counter__locality">Boise · Nampa · Meridian</span>
-      </div>
-      <div class="counter__closed-note counter__when-closed">
-        <strong>Programa cerrado.</strong> Próxima ola: Open Testing v4.1 — te avisamos cuando se abra.
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- TRUST BADGES -->
-<div class="badges">
-    <div class="badge">
-        <span class="badge-icon offline">&#128225;</span>
-        Funciona sin internet
-    </div>
-    <div class="badge">
-        <span class="badge-icon bilingual">&#127758;</span>
-        Bilingue ES/EN
-    </div>
-    <div class="badge">
-        <span class="badge-icon irc">&#9989;</span>
-        Codigos IRC 2021
-    </div>
-    <div class="badge">
-        <span class="badge-icon" style="background: #F3E5F5;">&#127919;</span>
-        Quiz del Framero
-    </div>
-</div>
-
-<!-- FEATURE GRAPHIC BANNER -->
-<div style="width: 100%; background: var(--blue-dark); padding: 0; overflow: hidden; line-height: 0;">
-    <img src="assets/feature-graphic-1024x500.png"
-         alt="Loom Framing App — Calculadoras, BOM, Códigos IRC, Plan Intelligence"
-         style="width: 100%; max-height: 320px; object-fit: cover; display: block;"
-         loading="lazy">
-</div>
-
-<!-- VIDEO DEMOS -->
-<section class="section" style="background: linear-gradient(135deg, rgba(255,109,0,0.08) 0%, rgba(55,71,79,0.05) 100%); margin: 0; padding: 48px 24px;">
-    <div style="max-width: 900px; margin: 0 auto;">
-        <h2 class="section-title">Mira Cómo Funciona</h2>
-        <p class="section-subtitle">Videos cortos (60 segundos) mostrando cálculos reales en la obra.</p>
-        
-        <!-- VIDEOS GRID -->
-        <div style="display: flex; flex-wrap: wrap; gap: 32px; margin-top: 32px; justify-content: center; align-items: flex-start;">
-
-            <!-- Video 1: Gable End Vaulted Wall -->
-            <div style="flex: 0 0 auto; max-width: 325px; width: 100%;">
-                <blockquote class="tiktok-embed"
-                    cite="https://www.tiktok.com/@loomframing/video/7636966927025327373"
-                    data-video-id="7636966927025327373"
-                    style="max-width:325px; min-width:325px; border:none;">
-                    <section></section>
-                </blockquote>
-                <div style="padding: 12px 4px 0;">
-                    <h3 style="font-size: 1rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 4px;">Gable End Vaulted Wall</h3>
-                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 8px;">Paredes complejas en segundos — 5 outputs instantáneos.</p>
-                    <a href="https://youtube.com/shorts/MU0_B0TYXbs" target="_blank" rel="noopener" style="color: #FF0000; text-decoration: none; font-weight: 600; font-size: 0.85rem;">▶ Ver también en YouTube Shorts</a>
-                </div>
-            </div>
-
-            <!-- Video 2: Stairs Calculator -->
-            <div style="flex: 0 0 auto; max-width: 325px; width: 100%;">
-                <blockquote class="tiktok-embed"
-                    cite="https://www.tiktok.com/@loomframing/video/7635145007397195021"
-                    data-video-id="7635145007397195021"
-                    style="max-width:325px; min-width:325px; border:none;">
-                    <section></section>
-                </blockquote>
-                <div style="padding: 12px 4px 0;">
-                    <h3 style="font-size: 1rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 4px;">Stairs Calculator</h3>
-                    <p style="font-size: 0.85rem; color: #555;">Rise, run, treads — cut list completo en segundos.</p>
-                </div>
-            </div>
-
-            <!-- Más próximamente -->
-            <div style="flex: 0 0 auto; max-width: 325px; width: 100%; min-height: 300px; background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; padding: 32px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.12);">
-                <div style="font-size: 3rem; margin-bottom: 16px;">🎥</div>
-                <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">Más Videos en Camino</h3>
-                <div style="font-size: 0.82rem; opacity: 0.9; margin-bottom: 20px; text-align: left; line-height: 1.7;">
-                    <div>&#127919; Quiz del Framero — 21 preguntas</div>
-                    <div>&#128203; BOM a PDF en la obra</div>
-                    <div>&#9989; Inspection Checklist completo</div>
-                    <div>&#129521; Backing &amp; Blocking en accion</div>
-                </div>
-                <a href="https://www.tiktok.com/@loomframing" target="_blank" rel="noopener"
-                   style="padding: 10px 20px; background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.6); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 0.9rem;">
-                    Seguir en TikTok →
-                </a>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- SCREENSHOTS -->
-<section class="section" style="padding-bottom: 24px;">
-    <h2 class="section-title">Hecha para el jobsite</h2>
-    <p class="section-subtitle">15+ calculadoras, 42 articulos, 63 tips pro, codigos IRC &mdash; todo en tu telefono, todo offline.</p>
-</section>
-<div class="screenshots">
-    <img src="assets/screenshot-1-calculator.png" alt="Calculadora de framing" loading="lazy">
-    <img src="assets/screenshot-2-bom.png" alt="Lista de materiales BOM" loading="lazy">
-    <img src="assets/screenshot-3-knowledge.png" alt="Base de conocimiento" loading="lazy">
-    <img src="assets/screenshot-4-inspection.png" alt="Checklist de inspeccion" loading="lazy">
-</div>
-
-<!-- STATS -->
-<div class="stats">
-    <div>
-        <div class="stat-number">15+</div>
-        <div class="stat-label">Calculadoras de campo</div>
-    </div>
-    <div>
-        <div class="stat-number">105+</div>
-        <div class="stat-label">Articulos y tips pro</div>
-    </div>
-    <div>
-        <div class="stat-number">29</div>
-        <div class="stat-label">Items de inspeccion</div>
-    </div>
-    <div>
-        <div class="stat-number">20+</div>
-        <div class="stat-label">Tablas IRC 2021</div>
-    </div>
-</div>
-
-<!-- ═══════════ SECTION 1 — V4.0.0 EN CAMINO ESTA SEMANA ═══════════
-     Insert position: after stats band, before 'Lo que hace Loom por ti'
-     ════════════════════════════════════════════════════════════════════ -->
-<section class="loom-v4-patch loom-v4-coming" aria-labelledby="v4-coming-title">
-  <div class="v4-coming__inner">
-
-    <header class="v4-coming__header">
-      <span class="eyebrow">
-        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-        </svg>
-        Versión 4.0 · En camino esta semana
-      </span>
-      <h2 id="v4-coming-title" class="display v4-coming__title">Lo que llega en v4</h2>
-      <p class="v4-coming__sub">Drop estimado: Closed Testing en los próximos 7 días</p>
-    </header>
-
-    <ul class="v4-coming__grid">
-
-      <!-- Card 1 — Custom keyboard -->
-      <li class="v4-card">
-        <div class="v4-card__head">
-          <span class="v4-card__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h.01M18 14h.01M8 14h8"/></svg>
-          </span>
-          <div>
-            <div class="v4-card__tag">P0 · UI/UX</div>
-            <h3 class="v4-card__title">Teclado custom 3-columnas</h3>
-          </div>
-        </div>
-        <p class="v4-card__body">
-          Pies, pulgadas y fracciones — cada una en su columna. Sin más errores de input: el teclado piensa como el framer, no como una calculadora científica.
-        </p>
-      </li>
-
-      <!-- Card 2 — Dual operator -->
-      <li class="v4-card">
-        <div class="v4-card__head">
-          <span class="v4-card__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg>
-          </span>
-          <div>
-            <div class="v4-card__tag">P0 · Engine</div>
-            <h3 class="v4-card__title">Doble operador en tiempo real</h3>
-          </div>
-        </div>
-        <p class="v4-card__body">
-          Convierte entre sistemas mientras escribís. Suma <span class="code-ref">feet-and-inches</span> sin abrir calculadora aparte — el resultado se actualiza tap por tap.
-        </p>
-      </li>
-
-      <!-- Card 3 — IRC compliance -->
-      <li class="v4-card">
-        <div class="v4-card__head">
-          <span class="v4-card__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
-          </span>
-          <div>
-            <div class="v4-card__tag">P0 · Compliance</div>
-            <h3 class="v4-card__title">Compliance IRC inline</h3>
-          </div>
-        </div>
-        <p class="v4-card__body">
-          Validación automática de headers, studs y rough openings contra <span class="code-ref">IRC 2021</span> mientras escribís. Sin saltar a otro screen — el check está al lado del input.
-        </p>
-      </li>
-
-      <!-- Card 4 — Lottie tutorial -->
-      <li class="v4-card">
-        <div class="v4-card__head">
-          <span class="v4-card__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
-          </span>
-          <div>
-            <div class="v4-card__tag">P0 · Onboarding</div>
-            <h3 class="v4-card__title">Tutorial interactivo Lottie</h3>
-          </div>
-        </div>
-        <p class="v4-card__body">
-          Aprendé en 30 segundos lo que importa de cada feature. Animaciones offline, sin video pesado — el tutorial pesa lo mismo que una foto.
-        </p>
-      </li>
-
-    </ul>
-
-    <div class="v4-coming__footer">
-      <p class="v4-coming__footer-copy">
-        <strong>¿Quieres saber cuándo está live?</strong> Te avisamos en el grupo WhatsApp el día que la build entre a Closed Testing.
-      </p>
-      <a class="cta cta--primary"
-         href="https://chat.whatsapp.com/BDcrzrwxvbi9P3w14SLedw"
-         target="_blank" rel="noopener"
-         aria-label="Unirse al grupo WhatsApp para recibir el aviso de lanzamiento de v4">
-        Te avisamos cuando v4 esté live
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-        </svg>
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════════ SECTION 2 — ★ NUEVO EN (VARIANT A pre-merge / VARIANT B post-merge) ═══════════
-     Owner: day 1-5 keep data-variant="a"; day 5b+ switch to data-variant="b"
-     ════════════════════════════════════════════════════════════════════════════════════════════ -->
-<section class="loom-v4-patch loom-v4-whatsnew" data-variant="a" aria-labelledby="whatsnew-title">
-  <div class="whatsnew__inner">
-
-    <header class="whatsnew__head">
-      <h2 class="display whatsnew__title" id="whatsnew-title">
-        <span class="whatsnew__title-star" aria-hidden="true">★</span>
-        <span>Nuevo en
-          <span class="whatsnew__version--a">v3.9.2</span>
-          <span class="whatsnew__version--b">v4.0.0</span>
-        </span>
-      </h2>
-      <span class="whatsnew__chip whatsnew__chip--shipped" aria-label="v3.9.2 shipped">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-        v3.9.2 shipped
-      </span>
-      <span class="whatsnew__chip whatsnew__chip--incoming" aria-label="v4.0.0 incoming">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        v4.0.0 incoming
-      </span>
-    </header>
-
-    <!-- VARIANT A bullets — 6 shipped items from v3.9.2 -->
-    <ul class="whatsnew__list whatsnew__list--a">
-      <li class="whatsnew__item whatsnew__item--shipped">
-        <span class="whatsnew__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-5"/></svg>
-        </span>
-        <div class="whatsnew__text">
-          <span class="whatsnew__text-title">15+ calculadoras de campo refinadas</span>
-          <span class="whatsnew__text-body">Headers, studs, birdsmouth, rake wall, gable end y OC layout — todos con resultado en menos de 3 segundos.</span>
-        </div>
-      </li>
-      <li class="whatsnew__item whatsnew__item--shipped">
-        <span class="whatsnew__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M10 13H8"/><path d="M16 13h-4"/><path d="M16 17H8"/></svg>
-        </span>
-        <div class="whatsnew__text">
-          <span class="whatsnew__text-title">BOM → PDF en un tap</span>
-          <span class="whatsnew__text-body">Lista de materiales completa, exportable, mandable al supplier directo desde la obra. <span class="code-ref">IRC R602.3.2</span></span>
-        </div>
-      </li>
-      <li class="whatsnew__item whatsnew__item--shipped">
-        <span class="whatsnew__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-        </span>
-        <div class="whatsnew__text">
-          <span class="whatsnew__text-title">Checklist de inspección — 29 items en 7 categorías</span>
-          <span class="whatsnew__text-body">Pasa la inspección a la primera. Captura fotos como evidencia y mandalas al GC.</span>
-        </div>
-      </li>
-      <li class="whatsnew__item whatsnew__item--shipped">
-        <span class="whatsnew__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        </span>
-        <div class="whatsnew__text">
-          <span class="whatsnew__text-title">42 artículos técnicos + 63 tips pro</span>
-          <span class="whatsnew__text-body">El manual del framer en tu bolsillo. Bilingüe ES/EN. 100% offline.</span>
-        </div>
-      </li>
-      <li class="whatsnew__item whatsnew__item--shipped">
-        <span class="whatsnew__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-        </span>
-        <div class="whatsnew__text">
-          <span class="whatsnew__text-title">Idaho snow load + zona sísmica</span>
-          <span class="whatsnew__text-body">Tablas IRC 2021 con datos locales: Boise, Nampa, Meridian y más.</span>
-        </div>
-      </li>
-      <li class="whatsnew__item whatsnew__item--shipped">
-        <span class="whatsnew__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
-        </span>
-        <div class="whatsnew__text">
-          <span class="whatsnew__text-title">Quiz del Framero · 50+ preguntas</span>
-          <span class="whatsnew__text-body">Reforzá tu conocimiento de IRC, Simpson hardware y nailing schedules entre proyecto y proyecto.</span>
-        </div>
-      </li>
-    </ul>
-
-    <!-- VARIANT B bullets — 5 P0 items from v4.0.0 (shown when data-variant="b") -->
-    <ul class="whatsnew__list whatsnew__list--b">
-      <li class="whatsnew__item">
-        <span class="whatsnew__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h.01M18 14h.01M8 14h8"/></svg>
-        </span>
-        <div class="whatsnew__text">
-          <span class="whatsnew__text-title">Teclado custom 3-columnas Pies / Pulgadas / Fracciones</span>
-          <span class="whatsnew__text-body">El input correcto, primer intento. Cada columna es exactamente lo que necesitas escribir.</span>
-        </div>
-      </li>
-      <li class="whatsnew__item">
-        <span class="whatsnew__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg>
-        </span>
-        <div class="whatsnew__text">
-          <span class="whatsnew__text-title">DualOperatorEngine + Measurement value type</span>
-          <span class="whatsnew__text-body">Núcleo nuevo: convierte y suma <span class="code-ref">feet-and-inches</span> con fracciones en una sola pasada — sin pérdida de precisión.</span>
-        </div>
-      </li>
-      <li class="whatsnew__item">
-        <span class="whatsnew__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
-        </span>
-        <div class="whatsnew__text">
-          <span class="whatsnew__text-title">Compliance Engine JSON · IRC inline</span>
-          <span class="whatsnew__text-body">Headers validados contra <span class="code-ref">IRC R602.7</span> en vivo. El check está al lado del input, no escondido en otro screen.</span>
-        </div>
-      </li>
-      <li class="whatsnew__item">
-        <span class="whatsnew__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
-        </span>
-        <div class="whatsnew__text">
-          <span class="whatsnew__text-title">Lottie tutorial system · 3 animaciones iniciales</span>
-          <span class="whatsnew__text-body">Onboarding sin paredes de texto. Animaciones ligeras, 100% offline.</span>
-        </div>
-      </li>
-      <li class="whatsnew__item">
-        <span class="whatsnew__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
-        </span>
-        <div class="whatsnew__text">
-          <span class="whatsnew__text-title">Outbox Pattern · sync offline-first</span>
-          <span class="whatsnew__text-body">Lo que generás en la obra queda guardado y sincroniza cuando llegás a la oficina. Sin pérdida de datos en zona sin señal.</span>
-        </div>
-      </li>
-    </ul>
-
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section class="section features">
-    <h2 class="section-title">Lo que hace Loom por ti</h2>
-    <p class="section-subtitle">No es una app generica. Es tu guia de campo profesional.</p>
-    <div class="features-grid">
-        <div class="feature-card">
-            <span class="feature-emoji">&#128208;</span>
-            <h3>Calculadoras de Campo</h3>
-            <p>Headers, studs, birdsmouth, rake wall, OC layout, cargas, conversiones, Framer Pro y mas. Resultado en menos de 3 segundos. Sin internet.</p>
-        </div>
-        <div class="feature-card" style="border-left-color: var(--orange);">
-            <span class="feature-emoji">&#128736;</span>
-            <h3>Gable End &amp; Vaulted Wall <span style="font-size: 0.7rem; background: var(--orange); color: white; padding: 2px 8px; border-radius: 10px; font-weight: 700; vertical-align: middle;">NUEVO</span></h3>
-            <p>Calcula paredes angled y vaulted en segundos: ridge height, stud heights, plate angles y backing. 5 outputs instantaneos para paredes complejas.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-emoji">&#128203;</span>
-            <h3>Lista de Materiales (BOM)</h3>
-            <p>Genera tu bill of materials completo y exporta a PDF. Manda la lista al supplier directamente desde la obra. Historial de proyectos incluido.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-emoji">&#128270;</span>
-            <h3>Checklist de Inspeccion</h3>
-            <p>29 items en 7 categorias — fundacion, muros, pisos, techo, hardware, conexiones. Pasa la inspeccion a la primera. Captura fotos de evidencia.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-emoji">&#128214;</span>
-            <h3>Codigos IRC Idaho 2021</h3>
-            <p>Nailing schedule, header tables, Simpson hardware guide, snow loads por condado, common fails del inspector. Todo referenciado a IRC 2021. Sin paywall.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-emoji">&#128218;</span>
-            <h3>Manual del Framer</h3>
-            <p>42 articulos tecnicos + 63 tips pro en 12 categorias. Pisos, muros, techos, escaleras, trusses, shear wall, secuencia de build. Bilingue. Todo offline.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-emoji">&#127968;</span>
-            <h3>Visor de Planos PDF</h3>
-            <p>Abre tus planos en el telefono. Modo X-ray, navegador de secciones. Plan Intelligence detecta LVLs, trusses y hangers automaticamente. Sube PDFs desde la obra.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-emoji">&#128736;</span>
-            <h3>Modulo de Trusses</h3>
-            <p>Tipos de trusses, layout, bracing requirements, pitch calculator, hardware guide y errores comunes. Todo lo que necesitas del techo en un solo lugar.</p>
-        </div>
-        <div class="feature-card">
-            <span class="feature-emoji">&#127919;</span>
-            <h3>Quiz del Framero</h3>
-            <p>21 preguntas tecnicas — snow loads, IRC codes, nailing, lectura de planos. Pon a prueba tu conocimiento. 3 niveles de dificultad. ¿Cuanto sabes realmente?</p>
-        </div>
-    </div>
-</section>
-
-<!-- FOR WHOM -->
-<section class="section">
-    <h2 class="section-title">Para frameros reales</h2>
-    <p class="section-subtitle">Hecha para el que esta en la obra, no en la oficina.</p>
-    <div class="features-grid" style="grid-template-columns: 1fr;">
-        <div class="feature-card" style="border-left-color: var(--green);">
-            <h3>&#128119; El Caporal &mdash; Lead Framer</h3>
-            <p>Calcula headers sin llamar al super. Da precio rapido al GC. Llega a la inspeccion con confianza. Tu crew no te interrumpe cada 20 minutos.</p>
-        </div>
-        <div class="feature-card" style="border-left-color: var(--blue-light);">
-            <h3>&#128188; The Estimator &mdash; General Contractor</h3>
-            <p>BOMs en PDF para cotizaciones inmediatas. Historial de proyectos accesible. Menos errores caros de tu crew.</p>
-        </div>
-        <div class="feature-card" style="border-left-color: var(--red);">
-            <h3>&#128269; The Inspector</h3>
-            <p>Referencia rapida a IRC, nailing schedules, snow loads locales. Recomienda la app a los contratistas que inspeccionas.</p>
-        </div>
-    </div>
-</section>
-
-<!-- SOCIAL HUB — todas las redes -->
-<section id="comunidad" style="background: var(--blue-dark); padding: 56px 24px;">
-    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-        <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--white); margin-bottom: 8px;">Loom en todas partes</h2>
-        <p style="font-size: 1rem; color: rgba(255,255,255,0.7); margin-bottom: 40px;">Síguenos donde estés — demos, tips, comunidad y novedades.</p>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 40px;">
-
-            <!-- TikTok -->
-            <a href="https://www.tiktok.com/@loomframing" target="_blank" rel="noopener"
-               style="display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 18px 20px; text-decoration: none; color: var(--white); transition: background 0.2s;"
-               onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.07)'">
-                <span style="font-size: 2rem; flex-shrink: 0;">🎵</span>
-                <div style="text-align: left;">
-                    <div style="font-weight: 700; font-size: 0.95rem;">TikTok</div>
-                    <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">@loomframing</div>
-                    <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 2px;">Videos de calculadoras en acción</div>
-                </div>
-            </a>
-
-            <!-- Instagram -->
-            <a href="https://www.instagram.com/loom_framing/" target="_blank" rel="noopener"
-               style="display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 18px 20px; text-decoration: none; color: var(--white); transition: background 0.2s;"
-               onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.07)'">
-                <span style="font-size: 2rem; flex-shrink: 0;">📸</span>
-                <div style="text-align: left;">
-                    <div style="font-weight: 700; font-size: 0.95rem;">Instagram</div>
-                    <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">@loom_framing</div>
-                    <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 2px;">Reels y fotos del jobsite</div>
-                </div>
-            </a>
-
-            <!-- YouTube -->
-            <a href="https://www.youtube.com/@LoomFraming" target="_blank" rel="noopener"
-               style="display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 18px 20px; text-decoration: none; color: var(--white); transition: background 0.2s;"
-               onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.07)'">
-                <span style="font-size: 2rem; flex-shrink: 0;">▶️</span>
-                <div style="text-align: left;">
-                    <div style="font-weight: 700; font-size: 0.95rem;">YouTube</div>
-                    <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">@LoomFraming</div>
-                    <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 2px;">Shorts y demos completos</div>
-                </div>
-            </a>
-
-            <!-- Facebook -->
-            <a href="https://www.facebook.com/profile.php?id=61560599675507" target="_blank" rel="noopener"
-               style="display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 18px 20px; text-decoration: none; color: var(--white); transition: background 0.2s;"
-               onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.07)'">
-                <span style="font-size: 2rem; flex-shrink: 0;">👥</span>
-                <div style="text-align: left;">
-                    <div style="font-weight: 700; font-size: 0.95rem;">Facebook</div>
-                    <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Loom Framing App</div>
-                    <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 2px;">Noticias y comunidad</div>
-                </div>
-            </a>
-
-            <!-- LinkedIn -->
-            <a href="https://www.linkedin.com/company/loom-framing/" target="_blank" rel="noopener"
-               style="display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 18px 20px; text-decoration: none; color: var(--white); transition: background 0.2s;"
-               onmouseover="this.style.background='rgba(255,255,255,0.14)'" onmouseout="this.style.background='rgba(255,255,255,0.07)'">
-                <span style="font-size: 2rem; flex-shrink: 0;">💼</span>
-                <div style="text-align: left;">
-                    <div style="font-weight: 700; font-size: 0.95rem;">LinkedIn</div>
-                    <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Loom Framing</div>
-                    <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 2px;">Para GCs y estimators</div>
-                </div>
-            </a>
-
-            <!-- WhatsApp -->
-            <a href="https://chat.whatsapp.com/BDcrzrwxvbi9P3w14SLedw" target="_blank" rel="noopener" id="whatsapp-btn"
-               style="display: flex; align-items: center; gap: 14px; background: rgba(37,211,102,0.15); border: 1px solid rgba(37,211,102,0.4); border-radius: 14px; padding: 18px 20px; text-decoration: none; color: var(--white); transition: background 0.2s;"
-               onmouseover="this.style.background='rgba(37,211,102,0.25)'" onmouseout="this.style.background='rgba(37,211,102,0.15)'">
-                <span style="font-size: 2rem; flex-shrink: 0;">💬</span>
-                <div style="text-align: left;">
-                    <div style="font-weight: 700; font-size: 0.95rem;">WhatsApp</div>
-                    <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Grupo Frameros Loom</div>
-                    <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 2px;">Tips, dudas, bugs — sin spam</div>
-                </div>
-            </a>
-
-        </div>
-
-        <!-- WhatsApp CTA destacado -->
-        <a href="https://chat.whatsapp.com/BDcrzrwxvbi9P3w14SLedw" class="btn btn-green" style="max-width: 340px; margin: 0 auto; display: inline-flex;" target="_blank" rel="noopener">
-            <span class="btn-icon">&#128172;</span> Unirse al Grupo WhatsApp
-        </a>
-        <p style="font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-top: 12px;">Grupo exclusivo para frameros profesionales. Cero spam.</p>
-    </div>
-</section>
-
-<!-- FREE GUIDE — legacy PDF removido, lead magnet era-v2 pendiente -->
-<section class="section" style="text-align: center;">
-    <h2 class="section-title">Guia Gratuita</h2>
-    <p class="section-subtitle" style="max-width: 500px; margin: 0 auto 24px;">Los 10 errores de framing que te van a costar $1,000. Aprende a evitarlos antes de la inspeccion.</p>
-    <span class="btn btn-orange" style="max-width: 340px; margin: 0 auto; display: inline-flex; opacity: 0.6; cursor: default;">
-        Proximamente — nueva edicion
-    </span>
-</section>
-
-<!-- BECOME A TESTER SECTION -->
-<section class="section" id="unete-como-tester" style="background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%); color: var(--white); text-align: center; padding: 56px 24px; max-width: 100%; margin: 0;">
-    <div style="max-width: 600px; margin: 0 auto;">
-        <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 12px;">Sé un Tester — Primer Año Gratis</h2>
-        <p style="font-size: 1rem; opacity: 0.9; margin-bottom: 24px; line-height: 1.6;">Tenemos 3 spots disponibles para frameros reales en Idaho. Primer año GRATIS, segundo año 50% OFF.</p>
-        
-        <!-- PERKS -->
-        <div style="text-align: left; display: inline-block; margin-bottom: 28px; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 24px;">
-            <div style="font-size: 0.9rem; margin-bottom: 8px;"><strong>✅ Qué Incluye:</strong></div>
-            <div style="font-size: 0.85rem; opacity: 0.95;">
-                <div>• Año 1: Premium GRATIS</div>
-                <div>• Año 2: 50% OFF Premium</div>
-                <div>• Año 3+: Precio regular</div>
-                <div>• Influencia en el roadmap (tus requests importan)</div>
-                <div>• Mencionado en créditos de la app</div>
-                <div>• Grupo privado de testers (WhatsApp/Slack)</div>
-            </div>
-        </div>
-        
-        <!-- OPT-IN FORM -->
-        <div style="background: rgba(255,255,255,0.95); border-radius: 12px; padding: 20px; color: var(--blue-dark); text-align: left;">
-            <form id="tester-form" action="https://formsubmit.co/chuchangero@hotmail.com" method="POST" style="display: flex; flex-direction: column; gap: 12px;">
-                <!-- FormSubmit config -->
-                <input type="hidden" name="_subject" value="🎯 Nuevo Tester — Loom Framing App">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="box">
-                <input type="hidden" name="_next" value="https://jezblade.github.io/loom/?tester=ok">
-                <input type="hidden" name="_autoresponse" value="¡Hola! Gracias por aplicar como Tester de Loom Framing App. Recibimos tu solicitud y te contactaremos en las próximas 24 horas con el link de descarga y la invitación al grupo privado de testers en WhatsApp. Si tienes preguntas, responde directamente a este correo. — Equipo Loom Framing">
-                <input type="hidden" name="_replyto" value="chuchangero@hotmail.com">
-
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Tu nombre completo"
-                    style="padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem;"
-                    required
-                />
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Tu email"
-                    style="padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem;"
-                    required
-                />
-                <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Tu teléfono (para enviar app link)"
-                    style="padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem;"
-                    required
-                />
-                <textarea
-                    name="experience"
-                    placeholder="¿En qué tipo de framing trabajas? (ej: Residential, light commercial, trusses, etc)"
-                    style="padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.95rem; min-height: 80px; font-family: inherit;"
-                    required
-                ></textarea>
-                <button
-                    type="submit"
-                    style="padding: 12px 24px; background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%); color: white; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer;"
-                >
-                    🎯 Aplicar Como Tester
-                </button>
-            </form>
-            <p style="font-size: 0.75rem; color: #999; margin-top: 12px; text-align: center;">Te contactaremos en 24 horas para enviar el link de descarga.</p>
-            
-            <!-- ALTERNATE JOIN VIA WHATSAPP -->
-            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #eee; text-align: center;">
-                <p style="font-size: 0.85rem; color: var(--blue-dark); margin-bottom: 12px;">O únete directamente al grupo de testers en WhatsApp:</p>
-                <a 
-                    href="https://chat.whatsapp.com/BDcrzrwxvbi9P3w14SLedw" 
-                    target="_blank" 
-                    rel="noopener"
-                    style="display: inline-block; padding: 10px 20px; background: #25D366; color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 0.9rem;"
-                >
-                    💬 Únete al Grupo WhatsApp
-                </a>
-            </div>
-        </div>
-
-        <!-- SOCIAL PROOF -->
-        <div style="margin-top: 28px; font-size: 0.9rem; opacity: 0.9;">
-            <div style="margin-bottom: 12px;">✨ <strong>Testers actuales:</strong></div>
-            <div style="font-size: 0.85rem; opacity: 0.85;">Frameros profesionales de Boise, Nampa, Meridian y alrededores probando desde hace 2+ semanas</div>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ -->
-<section class="section">
-    <h2 class="section-title">Preguntas Frecuentes</h2>
-    <p class="section-subtitle">Lo que los frameros nos preguntan.</p>
-
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">¿Cuál es el costo si me vuelvo tester?</div>
-        <div class="faq-a">Primer año GRATIS. Segundo año 50% OFF. A partir del tercer año, precio regular. Es nuestra forma de agradecer tu ayuda en mejorar la app.</div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">¿Cuánto tiempo dura el testing?</div>
-        <div class="faq-a">Mínimo 14 días. Después de eso, sigues con acceso gratis de por vida. El testing cerrado termina cuando salimos a producción (estimado 6-12 meses).</div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">¿Qué pasa si encuentro un bug?</div>
-        <div class="faq-a">Reporta en el grupo de WhatsApp de testers. Respondemos en menos de 24 horas. Cada bug reportado y confirmado te da puntos que puedes canjear por features prioritarias.</div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">Funciona sin internet?</div>
-        <div class="faq-a">Si. Todas las funciones principales funcionan 100% offline: las 15+ calculadoras, los 42 articulos, los 63 tips pro, BOM, codigos IRC, checklists, quiz. No necesitas senal en la obra.</div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">De verdad esta en espanol?</div>
-        <div class="faq-a">Si. La interfaz y las explicaciones estan en espanol. Los terminos tecnicos (shear wall, LVL, Simpson H1, etc.) se quedan en ingles &mdash; porque asi es como se habla en la obra y como aparecen en los planos.</div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">Cubre codigos de Idaho especificamente?</div>
-        <div class="faq-a">Si. Loom incluye mapas de snow load de Idaho, requisitos de zona sismica, y referencias a codigos locales de Boise, Nampa, Meridian y otras ciudades.</div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">Puedo exportar a PDF?</div>
-        <div class="faq-a">Si. Genera una lista de materiales completa y exportala a PDF con un solo tap. Comparte por email, texto o AirDrop directo al supplier.</div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">¿Qué me pasa si no participo activamente?</div>
-        <div class="faq-a">No hay penalidad. Si dejas de usar la app, simplemente terminamos tu testing. El beneficio de primer año gratis + 50% OFF segundo año solo aplica a testers activos que dan feedback regularmente.</div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">¿Cómo me uno al grupo de testers?</div>
-        <div class="faq-a">Completa el formulario arriba (Sé un Tester). Te enviaremos el link de WhatsApp privado junto con la descarga. El grupo es solo para testers — feedback, updates, anuncios.</div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">Funciona en iPhone?</div>
-        <div class="faq-a">Por ahora solo esta disponible en Android. La version iOS esta en camino (estimado Q3 2026).</div>
-    </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="download-section">
-    <h2>Descarga Loom hoy</h2>
-    <p>La app que tu crew necesitaba. Funciona offline, habla tu idioma, conoce los codigos.</p>
-    <a href="https://play.google.com/apps/testing/com.loomframing.app" class="btn btn-white" target="_blank" rel="noopener" style="display: flex;">
-        <span class="btn-icon">&#9654;</span> Descargar en Google Play
-    </a>
-    <a href="#comunidad" class="btn btn-ghost" style="display: flex; margin-top: 12px;">
-        <span class="btn-icon">&#128172;</span> Unirse a la comunidad
-    </a>
-</section>
-
-<!-- FOOTER -->
-<footer>
-    <div class="footer-links">
-        <a href="https://www.tiktok.com/@loomframing" target="_blank" rel="noopener">TikTok</a>
-        <a href="https://www.instagram.com/loom_framing/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.youtube.com/@LoomFraming" target="_blank" rel="noopener">YouTube</a>
-        <a href="https://www.facebook.com/profile.php?id=61560599675507" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://www.linkedin.com/company/loom-framing/" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-    <div class="footer-links" style="margin-bottom: 16px;">
-        <a href="../privacy-policy.html">Politica de Privacidad</a>
-        <a href="mailto:chuchangero@hotmail.com">Contacto</a>
-        <a href="https://github.com/JezBlade" target="_blank" rel="noopener">GitHub</a>
-    </div>
-    <p>&copy; 2026 JezBlade &mdash; Loom Framing App. Hecha para la obra.</p>
-</footer>
-
-<script async src="https://www.tiktok.com/embed.js"></script>
-
+<meta charset="utf-8">
+<title>Loom Framing — calculadora de framing en español</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Loom Framing — la calculadora de framing en español, hecha por un framer. Códigos IRC 2021, lista de materiales a PDF y checklist de inspección, todo offline en tu Android.">
+<!-- ============================================================
+     LOOM LANDING v2 — DEPLOY BUILD
+     PRECOMPILE (cero Babel en produccion · build de UNA sola vez):
+       Los 3 bloques marcados <!-- BABEL-BLOCK-1 -->
 <script>
-  // ═══════════════════════════════════════════════════════════════════
-  // Loom v4 patch · counter progress-bar fill + count-up animation
-  // Vanilla JS — no framework. Fires once per counter on scroll into view.
-  // ═══════════════════════════════════════════════════════════════════
-  (function () {
-    var counters = document.querySelectorAll('.loom-v4-patch.loom-v4-counter');
-    if (!counters.length) return;
+/* global React */
+// Landing UI kit — gold + café brand chrome.
+// Components: NavBar, Hero, BadgeRow, FeatureGraphic, FeaturesGrid,
+// PersonaCards, StatsBand, V4Patch (the "Loom v4 Landing Patch" hero),
+// WhatsNew, FAQ, Footer.
 
-    var animate = function (counter) {
-      var taken = parseInt(counter.dataset.counterTaken, 10) || 0;
-      var total = parseInt(counter.dataset.counterTotal, 10) || 1;
-      var pct   = Math.min(100, Math.round((taken / total) * 100));
-      var fill  = counter.querySelector('[data-counter-fill]');
-      var num   = counter.querySelector('[data-counter-display="taken"]');
+const {
+  useState: useS_land
+} = React;
 
-      // bar fill
-      requestAnimationFrame(function () { if (fill) fill.style.width = pct + '%'; });
-
-      // count-up
-      if (num && !counter.dataset.counted) {
-        counter.dataset.counted = '1';
-        var target = taken;
-        var dur = 900;
-        var start = performance.now();
-        var tick = function (t) {
-          var k = Math.min(1, (t - start) / dur);
-          var eased = 1 - Math.pow(1 - k, 3); // easeOutCubic
-          num.textContent = Math.round(target * eased);
-          if (k < 1) requestAnimationFrame(tick);
-          else num.textContent = target;
-        };
-        requestAnimationFrame(tick);
-      }
-    };
-
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            animate(entry.target);
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.3 });
-      counters.forEach(function (c) { io.observe(c); });
-    } else {
-      counters.forEach(animate);
+// ─────────── NavBar ───────────
+function NavBar() {
+  return /*#__PURE__*/React.createElement("nav", {
+    style: {
+      background: 'var(--cafe-900)',
+      borderBottom: '1px solid rgba(184,148,31,0.2)',
+      padding: '14px 28px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      position: 'sticky',
+      top: 0,
+      zIndex: 10
     }
-  })();
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 36,
+      height: 36,
+      borderRadius: 8,
+      background: 'var(--cafe-800)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      border: '1px solid var(--gold-700)'
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 100 100",
+    width: "22",
+    height: "22",
+    fill: "none",
+    stroke: "var(--gold-500)",
+    strokeWidth: "4"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M14 46 L50 18 L86 46"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M22 46 V82 H78 V46"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M44 82 V60 H56 V82"
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-display)',
+      fontWeight: 900,
+      fontSize: 22,
+      textTransform: 'uppercase',
+      color: 'var(--cream)',
+      letterSpacing: '-0.005em'
+    }
+  }, "Loom", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--gold-500)'
+    }
+  }, "."), " Framing")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 28,
+      alignItems: 'center'
+    }
+  }, ['Herramientas', 'En la obra', "Pa' quién es", 'Preguntas'].map(item => /*#__PURE__*/React.createElement("a", {
+    key: item,
+    href: "#",
+    style: {
+      color: 'rgba(250,249,247,0.75)',
+      textDecoration: 'none',
+      fontFamily: 'var(--font-body)',
+      fontSize: 14,
+      fontWeight: 600
+    }
+  }, item)), /*#__PURE__*/React.createElement("a", {
+    href: "https://play.google.com/apps/testing/com.loomframing.app",
+    style: {
+      background: 'var(--gold-500)',
+      color: 'var(--cafe-900)',
+      padding: '10px 18px',
+      borderRadius: 8,
+      fontFamily: 'var(--font-body)',
+      fontSize: 14,
+      fontWeight: 700,
+      textDecoration: 'none'
+    }
+  }, "Descargar  \u2192")));
+}
+
+// ─────────── Hero ───────────
+function Hero() {
+  return /*#__PURE__*/React.createElement("section", {
+    style: {
+      background: 'var(--cafe-800)',
+      backgroundImage: `
+        linear-gradient(rgba(184,148,31,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,148,31,0.06) 1px, transparent 1px)
+      `,
+      backgroundSize: '32px 32px',
+      color: 'var(--cream)',
+      padding: '88px 28px 72px',
+      textAlign: 'center',
+      position: 'relative'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'inline-block',
+      fontFamily: 'var(--font-body)',
+      fontSize: 12,
+      fontWeight: 700,
+      letterSpacing: '0.22em',
+      textTransform: 'uppercase',
+      color: 'var(--gold-500)',
+      padding: '6px 14px',
+      borderRadius: 999,
+      border: '1px solid rgba(184,148,31,0.4)',
+      background: 'rgba(184,148,31,0.08)',
+      marginBottom: 26
+    }
+  }, "\u2605 v4 EN VIVO \xB7 closed testing en Google Play"), /*#__PURE__*/React.createElement("h1", {
+    style: {
+      margin: 0,
+      fontFamily: 'var(--font-display)',
+      fontWeight: 900,
+      fontSize: 84,
+      lineHeight: 0.92,
+      textTransform: 'uppercase',
+      letterSpacing: '-0.015em',
+      color: 'var(--cream)'
+    }
+  }, "Loom ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--gold-500)'
+    }
+  }, "Framing")), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '20px auto 0',
+      maxWidth: 620,
+      fontFamily: 'var(--font-body)',
+      fontSize: 19,
+      lineHeight: 1.5,
+      color: 'rgba(250,249,247,0.85)'
+    }
+  }, "El compa\xF1ero que sabe m\xE1s \u2014 en tu bolsa, en la obra.", /*#__PURE__*/React.createElement("br", null), "Saca el header antes de que el super te lo pregunte."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      gap: 12,
+      marginTop: 32
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "https://play.google.com/apps/testing/com.loomframing.app",
+    style: {
+      background: 'var(--gold-500)',
+      color: 'var(--cafe-900)',
+      padding: '16px 28px',
+      borderRadius: 10,
+      fontFamily: 'var(--font-body)',
+      fontSize: 16,
+      fontWeight: 800,
+      textDecoration: 'none',
+      textTransform: 'uppercase',
+      letterSpacing: '0.04em',
+      boxShadow: '0 6px 22px rgba(184,148,31,0.35)',
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: 8
+    }
+  }, "\u25B6 Descargar en Google Play"), /*#__PURE__*/React.createElement("a", {
+    href: "https://chat.whatsapp.com/BDcrzrwxvbi9P3w14SLedw",
+    style: {
+      background: 'transparent',
+      color: 'var(--cream)',
+      padding: '16px 28px',
+      borderRadius: 10,
+      border: '1.5px solid rgba(250,249,247,0.4)',
+      fontFamily: 'var(--font-body)',
+      fontSize: 16,
+      fontWeight: 700,
+      textDecoration: 'none'
+    }
+  }, "S\xE9 un tester \u2192")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 28,
+      fontFamily: 'var(--font-mono)',
+      fontSize: 12,
+      color: 'rgba(250,249,247,0.45)'
+    }
+  }, "9 de 12 frameros pa' abrir el lanzamiento \xB7 closed testing"));
+}
+
+// ─────────── BadgeRow ───────────
+function BadgeRow() {
+  const ITEMS = [['📡', 'Funciona sin internet'], ['🌐', 'Bilingüe ES / EN'], ['✓', 'IRC 2021'], ['🎯', 'Quiz del Framero']];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--canvas)',
+      padding: '24px 28px',
+      borderBottom: '1px solid var(--line)',
+      display: 'flex',
+      justifyContent: 'center',
+      gap: 48,
+      flexWrap: 'wrap'
+    }
+  }, ITEMS.map(([ic, t]) => /*#__PURE__*/React.createElement("div", {
+    key: t,
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 32,
+      height: 32,
+      borderRadius: 8,
+      background: 'var(--gold-500)',
+      color: 'var(--cafe-900)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: 14,
+      fontWeight: 800
+    }
+  }, ic), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 14,
+      fontWeight: 600,
+      color: 'var(--cafe-800)'
+    }
+  }, t))));
+}
+
+// ─────────── StatsBand ───────────
+function StatsBand() {
+  const STATS = [['15+', 'Calculadoras de campo'], ['106', 'Artículos y tips pro'], ['29', 'Items de inspección'], ['20+', 'Tablas IRC 2021']];
+  return /*#__PURE__*/React.createElement("section", {
+    style: {
+      background: 'var(--cafe-800)',
+      color: 'var(--cream)',
+      padding: '40px 28px',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(4, 1fr)',
+      gap: 16,
+      borderTop: '2px solid var(--gold-500)',
+      borderBottom: '2px solid var(--gold-500)'
+    }
+  }, STATS.map(([n, l]) => /*#__PURE__*/React.createElement("div", {
+    key: l,
+    style: {
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-display)',
+      fontWeight: 900,
+      fontSize: 52,
+      color: 'var(--gold-500)',
+      lineHeight: 1,
+      letterSpacing: '-0.01em'
+    }
+  }, n), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 12,
+      fontWeight: 600,
+      letterSpacing: '0.14em',
+      textTransform: 'uppercase',
+      color: 'rgba(250,249,247,0.7)',
+      marginTop: 6
+    }
+  }, l))));
+}
+
+// ─────────── V4 Patch hero band ───────────
+function V4Patch() {
+  return /*#__PURE__*/React.createElement("section", {
+    style: {
+      background: 'var(--canvas)',
+      padding: '56px 28px',
+      borderBottom: '1px solid var(--line)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 920,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 12,
+      fontWeight: 700,
+      letterSpacing: '0.22em',
+      textTransform: 'uppercase',
+      color: 'var(--gold-700)'
+    }
+  }, "\u2605 v4.4.0 EN VIVO \xB7 closed testing"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: '8px 0 22px',
+      fontFamily: 'var(--font-display)',
+      fontWeight: 800,
+      fontSize: 44,
+      lineHeight: 1,
+      textTransform: 'uppercase',
+      color: 'var(--cafe-900)',
+      letterSpacing: '-0.01em'
+    }
+  }, "Lo que ya trae v4"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(4, 1fr)',
+      gap: 14
+    }
+  }, [['K', 'Custom Keyboard', '3-col flagship · feet · in · fractions'], ['D', 'Dual Operator', 'Number ops + dimension ops (×d ÷d)'], ['I', 'IRC Inline', 'Code references next to each input'], ['L', 'Lottie Tutorial', 'Onboarding sin paredes de texto']].map(([k, t, sub]) => /*#__PURE__*/React.createElement("div", {
+    key: k,
+    style: {
+      background: 'var(--cream)',
+      border: '1px solid var(--line)',
+      borderRadius: 10,
+      padding: '18px 18px',
+      position: 'relative',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      bottom: 0,
+      width: 4,
+      background: 'var(--gold-500)'
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-display)',
+      fontWeight: 900,
+      fontSize: 28,
+      color: 'var(--gold-500)',
+      lineHeight: 1,
+      marginLeft: 6
+    }
+  }, k), /*#__PURE__*/React.createElement("h3", {
+    style: {
+      margin: '6px 0 4px 6px',
+      fontFamily: 'var(--font-body)',
+      fontWeight: 700,
+      fontSize: 15,
+      color: 'var(--cafe-900)'
+    }
+  }, t), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '0 0 0 6px',
+      fontFamily: 'var(--font-body)',
+      fontSize: 12,
+      color: 'var(--cafe-700)',
+      lineHeight: 1.4
+    }
+  }, sub))))));
+}
+
+// ─────────── FeaturesGrid ───────────
+function FeaturesGrid() {
+  const FEATS = [['📐', 'Calculadoras de Campo', 'Headers, studs, birdsmouth, rake wall, OC layout. Resultado en menos de 3 segundos. Sin internet.'], ['🛠', 'Gable End & Vaulted Wall', '5 outputs instantáneos: ridge height, stud heights, plate angles y backing.'], ['📋', 'Lista de Materiales', 'Genera tu BOM completo, exporta a PDF, manda al supplier directo desde la obra.'], ['🔍', 'Checklist de Inspección', '29 items en 7 categorías. Pasa la inspección a la primera. Captura fotos de evidencia.'], ['📖', 'Códigos IRC 2021', 'Nailing schedule, header tables, Simpson hardware, snow loads por condado.'], ['📚', 'Manual del Framer', '52 artículos técnicos + 54 tips pro + glosario de 185 términos. Bilingüe. Todo offline.']];
+  return /*#__PURE__*/React.createElement("section", {
+    style: {
+      padding: '64px 28px',
+      background: 'var(--cream)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 1100,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 12,
+      fontWeight: 700,
+      letterSpacing: '0.22em',
+      textTransform: 'uppercase',
+      color: 'var(--gold-700)',
+      textAlign: 'center'
+    }
+  }, "HERRAMIENTAS"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: '6px auto 8px',
+      fontFamily: 'var(--font-display)',
+      fontWeight: 800,
+      fontSize: 44,
+      lineHeight: 1,
+      textTransform: 'uppercase',
+      color: 'var(--cafe-900)',
+      textAlign: 'center',
+      letterSpacing: '-0.01em'
+    }
+  }, "Lo que hace Loom por ti"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '0 auto 36px',
+      maxWidth: 560,
+      textAlign: 'center',
+      fontFamily: 'var(--font-body)',
+      fontSize: 15,
+      color: 'var(--cafe-700)'
+    }
+  }, "No es una app gen\xE9rica. Es tu gu\xEDa de campo profesional."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: 14
+    }
+  }, FEATS.map(([ic, t, body]) => /*#__PURE__*/React.createElement("div", {
+    key: t,
+    style: {
+      background: 'var(--cream)',
+      border: '1px solid var(--line)',
+      borderRadius: 10,
+      padding: '24px'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 44,
+      height: 44,
+      borderRadius: 10,
+      background: 'var(--canvas)',
+      fontSize: 22,
+      marginBottom: 14
+    }
+  }, ic), /*#__PURE__*/React.createElement("h3", {
+    style: {
+      margin: '0 0 6px',
+      fontFamily: 'var(--font-body)',
+      fontWeight: 700,
+      fontSize: 17,
+      color: 'var(--cafe-900)'
+    }
+  }, t), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: 0,
+      fontFamily: 'var(--font-body)',
+      fontSize: 14,
+      color: 'var(--cafe-700)',
+      lineHeight: 1.55
+    }
+  }, body))))));
+}
+
+// ─────────── PersonaCards ───────────
+function PersonaCards() {
+  const PERSONAS = [['El Caporal', 'Jefe de crew', 'Saca headers sin llamarle al super. Da precio al GC ahí mismo. Llega a la inspección con todo en regla.', 'var(--gold-500)'], ['El Contratista', 'GC / Contratista General', 'BOMs en PDF pa cotizar al toque. Historial de proyectos a la mano. Menos errores caros del crew.', 'var(--cafe-500)'], ['El Inspector', 'Inspector de Código', 'Referencia rápida al IRC, nailing schedules y snow loads. Le recomienda la app a los contratistas que inspecciona.', 'var(--gold-700)']];
+  return /*#__PURE__*/React.createElement("section", {
+    style: {
+      padding: '64px 28px',
+      background: 'var(--canvas)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 1100,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 12,
+      fontWeight: 700,
+      letterSpacing: '0.22em',
+      textTransform: 'uppercase',
+      color: 'var(--gold-700)',
+      textAlign: 'center'
+    }
+  }, "PA' QUI\xC9N ES"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: '6px auto 36px',
+      fontFamily: 'var(--font-display)',
+      fontWeight: 800,
+      fontSize: 44,
+      lineHeight: 1,
+      textTransform: 'uppercase',
+      color: 'var(--cafe-900)',
+      textAlign: 'center',
+      letterSpacing: '-0.01em'
+    }
+  }, "Para frameros reales"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: 14
+    }
+  }, PERSONAS.map(([n, role, body, color]) => /*#__PURE__*/React.createElement("div", {
+    key: n,
+    style: {
+      background: 'var(--cream)',
+      borderRadius: 10,
+      border: '1px solid var(--line)',
+      padding: '24px 26px 22px',
+      position: 'relative',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      bottom: 0,
+      width: 5,
+      background: color
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginLeft: 6,
+      fontFamily: 'var(--font-body)',
+      fontSize: 11,
+      fontWeight: 700,
+      letterSpacing: '0.18em',
+      textTransform: 'uppercase',
+      color
+    }
+  }, role), /*#__PURE__*/React.createElement("h3", {
+    style: {
+      margin: '4px 0 8px 6px',
+      fontFamily: 'var(--font-display)',
+      fontWeight: 800,
+      fontSize: 26,
+      textTransform: 'uppercase',
+      color: 'var(--cafe-900)',
+      letterSpacing: '-0.005em'
+    }
+  }, n), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '0 0 0 6px',
+      fontFamily: 'var(--font-body)',
+      fontSize: 14,
+      color: 'var(--cafe-700)',
+      lineHeight: 1.55
+    }
+  }, body))))));
+}
+
+// ─────────── FAQ ───────────
+function FAQ() {
+  const [open, setOpen] = useS_land(0);
+  const QS = [['¿Funciona sin internet?', 'Sí. Todas las funciones principales funcionan 100% offline: las 15+ calculadoras, los 52 artículos y 54 tips pro, el glosario de 185 términos, BOM, códigos IRC, checklists, quiz.'], ['¿De verdad está en español?', 'Sí. La interfaz y las explicaciones están en español. Los términos técnicos (shear wall, LVL, Simpson H1, etc.) se quedan en inglés — porque así es como se habla en la obra.'], ['¿Sirve fuera de Idaho?', 'Sí. Loom nació en Treasure Valley, Idaho, como prueba — pero el IRC 2021 es código nacional. Trae snow loads, zona sísmica y referencias por condado, donde sea que claves en US.'], ['¿Puedo exportar a PDF?', 'Sí. Genera una lista de materiales completa y expórtala a PDF con un solo tap. Comparte por email o texto directo al supplier.'], ['¿Cómo entro al closed testing?', 'Ahora mismo Loom está en closed testing en Google Play, con cupo limitado. Apúntate como tester y te llega la invitación cuando se abra el siguiente lugar.']];
+  return /*#__PURE__*/React.createElement("section", {
+    style: {
+      padding: '64px 28px',
+      background: 'var(--cream)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 760,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 12,
+      fontWeight: 700,
+      letterSpacing: '0.22em',
+      textTransform: 'uppercase',
+      color: 'var(--gold-700)',
+      textAlign: 'center'
+    }
+  }, "FAQ"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: '6px auto 36px',
+      fontFamily: 'var(--font-display)',
+      fontWeight: 800,
+      fontSize: 44,
+      lineHeight: 1,
+      textTransform: 'uppercase',
+      color: 'var(--cafe-900)',
+      textAlign: 'center',
+      letterSpacing: '-0.01em'
+    }
+  }, "Preguntas frecuentes"), /*#__PURE__*/React.createElement("div", null, QS.map(([q, a], idx) => /*#__PURE__*/React.createElement("div", {
+    key: q,
+    style: {
+      borderBottom: '1px solid var(--line)'
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setOpen(open === idx ? -1 : idx),
+    style: {
+      background: 'transparent',
+      border: 0,
+      padding: '22px 0',
+      width: '100%',
+      textAlign: 'left',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      gap: 12,
+      cursor: 'pointer'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 17,
+      fontWeight: 700,
+      color: 'var(--cafe-900)'
+    }
+  }, q), /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 28,
+      height: 28,
+      borderRadius: 14,
+      background: 'var(--gold-500)',
+      color: 'var(--cafe-900)',
+      flexShrink: 0,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontWeight: 800,
+      fontSize: 16,
+      transform: open === idx ? 'rotate(45deg)' : 'rotate(0)',
+      transition: 'transform 180ms'
+    }
+  }, "+")), open === idx && /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '-8px 0 22px',
+      fontFamily: 'var(--font-body)',
+      fontSize: 15,
+      color: 'var(--cafe-700)',
+      lineHeight: 1.6,
+      maxWidth: 580
+    }
+  }, a))))));
+}
+
+// ─────────── Footer ───────────
+function Footer() {
+  return /*#__PURE__*/React.createElement("footer", {
+    style: {
+      background: 'var(--cafe-900)',
+      color: 'rgba(250,249,247,0.65)',
+      padding: '40px 28px 28px',
+      textAlign: 'center',
+      fontFamily: 'var(--font-body)',
+      fontSize: 13
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      gap: 24,
+      flexWrap: 'wrap',
+      marginBottom: 16
+    }
+  }, [['TikTok', 'https://www.tiktok.com/@loomframing'], ['Instagram', 'https://www.instagram.com/loom_framing/'], ['YouTube', 'https://www.youtube.com/@LoomFraming'], ['Facebook', 'https://www.facebook.com/profile.php?id=61560599675507'], ['LinkedIn', 'https://www.linkedin.com/company/loom-framing/'], ['WhatsApp', 'https://chat.whatsapp.com/BDcrzrwxvbi9P3w14SLedw']].map(([s, url]) => /*#__PURE__*/React.createElement("a", {
+    key: s,
+    href: url,
+    style: {
+      color: 'rgba(250,249,247,0.85)',
+      textDecoration: 'none',
+      fontWeight: 600
+    }
+  }, s))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      gap: 24,
+      marginBottom: 22,
+      flexWrap: 'wrap'
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "#",
+    style: {
+      color: 'rgba(250,249,247,0.65)',
+      textDecoration: 'none'
+    }
+  }, "Pol\xEDtica de privacidad"), /*#__PURE__*/React.createElement("a", {
+    href: "#",
+    style: {
+      color: 'rgba(250,249,247,0.65)',
+      textDecoration: 'none'
+    }
+  }, "Contacto"), /*#__PURE__*/React.createElement("a", {
+    href: "#",
+    style: {
+      color: 'rgba(250,249,247,0.65)',
+      textDecoration: 'none'
+    }
+  }, "GitHub")), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: 0,
+      fontFamily: 'var(--font-mono)',
+      fontSize: 11,
+      color: 'rgba(250,249,247,0.45)'
+    }
+  }, "\xA9 2026 JezBlade \u2014 Loom Framing App \xB7 Hecha para la obra"));
+}
+Object.assign(window, {
+  NavBar,
+  Hero,
+  BadgeRow,
+  StatsBand,
+  V4Patch,
+  FeaturesGrid,
+  PersonaCards,
+  FAQ,
+  Footer
+});
+
 </script>
-
+<!-- BABEL-BLOCK-2 -->
 <script>
-function toggleFaq(el) {
-    el.classList.toggle('open');
-    const answer = el.nextElementSibling;
-    answer.classList.toggle('show');
+/* global React */
+// Loom Landing v2 — secciones nuevas (Sales Canon baked-in)
+// ProofShots (Cialdini Pre-Suasion/Liking · visual proof) · Stakes (SB7 failure/success)
+// Compare (Dunford competitive alternatives + unique attributes) · FounderSeal (Authority/Liking).
+// Voz: mexicano folklórico popular. Layer-1 chrome (gold/café); Layer-2 (orange/navy/chartreuse)
+// SOLO aparece dentro de una captura real de producto, vía <image-slot>.
+
+// ─────────── ProofShots — "Míralo en la obra" ───────────
+// Cialdini Pre-Suasion: el visual va ANTES del pitch. Kahneman anchoring: la primera
+// imagen ancla la decisión de descarga. Shots = capturas REALES del build v4.4.0
+// (REFERENCIA de layout — finals pixel-perfect se recapturan post-B6 con el CTA Resolver
+// safety-orange + dashboard featured). La franja amarilla inferior es el BrandFooterStrip:
+// feature canon (spacer funcional ~140px que protege las teclas de la zona muerta del
+// navbar del sistema + branding del slogan) — se deja A PROPÓSITO: comunica craft real.
+function ProofShots() {
+  const SHOTS = [['shot-plan-intelligence', 'Plan Intelligence', 'Abre el PDF del plano y Loom saca los trusses — 21 de un jalón, por página.'], ['shot-keypad', 'Teclado de obra', 'Naranja pa\u0027 pies, azul pa\u0027 pulgadas, chips de fracción. Pensado pa\u0027 dedos con guantes.'], ['shot-fallos', 'Lo que el inspector SÍ ve', 'Cada fallo con su código IRC al lado: R602.3, R302.11, R602.10.6.'], ['shot-glosario', '185 términos del oficio', 'Bilingüe EN\u2194ES, por categoría. Del header al birdsmouth.']];
+  return /*#__PURE__*/React.createElement("section", {
+    style: {
+      background: 'var(--cafe-900)',
+      padding: '64px 28px 56px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 1100,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 12,
+      fontWeight: 700,
+      letterSpacing: '0.22em',
+      textTransform: 'uppercase',
+      color: 'var(--gold-500)',
+      textAlign: 'center'
+    }
+  }, "EN LA OBRA"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: '6px auto 6px',
+      fontFamily: 'var(--font-display)',
+      fontWeight: 800,
+      fontSize: 44,
+      lineHeight: 1,
+      textTransform: 'uppercase',
+      color: 'var(--cream)',
+      textAlign: 'center',
+      letterSpacing: '-0.01em'
+    }
+  }, "M\xEDralo trabajando"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '0 auto 38px',
+      maxWidth: 560,
+      textAlign: 'center',
+      fontFamily: 'var(--font-body)',
+      fontSize: 15,
+      color: 'rgba(250,249,247,0.7)'
+    }
+  }, "Lo que el framer ve antes de bajarla. Sin humo: la pantalla real."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(4, 1fr)',
+      gap: 18
+    }
+  }, SHOTS.map(([id, t, sub]) => /*#__PURE__*/React.createElement("div", {
+    key: id,
+    style: {
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--cafe-800)',
+      borderRadius: 22,
+      padding: 10,
+      border: '1px solid rgba(184,148,31,0.25)',
+      boxShadow: '0 12px 30px rgba(0,0,0,0.35)'
+    }
+  }, /*#__PURE__*/React.createElement("img", {
+    src: 'assets/' + id + '.png',
+    alt: t,
+    loading: "lazy",
+    style: {
+      display: 'block',
+      width: '100%',
+      height: 'auto',
+      borderRadius: 14
+    }
+  })), /*#__PURE__*/React.createElement("h3", {
+    style: {
+      margin: '16px 0 4px',
+      fontFamily: 'var(--font-body)',
+      fontWeight: 700,
+      fontSize: 15,
+      color: 'var(--cream)'
+    }
+  }, t), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: 0,
+      fontFamily: 'var(--font-body)',
+      fontSize: 12.5,
+      color: 'rgba(250,249,247,0.6)',
+      lineHeight: 1.45
+    }
+  }, sub)))), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '30px auto 0',
+      maxWidth: 680,
+      textAlign: 'center',
+      fontFamily: 'var(--font-mono)',
+      fontSize: 11,
+      lineHeight: 1.6,
+      color: 'rgba(250,249,247,0.4)'
+    }
+  }, "Capturas de referencia del build v4.4.0 (S938U). Las finales se recapturan pixel-perfect del release post-B6 \u2014 con el CTA Resolver safety-orange y el dashboard featured. \xDAnico lugar donde el palette in-product aparece en marketing \u2014 como producto, no como chrome.")));
 }
 
-// Show success message if redirected back after form submit
-if (new URLSearchParams(window.location.search).get('tester') === 'ok') {
-    const msg = document.createElement('div');
-    msg.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);padding:14px 24px;background:#4CAF50;color:white;border-radius:12px;font-weight:700;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.2);';
-    msg.textContent = '✅ ¡Solicitud enviada! Te contactaremos en 24 horas.';
-    document.body.appendChild(msg);
-    setTimeout(() => msg.remove(), 5000);
+// ─────────── Stakes — SB7 failure stakes + success outcome ───────────
+function Stakes() {
+  const SIN = ['Cortas mal y vuelves a cortar — material a la basura.', 'El super te corrige enfrente del crew.', 'Dos horas a la semana peleando con la math.', 'Llegas a la inspección rezando.'];
+  const CON = ['Cortes precisos al primer chalk line.', 'Llegas con el header resuelto — el super se calla.', 'La math la saca la app; tú nomás clavas.', 'Pasas la inspección a la primera, con foto de evidencia.'];
+  return /*#__PURE__*/React.createElement("section", {
+    style: {
+      background: 'var(--canvas)',
+      padding: '64px 28px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 1000,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 12,
+      fontWeight: 700,
+      letterSpacing: '0.22em',
+      textTransform: 'uppercase',
+      color: 'var(--gold-700)',
+      textAlign: 'center'
+    }
+  }, "EL ANTES Y EL DESPU\xC9S"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: '6px auto 36px',
+      fontFamily: 'var(--font-display)',
+      fontWeight: 800,
+      fontSize: 44,
+      lineHeight: 1,
+      textTransform: 'uppercase',
+      color: 'var(--cafe-900)',
+      textAlign: 'center',
+      letterSpacing: '-0.01em'
+    }
+  }, "La obra con y sin Loom"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 18
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--cafe-900)',
+      borderRadius: 14,
+      padding: '30px 28px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 13,
+      fontWeight: 800,
+      letterSpacing: '0.16em',
+      textTransform: 'uppercase',
+      color: 'rgba(250,249,247,0.55)',
+      marginBottom: 18
+    }
+  }, "Sin Loom"), /*#__PURE__*/React.createElement("ul", {
+    style: {
+      margin: 0,
+      padding: 0,
+      listStyle: 'none',
+      display: 'grid',
+      gap: 14
+    }
+  }, SIN.map((s, i) => /*#__PURE__*/React.createElement("li", {
+    key: i,
+    style: {
+      display: 'flex',
+      gap: 12,
+      alignItems: 'flex-start',
+      fontFamily: 'var(--font-body)',
+      fontSize: 15,
+      lineHeight: 1.5,
+      color: 'rgba(250,249,247,0.78)'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      flexShrink: 0,
+      marginTop: 2,
+      width: 20,
+      height: 20,
+      borderRadius: 5,
+      background: 'rgba(250,249,247,0.1)',
+      color: 'rgba(250,249,247,0.5)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontWeight: 800,
+      fontSize: 13
+    }
+  }, "\xD7"), s)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--cream)',
+      borderRadius: 14,
+      padding: '30px 28px',
+      border: '1px solid var(--gold-500)',
+      boxShadow: '0 10px 28px rgba(184,148,31,0.14)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 13,
+      fontWeight: 800,
+      letterSpacing: '0.16em',
+      textTransform: 'uppercase',
+      color: 'var(--gold-700)',
+      marginBottom: 18
+    }
+  }, "Con Loom"), /*#__PURE__*/React.createElement("ul", {
+    style: {
+      margin: 0,
+      padding: 0,
+      listStyle: 'none',
+      display: 'grid',
+      gap: 14
+    }
+  }, CON.map((s, i) => /*#__PURE__*/React.createElement("li", {
+    key: i,
+    style: {
+      display: 'flex',
+      gap: 12,
+      alignItems: 'flex-start',
+      fontFamily: 'var(--font-body)',
+      fontSize: 15,
+      lineHeight: 1.5,
+      color: 'var(--cafe-800)',
+      fontWeight: 500
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      flexShrink: 0,
+      marginTop: 2,
+      width: 20,
+      height: 20,
+      borderRadius: 5,
+      background: 'var(--gold-500)',
+      color: 'var(--cafe-900)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontWeight: 800,
+      fontSize: 13
+    }
+  }, "\u2713"), s)))))));
 }
+
+// ─────────── Compare — Dunford competitive alternatives + unique attributes ───────────
+// Tabla HONESTA. Loom no se compara con humo. Los precios exactos de competidores
+// quedan FLAGGED — no se publican sin verificar (canon: nada inventado).
+function Compare() {
+  const ROWS = [['En español, voz de obra', true, false, false, false], ['Teclado pa\u0027 guantes (feet/in)', true, false, false, false], ['Códigos IRC 2021 inline', true, false, false, false], ['Lista de materiales → PDF', true, false, false, false], ['Checklist de inspección', true, false, false, false], ['Funciona 100% offline', true, true, true, true]];
+  const COLS = ['Loom', 'Calc. de pago*', 'Papel & lápiz', 'De memoria'];
+  const cell = v => v ? /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--gold-700)',
+      fontWeight: 800,
+      fontSize: 17
+    }
+  }, "\u2713") : /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--cafe-300)',
+      fontWeight: 700,
+      fontSize: 16
+    }
+  }, "\u2014");
+  return /*#__PURE__*/React.createElement("section", {
+    style: {
+      background: 'var(--cream)',
+      padding: '64px 28px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 940,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 12,
+      fontWeight: 700,
+      letterSpacing: '0.22em',
+      textTransform: 'uppercase',
+      color: 'var(--gold-700)',
+      textAlign: 'center'
+    }
+  }, "POR QU\xC9 LOOM"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: '6px auto 10px',
+      fontFamily: 'var(--font-display)',
+      fontWeight: 800,
+      fontSize: 44,
+      lineHeight: 1,
+      textTransform: 'uppercase',
+      color: 'var(--cafe-900)',
+      textAlign: 'center',
+      letterSpacing: '-0.01em'
+    }
+  }, "Contra lo que ya usas"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '0 auto 34px',
+      maxWidth: 560,
+      textAlign: 'center',
+      fontFamily: 'var(--font-body)',
+      fontSize: 15,
+      color: 'var(--cafe-700)'
+    }
+  }, "Sin tirarle a nadie. Nom\xE1s lo que Loom hace que lo dem\xE1s no."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      border: '1px solid var(--line)',
+      borderRadius: 14,
+      overflow: 'hidden',
+      background: 'var(--cream)'
+    }
+  }, /*#__PURE__*/React.createElement("table", {
+    style: {
+      width: '100%',
+      borderCollapse: 'collapse',
+      fontFamily: 'var(--font-body)'
+    }
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+    style: {
+      textAlign: 'left',
+      padding: '16px 20px',
+      background: 'var(--cafe-900)'
+    }
+  }), COLS.map((c, i) => /*#__PURE__*/React.createElement("th", {
+    key: c,
+    style: {
+      padding: '16px 14px',
+      textAlign: 'center',
+      background: i === 0 ? 'var(--gold-500)' : 'var(--cafe-900)',
+      color: i === 0 ? 'var(--cafe-900)' : 'var(--cream)',
+      fontFamily: 'var(--font-display)',
+      fontWeight: 800,
+      fontSize: 18,
+      textTransform: 'uppercase',
+      letterSpacing: '-0.005em'
+    }
+  }, c)))), /*#__PURE__*/React.createElement("tbody", null, ROWS.map(([label, ...vals], r) => /*#__PURE__*/React.createElement("tr", {
+    key: r,
+    style: {
+      background: r % 2 ? 'var(--cream)' : 'rgba(240,234,214,0.5)'
+    }
+  }, /*#__PURE__*/React.createElement("td", {
+    style: {
+      padding: '15px 20px',
+      fontSize: 14.5,
+      fontWeight: 600,
+      color: 'var(--cafe-800)',
+      borderTop: '1px solid var(--line)'
+    }
+  }, label), vals.map((v, i) => /*#__PURE__*/React.createElement("td", {
+    key: i,
+    style: {
+      padding: '15px 14px',
+      textAlign: 'center',
+      borderTop: '1px solid var(--line)',
+      background: i === 0 ? 'rgba(184,148,31,0.07)' : 'transparent'
+    }
+  }, cell(v)))))))), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '16px auto 0',
+      maxWidth: 640,
+      textAlign: 'center',
+      fontFamily: 'var(--font-mono)',
+      fontSize: 11,
+      lineHeight: 1.6,
+      color: 'var(--cafe-500)'
+    }
+  }, "* Calculadoras de framing de pago (tipo Construction Master Pro): grandes en c\xE1lculo, pero en ingl\xE9s, sin IRC inline, sin BOM ni inspecci\xF3n. Nombre y precio exactos de competidores quedan pendientes de verificar antes de publicar.")));
+}
+
+// ─────────── FounderSeal — Authority + Liking (Cialdini) ───────────
+// Foto REAL del fundador (Jesús / JezBlade). Bio modesta sin afirmar datos no
+// verificados ("20+ años" etc. los pone el fundador cuando los dé).
+function FounderSeal() {
+  return /*#__PURE__*/React.createElement("section", {
+    style: {
+      background: 'var(--cafe-800)',
+      padding: '64px 28px',
+      color: 'var(--cream)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 860,
+      margin: '0 auto',
+      display: 'grid',
+      gridTemplateColumns: '180px 1fr',
+      gap: 36,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "assets/founder-jesus.png",
+    alt: "Jes\xFAs, fundador de Loom Framing",
+    width: "180",
+    height: "180",
+    style: {
+      width: 180,
+      height: 180,
+      borderRadius: '50%',
+      objectFit: 'cover',
+      border: '2px solid var(--gold-500)',
+      boxShadow: '0 10px 28px rgba(0,0,0,0.4)',
+      display: 'block'
+    }
+  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 12,
+      fontWeight: 700,
+      letterSpacing: '0.22em',
+      textTransform: 'uppercase',
+      color: 'var(--gold-500)',
+      marginBottom: 14
+    }
+  }, "QUI\xC9N LA HACE"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '0 0 18px',
+      fontFamily: 'var(--font-display)',
+      fontWeight: 700,
+      fontSize: 28,
+      lineHeight: 1.15,
+      color: 'var(--cream)',
+      letterSpacing: '-0.01em'
+    }
+  }, "\u201CConstruida por un framer, para frameros \u2014 la herramienta que yo hubiera querido en la bolsa.\u201D"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 14,
+      color: 'rgba(250,249,247,0.75)',
+      lineHeight: 1.55
+    }
+  }, "Loom no la hizo una corporaci\xF3n. La hizo alguien del oficio, clavo a clavo, pa' el crew."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 18,
+      fontFamily: 'var(--font-mono)',
+      fontSize: 12,
+      color: 'var(--gold-500)',
+      letterSpacing: '0.04em'
+    }
+  }, "\u2014 Jes\xFAs (JezBlade) \xB7 framer & fundador de Loom"))));
+}
+
+// ─────────── TesterRecruit — Cialdini scarcity (REAL) + unity + commitment ───────────
+// El cap de 12 del closed testing de Google es un límite VERDADERO (canon: fair game).
+// Escasez honesta: 9 tomados, 3 libres — dual-coded (forma + número + color, no solo
+// color). Reciprocidad real (qué gana el tester). Unidad (hermandad). SIN countdown
+// inventado, SIN "X viéndola ahora". OJO CANON: 12 NO es un cap — es el umbral real de
+// Google Play (12 testers activos 14 días) que DESBLOQUEA production/lanzamiento público.
+// Por eso el copy es META compartida, no escasez de asientos (eso sería mentira: la
+// puerta abre tanto como el equipo decida). Zeigarnik honesto: loop genuinamente abierto.
+function TesterRecruit() {
+  const TAKEN = 9,
+    GOAL = 12;
+  const GIVES = [['Antes que nadie', 'Bajas la v4 mientras los demás esperan la pública.'], ['Tu palabra pesa', 'Lo que reportas moldea la herramienta — feature por feature.'], ['Entras a la hermandad', 'Tu nombre en el crew que la levantó, desde el cimiento.']];
+  return /*#__PURE__*/React.createElement("section", {
+    style: {
+      background: 'var(--cafe-900)',
+      padding: '72px 28px',
+      color: 'var(--cream)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 880,
+      margin: '0 auto',
+      border: '1px solid var(--gold-700)',
+      borderRadius: 18,
+      background: 'var(--cafe-800)',
+      padding: '44px 40px',
+      boxShadow: '0 18px 50px rgba(0,0,0,0.4)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 12,
+      fontWeight: 800,
+      letterSpacing: '0.22em',
+      textTransform: 'uppercase',
+      color: 'var(--gold-500)',
+      textAlign: 'center'
+    }
+  }, "La meta que abre el lanzamiento"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: '8px auto 4px',
+      fontFamily: 'var(--font-display)',
+      fontWeight: 900,
+      fontSize: 56,
+      lineHeight: 0.95,
+      textTransform: 'uppercase',
+      color: 'var(--cream)',
+      textAlign: 'center',
+      letterSpacing: '-0.015em'
+    }
+  }, "Ll\xE9vanos a los 12"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '0 auto 26px',
+      maxWidth: 540,
+      textAlign: 'center',
+      fontFamily: 'var(--font-body)',
+      fontSize: 16,
+      lineHeight: 1.5,
+      color: 'rgba(250,249,247,0.78)'
+    }
+  }, "Google pide 12 frameros prob\xE1ndola activos pa' abrir el lanzamiento p\xFAblico. Ya van 9. No es un cupo que se cierra \u2014 es la meta que, cuando la pegamos, le abre la puerta a todo el gremio."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      gap: 9,
+      flexWrap: 'wrap',
+      marginBottom: 14
+    }
+  }, Array.from({
+    length: GOAL
+  }).map((_, i) => /*#__PURE__*/React.createElement("span", {
+    key: i,
+    style: {
+      width: 34,
+      height: 34,
+      borderRadius: 8,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontFamily: 'var(--font-mono)',
+      fontSize: 14,
+      fontWeight: 700,
+      background: i < TAKEN ? 'var(--gold-500)' : 'transparent',
+      color: i < TAKEN ? 'var(--cafe-900)' : 'var(--gold-500)',
+      border: i < TAKEN ? '1px solid var(--gold-500)' : '1.5px dashed var(--gold-700)'
+    }
+  }, i < TAKEN ? '✓' : '+'))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      fontFamily: 'var(--font-mono)',
+      fontSize: 13,
+      color: 'var(--gold-500)',
+      letterSpacing: '0.04em',
+      marginBottom: 32
+    }
+  }, TAKEN, " de ", GOAL, " \xB7 faltan ", GOAL - TAKEN, " pa' desbloquear el lanzamiento"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: 14,
+      marginBottom: 32
+    }
+  }, GIVES.map(([t, sub]) => /*#__PURE__*/React.createElement("div", {
+    key: t,
+    style: {
+      background: 'rgba(184,148,31,0.08)',
+      border: '1px solid rgba(184,148,31,0.25)',
+      borderRadius: 10,
+      padding: '16px 16px'
+    }
+  }, /*#__PURE__*/React.createElement("h3", {
+    style: {
+      margin: '0 0 6px',
+      fontFamily: 'var(--font-body)',
+      fontWeight: 700,
+      fontSize: 14.5,
+      color: 'var(--gold-500)'
+    }
+  }, t), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: 0,
+      fontFamily: 'var(--font-body)',
+      fontSize: 13,
+      color: 'rgba(250,249,247,0.72)',
+      lineHeight: 1.5
+    }
+  }, sub)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "https://chat.whatsapp.com/BDcrzrwxvbi9P3w14SLedw",
+    style: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: 8,
+      background: 'var(--gold-500)',
+      color: 'var(--cafe-900)',
+      padding: '17px 36px',
+      borderRadius: 11,
+      fontFamily: 'var(--font-body)',
+      fontSize: 17,
+      fontWeight: 800,
+      textDecoration: 'none',
+      textTransform: 'uppercase',
+      letterSpacing: '0.04em',
+      boxShadow: '0 8px 24px rgba(184,148,31,0.35)'
+    }
+  }, "M\xE9tete al crew \u2192"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 16,
+      fontFamily: 'var(--font-body)',
+      fontSize: 13,
+      color: 'rgba(250,249,247,0.6)'
+    }
+  }, "No es un cupo que se cierra \u2014 es la meta que abre la puerta. El n\xFAmero sube conforme entra gente. Sin trucos."))));
+}
+
+// ─────────── DemoVideos — prueba real (Cialdini Pre-Suasion · video > screenshot) ───────────
+// Videos REALES de la obra (YouTube Shorts + TikTok). Más fuertes que una captura:
+// el framer ve el cálculo pasar en vivo. Reemplaza el humo con movimiento real.
+function DemoVideos() {
+  return /*#__PURE__*/React.createElement("section", {
+    style: {
+      background: 'var(--cafe-800)',
+      padding: '64px 28px 56px',
+      color: 'var(--cream)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 980,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 12,
+      fontWeight: 700,
+      letterSpacing: '0.22em',
+      textTransform: 'uppercase',
+      color: 'var(--gold-500)',
+      textAlign: 'center'
+    }
+  }, "M\xCDRALO EN VIVO"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: '6px auto 6px',
+      fontFamily: 'var(--font-display)',
+      fontWeight: 800,
+      fontSize: 44,
+      lineHeight: 1,
+      textTransform: 'uppercase',
+      color: 'var(--cream)',
+      textAlign: 'center',
+      letterSpacing: '-0.01em'
+    }
+  }, "C\xE1lculos reales, en la obra"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '0 auto 36px',
+      maxWidth: 540,
+      textAlign: 'center',
+      fontFamily: 'var(--font-body)',
+      fontSize: 15,
+      color: 'rgba(250,249,247,0.72)'
+    }
+  }, "60 segundos. La pantalla de verdad, resolviendo una pared de verdad."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '320px 1fr',
+      gap: 36,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "https://youtube.com/shorts/MU0_B0TYXbs",
+    style: {
+      position: 'relative',
+      display: 'block',
+      width: 320,
+      aspectRatio: '9 / 16',
+      borderRadius: 22,
+      overflow: 'hidden',
+      margin: '0 auto',
+      border: '1px solid rgba(184,148,31,0.3)',
+      boxShadow: '0 16px 40px rgba(0,0,0,0.4)',
+      background: 'var(--cafe-900)',
+      textDecoration: 'none'
+    }
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "https://img.youtube.com/vi/MU0_B0TYXbs/maxresdefault.jpg",
+    alt: "Gable End Vaulted Wall \u2014 demo en la obra",
+    style: {
+      position: 'absolute',
+      inset: 0,
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover'
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      inset: 0,
+      background: 'linear-gradient(180deg, rgba(28,24,16,0) 40%, rgba(28,24,16,0.55) 100%)'
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      left: '50%',
+      top: '50%',
+      transform: 'translate(-50%,-50%)',
+      width: 64,
+      height: 64,
+      borderRadius: '50%',
+      background: 'var(--gold-500)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      boxShadow: '0 6px 20px rgba(0,0,0,0.4)'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--cafe-900)',
+      fontSize: 24,
+      marginLeft: 4
+    }
+  }, "\u25B6")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      left: 16,
+      bottom: 16,
+      right: 16,
+      fontFamily: 'var(--font-mono)',
+      fontSize: 11,
+      letterSpacing: '0.08em',
+      color: 'var(--cream)',
+      textTransform: 'uppercase'
+    }
+  }, "YouTube Short \xB7 0:60")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
+    style: {
+      margin: '0 0 8px',
+      fontFamily: 'var(--font-display)',
+      fontWeight: 800,
+      fontSize: 28,
+      textTransform: 'uppercase',
+      color: 'var(--cream)',
+      letterSpacing: '-0.01em'
+    }
+  }, "Gable End & Vaulted Wall"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '0 0 22px',
+      fontFamily: 'var(--font-body)',
+      fontSize: 15.5,
+      color: 'rgba(250,249,247,0.8)',
+      lineHeight: 1.55,
+      maxWidth: 440
+    }
+  }, "Una pared angled resuelta en segundos \u2014 ridge height, stud heights, plate angles y backing. Cinco outputs de un jal\xF3n, sin tocar la cient\xEDfica."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 12,
+      flexWrap: 'wrap'
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "https://www.youtube.com/@LoomFraming",
+    style: {
+      background: 'var(--gold-500)',
+      color: 'var(--cafe-900)',
+      padding: '12px 22px',
+      borderRadius: 9,
+      fontFamily: 'var(--font-body)',
+      fontSize: 14,
+      fontWeight: 700,
+      textDecoration: 'none'
+    }
+  }, "\u25B6 M\xE1s en YouTube"), /*#__PURE__*/React.createElement("a", {
+    href: "https://www.tiktok.com/@loomframing",
+    style: {
+      background: 'transparent',
+      color: 'var(--cream)',
+      padding: '12px 22px',
+      borderRadius: 9,
+      border: '1.5px solid rgba(250,249,247,0.35)',
+      fontFamily: 'var(--font-body)',
+      fontSize: 14,
+      fontWeight: 700,
+      textDecoration: 'none'
+    }
+  }, "\uD83C\uDFB5 TikTok @loomframing"))))));
+}
+
+// ─────────── MejorasEnCamino — confianza por VERDAD (commitment/consistency + unity) ───────────
+// Changelog honesto: hallazgos REALES que el crew cazó navegando la v4.4.0, ya resueltos y
+// en camino al próximo release. Dual-lens (aprobado tal cual):
+//   A · Zeigarnik honesto (loop abierto real al cierre: "¿ves algo más?") · F-pattern
+//       (lista escaneable, etiqueta de área siempre visible a la izquierda) · dual-coding
+//       (estado = ícono ✓ + fill + texto, nunca solo color).
+//   B · Commitment/consistency (mostramos que escuchamos y arreglamos — construye más
+//       confianza que esconder) · Unity ("lo encontramos navegando con el crew").
+//       Persuasión por VERDAD — el guardrail del canon. NADA aspiracional aquí.
+// REGLA DURA: cada ítem es un fix real ya commiteado. Si un fix no está hecho, no entra.
+function MejorasEnCamino() {
+  const FIXES = [['Navegación', 'Cazamos una trampa que te regresaba al inicio sin querer. Ya no brinca.'], ['Pre-Inspección', 'La tarjeta de “Problemas Críticos” ahora abre el detalle al tap — antes quedaba muerta.'], ['Menú', 'Pestañas en cristiano: “Checar” y “Obra”. Se acabó adivinar a dónde llevan.'], ['Plan Intelligence', 'Sacamos los textos que se quedaron en inglés. Todo en español, como debe ser.'], ['Manual del Framer', 'El conteo ahora sale del contenido real — 52 artículos, sin números viejos pegados.']];
+  return /*#__PURE__*/React.createElement("section", {
+    style: {
+      background: 'var(--canvas)',
+      padding: '66px 28px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: 820,
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 12,
+      fontWeight: 700,
+      letterSpacing: '0.22em',
+      textTransform: 'uppercase',
+      color: 'var(--gold-700)',
+      marginBottom: 12
+    }
+  }, "Mejoras en camino"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: '0 0 26px',
+      fontFamily: 'var(--font-display)',
+      fontWeight: 800,
+      fontSize: 38,
+      lineHeight: 1.12,
+      textTransform: 'uppercase',
+      color: 'var(--cafe-900)',
+      letterSpacing: '-0.01em'
+    }
+  }, "Lo que el crew encontr\xF3 \u2014 y ya arreglamos"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '0 0 30px',
+      fontFamily: 'var(--font-body)',
+      fontSize: 16,
+      color: 'var(--cafe-700)',
+      lineHeight: 1.55,
+      maxWidth: 580
+    }
+  }, "Navegamos la v4.4.0 completa con frameros y cazamos lo que estorbaba. Aqu\xED est\xE1, sin maquillaje \u2014 lo que ya qued\xF3 listo pal pr\xF3ximo release."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 2
+    }
+  }, FIXES.map(([area, desc], i) => /*#__PURE__*/React.createElement("div", {
+    key: area,
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '132px 1fr',
+      gap: 20,
+      alignItems: 'start',
+      padding: '18px 4px',
+      borderTop: i === 0 ? '1px solid var(--line-strong)' : 'none',
+      borderBottom: '1px solid var(--line-strong)'
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: 6,
+      background: 'var(--gold-100)',
+      border: '1px solid var(--gold-300)',
+      color: 'var(--gold-800)',
+      borderRadius: 999,
+      padding: '4px 11px 4px 9px',
+      fontFamily: 'var(--font-mono)',
+      fontSize: 10.5,
+      fontWeight: 700,
+      letterSpacing: '0.04em',
+      textTransform: 'uppercase',
+      whiteSpace: 'nowrap'
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "11",
+    height: "11",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "3.4",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M4 12.5l5 5L20 6"
+  })), "Resuelto")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontWeight: 700,
+      fontSize: 16.5,
+      color: 'var(--cafe-900)',
+      lineHeight: 1.2,
+      marginBottom: 4
+    }
+  }, area), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: 'var(--font-body)',
+      fontSize: 14.5,
+      color: 'var(--cafe-500)',
+      lineHeight: 1.5
+    }
+  }, desc))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 24,
+      display: 'flex',
+      alignItems: 'center',
+      gap: 11,
+      fontFamily: 'var(--font-body)',
+      fontSize: 15,
+      color: 'var(--cafe-700)'
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "18",
+    height: "18",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--gold-600)",
+    strokeWidth: "2.2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    style: {
+      flex: 'none'
+    }
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M21 12a9 9 0 1 1-2.64-6.36"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M21 3v5h-5"
+  })), /*#__PURE__*/React.createElement("span", null, "\xBFVes algo que estorba en la obra? El crew lo reporta, nosotros lo clavamos en el siguiente release."))));
+}
+Object.assign(window, {
+  ProofShots,
+  DemoVideos,
+  Stakes,
+  Compare,
+  FounderSeal,
+  MejorasEnCamino,
+  TesterRecruit
+});
+
 </script>
-
-<!-- ═══════ UTM PARAMETER HANDLER ═══════ -->
+<!-- BABEL-BLOCK-3 -->
 <script>
-(function() {
-  var params = new URLSearchParams(window.location.search);
-  var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign'];
-  var captured = {};
-  var hasUtm = false;
+/* global React, NavBar, Hero, BadgeRow, ProofShots, DemoVideos, Stakes, StatsBand, V4Patch, FeaturesGrid, Compare, PersonaCards, FounderSeal, MejorasEnCamino, TesterRecruit, FAQ, Footer */
 
-  utmKeys.forEach(function(key) {
-    var val = params.get(key);
-    if (val) {
-      captured[key] = val;
-      hasUtm = true;
-      try { sessionStorage.setItem(key, val); } catch(e) {}
-    } else {
-      try { var stored = sessionStorage.getItem(key); if (stored) captured[key] = stored; } catch(e) {}
+function Site() {
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--cream)',
+      minHeight: '100vh'
     }
-  });
+  }, /*#__PURE__*/React.createElement(NavBar, null), /*#__PURE__*/React.createElement(Hero, null), /*#__PURE__*/React.createElement(BadgeRow, null), /*#__PURE__*/React.createElement(DemoVideos, null), /*#__PURE__*/React.createElement(ProofShots, null), /*#__PURE__*/React.createElement(Stakes, null), /*#__PURE__*/React.createElement(V4Patch, null), /*#__PURE__*/React.createElement(StatsBand, null), /*#__PURE__*/React.createElement(FeaturesGrid, null), /*#__PURE__*/React.createElement(Compare, null), /*#__PURE__*/React.createElement(PersonaCards, null), /*#__PURE__*/React.createElement(FounderSeal, null), /*#__PURE__*/React.createElement(MejorasEnCamino, null), /*#__PURE__*/React.createElement(TesterRecruit, null), /*#__PURE__*/React.createElement(FAQ, null), /*#__PURE__*/React.createElement(Footer, null));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(Site, null));
 
-  if (hasUtm) {
-    // Fire GA4 custom event with UTM data
-    if (typeof gtag === 'function') {
-      gtag('event', 'utm_landing', {
-        utm_source: captured.utm_source || '(none)',
-        utm_medium: captured.utm_medium || '(none)',
-        utm_campaign: captured.utm_campaign || '(none)'
-      });
-    }
-
-    // Clean URL — remove UTM params for aesthetics, keep tester param if present
-    var clean = new URLSearchParams(window.location.search);
-    utmKeys.forEach(function(key) { clean.delete(key); });
-    var newUrl = window.location.pathname + (clean.toString() ? '?' + clean.toString() : '') + window.location.hash;
-    if (window.history && window.history.replaceState) {
-      window.history.replaceState(null, '', newUrl);
-    }
-  }
+</script>
+<script>
+(function(){
+  try{var p=new URLSearchParams(location.search),utm={};
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){if(p.get(k))utm[k]=p.get(k);});
+    if(Object.keys(utm).length)sessionStorage.setItem('loom_utm',JSON.stringify(utm));}catch(e){}
+  function wire(){var utm={};try{utm=JSON.parse(sessionStorage.getItem('loom_utm')||'{}');}catch(e){}
+    document.querySelectorAll('a[href]').forEach(function(a){
+      if(a.__loomTracked)return;var href=a.getAttribute('href')||'';
+      if(!/(play\.google\.com|chat\.whatsapp\.com|tiktok\.com|instagram\.com|youtube\.com|youtu)/.test(href))return;
+      a.__loomTracked=true;
+      a.addEventListener('click',function(){
+        var dest=/play\.google/.test(href)?'play_store':/whatsapp/.test(href)?'whatsapp':/tiktok/.test(href)?'tiktok':/instagram/.test(href)?'instagram':/youtu/.test(href)?'youtube':'other';
+        if(window.gtag)gtag('event','cta_click',Object.assign({destination:dest,landing_version:'v2'},utm));});});}
+  if(document.readyState!=='loading')wire();else document.addEventListener('DOMContentLoaded',wire);
+  setTimeout(wire,1600);
 })();
 </script>
-
 </body>
 </html>
