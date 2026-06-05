@@ -5,10 +5,300 @@
 <title>Loom Framing — calculadora de framing en español</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Loom Framing — la calculadora de framing en español, hecha por un framer. Códigos IRC 2021, lista de materiales a PDF y checklist de inspección, todo offline en tu Android.">
-<!-- ============================================================
-     LOOM LANDING v2 — DEPLOY BUILD
-     PRECOMPILE (cero Babel en produccion · build de UNA sola vez):
-       Los 3 bloques marcados <!-- BABEL-BLOCK-1 -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"SoftwareApplication","name":"Loom Framing",
+  "applicationCategory":"BusinessApplication","operatingSystem":"Android","inLanguage":"es",
+  "description":"Calculadora de framing en espanol: codigos IRC 2021, BOM a PDF, checklist de inspeccion. Hecha por un framer, para frameros.",
+  "author":{"@type":"Organization","name":"Loom Framing"}
+}
+</script>
+<!-- GA4 (G-EBQ9B5CTEK) · gated to live host · landing_version=v2 -->
+<script>
+(function(){
+  var GA_ID='G-EBQ9B5CTEK';
+  var LIVE=/(github\.io|loomframing\.)/.test(location.hostname);
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){window.dataLayer.push(arguments);};
+  if(LIVE){var s=document.createElement('script');s.async=true;
+    s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;
+    document.head.appendChild(s);gtag('js',new Date());
+    gtag('config',GA_ID,{landing_version:'v2'});
+  }else{window.gtag=function(){(window.__gtagLog=window.__gtagLog||[]).push([].slice.call(arguments));};}
+})();
+</script>
+<style>
+/* ===========================================================
+   LOOM FRAMING — Design Tokens
+   Brotherhood Seal: 015cb320
+   IRC 2021 · Idaho · ES/EN bilingüe · Offline-first
+
+   Loom is a tradesman tool brand, not a tech corp.
+   The palette is warm gold + café oscuro + cream canvas.
+   Inspired by: framing pencils, kraft paper takeoffs, milled
+   lumber, brass tape clips, the patina on a 20-year-old
+   speed square.
+   =========================================================== */
+
+/* ---------- FONTS (Google Fonts CDN) ---------- */
+/* Display: Big Shoulders Display — industrial AEC condensed sans, evokes
+   stencilled jobsite signage and shop-drawing titleblocks.
+   Body/UI: IBM Plex Sans — engineered, clear, neutral. Reads cleanly at
+   small sizes on a dusty Android phone in 95° sun.
+   Mono: JetBrains Mono — measurements, IRC references, BOM tables. */
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
+
+:root {
+  /* ============ COLOR — RAW PALETTE ============ */
+
+  /* Warm gold — primary accent. Tradesman brass, framing pencil
+     yellow gone slightly tarnished. NEVER use a pure #FFC107 yellow
+     or a #FF6D00 tech orange in new brand work. */
+  --gold-100: #f7eed1;   /* tinted highlight, hover bg on cream */
+  --gold-200: #ecdda0;
+  --gold-300: #d9bf6a;
+  --gold-400: #c8a440;   /* light accent, secondary surfaces */
+  --gold-500: #b8941f;   /* PRIMARY brand gold */
+  --gold-600: #a07f15;   /* hover/pressed */
+  --gold-700: #816710;   /* small text on cream where contrast tight */
+  --gold-800: #604c0b;
+
+  /* Café oscuro — body text and dark surfaces. Warm undertone,
+     never a cold true-black. Think wet walnut, oil-rubbed bronze. */
+  --cafe-50:  #efeae0;
+  --cafe-100: #ddd3bf;
+  --cafe-300: #8b7c61;
+  --cafe-500: #5a4f3a;
+  --cafe-700: #3d3422;
+  --cafe-800: #2a2418;   /* PRIMARY body text */
+  --cafe-900: #1c1810;   /* darkest surfaces, footers */
+
+  /* Cream / canvas — the page surface. Off-white with warm bias
+     so it doesn't read as a tech-corp #fff. Think shop-drawing
+     vellum or builder's paper. */
+  --cream:    #faf9f7;   /* PRIMARY page background */
+  --canvas:   #f0ead6;   /* secondary surface, callouts, kraft */
+  --canvas-2: #e4dcc2;   /* divider, subtle bands */
+
+  /* Status — framer-confirm, critical, warning. Picked to read
+     well against both cream and café-800. */
+  --confirm:  #4a7c3a;   /* "verde framer-confirm" — passed inspection */
+  --confirm-100: #d8e6cf;
+  --critical: #a82a2a;   /* "rojo critical" — fail, must-fix */
+  --critical-100: #f1d6d6;
+  --warning:  #a06820;   /* "ámbar warning" — caution, code question */
+  --warning-100: #f1e4cb;
+
+  /* Neutrals (kept warm — these are *café* greys, not slate) */
+  --line:     #d9d3c1;   /* hairlines, borders */
+  --line-strong: #b8af96;
+  --mute:     #8a7f66;   /* secondary text on cream */
+
+  /* ============ SEMANTIC ============ */
+
+  --bg:           var(--cream);
+  --bg-canvas:    var(--canvas);
+  --bg-dark:      var(--cafe-800);
+  --bg-darker:    var(--cafe-900);
+
+  --fg:           var(--cafe-800);
+  --fg-mute:      var(--mute);
+  --fg-strong:    var(--cafe-900);
+  --fg-on-dark:   var(--cream);
+  --fg-on-dark-mute: rgba(250, 249, 247, 0.65);
+
+  --accent:       var(--gold-500);
+  --accent-hover: var(--gold-600);
+  --accent-soft:  var(--gold-100);
+  --on-accent:    var(--cafe-900);   /* gold is light enough that dark text wins */
+
+  --border:       var(--line);
+  --border-strong: var(--line-strong);
+
+  /* ============ TYPOGRAPHY — SCALE ============ */
+  --font-display: "Big Shoulders Display", "Oswald", "Arial Narrow", sans-serif;
+  --font-body:    "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                  Roboto, sans-serif;
+  --font-mono:    "JetBrains Mono", "IBM Plex Mono", ui-monospace,
+                  SFMono-Regular, Menlo, monospace;
+  /* Self-hosted, UNBOUND — geometric grotesk available for opt-in use.
+     Not yet assigned to display/body/mono. Use var(--font-grotesk)
+     explicitly where a role is sanctioned. */
+  --font-grotesk: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+
+  /* Type ramp — jobsite-readable. Body floor is 16px; on Android phone
+     UI we never go smaller than 14px and labels are uppercase tracked
+     to stay readable on a scratched screen. */
+  --t-display-xl: 56px;   /* hero, brand wordmark */
+  --t-display-l:  44px;
+  --t-display-m:  34px;   /* section header */
+  --t-h1:         28px;
+  --t-h2:         22px;
+  --t-h3:         18px;
+  --t-body:       16px;
+  --t-small:      14px;
+  --t-label:      12px;   /* uppercased eyebrows + tabular labels */
+  --t-mono-num:   16px;   /* dimensions, BOM cells */
+
+  --lh-display:  0.95;
+  --lh-tight:    1.15;
+  --lh-body:     1.5;
+  --lh-loose:    1.65;
+
+  --ls-display: -0.01em;
+  --ls-label:    0.14em;   /* "WALL FRAMING · IRC 2021" eyebrow */
+
+  /* ============ SPACING — 4px base ============ */
+  --s-0: 0;
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --s-16: 64px;
+  --s-20: 80px;
+
+  /* Touch target floor — Android budget phones, gloved hands */
+  --touch-min: 44px;
+  --touch-comfortable: 52px;
+
+  /* ============ RADII ============ */
+  /* Crafty, not playful. Field tools have a chamfer, not a pill. */
+  --r-0:   0;
+  --r-xs:  3px;     /* tight chips, badges */
+  --r-sm:  6px;     /* inputs, small buttons */
+  --r-md:  10px;    /* cards, panels — default */
+  --r-lg:  14px;    /* hero/CTAs */
+  --r-pill: 999px;  /* status pills only — use sparingly */
+
+  /* ============ ELEVATION ============ */
+  /* Warm-tinted shadows. Loom never uses a cold rgba(0,0,0,...) drop. */
+  --shadow-xs: 0 1px 2px rgba(42, 36, 24, 0.06);
+  --shadow-sm: 0 2px 6px rgba(42, 36, 24, 0.08);
+  --shadow-md: 0 6px 16px rgba(42, 36, 24, 0.10);
+  --shadow-lg: 0 12px 32px rgba(42, 36, 24, 0.14);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  /* Gold glow for primary CTAs on dark surface */
+  --glow-gold: 0 6px 22px rgba(184, 148, 31, 0.35);
+
+  /* ============ MOTION ============ */
+  /* Restrained. No bounces. Jobsite app = honest, fast, no theatre. */
+  --ease-out:  cubic-bezier(0.2, 0.6, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.5, 0, 0.5, 1);
+  --dur-fast:  120ms;
+  --dur-base:  180ms;
+  --dur-slow:  280ms;
+}
+
+/* ===========================================================
+   SEMANTIC ELEMENT STYLES
+   These are the canonical mappings — components should compose
+   on top of these, never invent new families.
+   =========================================================== */
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--fg);
+  background: var(--bg);
+  font-feature-settings: "ss01", "cv05";   /* IBM Plex's stylistic set: 1-storey a */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- DISPLAY / HEADINGS ---------- */
+.display-xl,
+.display-l,
+.display-m,
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: var(--ls-display);
+  line-height: var(--lh-display);
+  color: var(--fg-strong);
+  text-transform: uppercase;
+}
+
+.display-xl { font-size: var(--t-display-xl); }
+.display-l  { font-size: var(--t-display-l); }
+.display-m  { font-size: var(--t-display-m); }
+
+h1 { font-size: var(--t-h1); }
+h2 { font-size: var(--t-h2); }
+
+h3 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--t-h3);
+  line-height: var(--lh-tight);
+  color: var(--fg-strong);
+  letter-spacing: -0.005em;
+}
+
+p { font-size: var(--t-body); line-height: var(--lh-body); }
+p.small { font-size: var(--t-small); color: var(--fg-mute); }
+
+/* ---------- EYEBROW / LABEL ---------- */
+/* Used over screen titles: "WALL FRAMING · IRC 2021" */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ---------- MONO ---------- */
+/* Dimensions, BOM totals, IRC code refs — ANY measurement is mono. */
+code, kbd, .mono, .dim {
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+  font-variant-numeric: tabular-nums;
+}
+
+.dim {
+  color: var(--fg-strong);
+  font-weight: 500;
+}
+
+/* Code reference chip: "IRC R602.7" */
+.code-ref {
+  font-family: var(--font-mono);
+  font-size: var(--t-small);
+  color: var(--gold-700);
+  font-weight: 500;
+}
+
+/* ---------- LINK ---------- */
+a {
+  color: var(--gold-700);
+  text-decoration-color: var(--gold-300);
+  text-underline-offset: 3px;
+}
+a:hover { color: var(--gold-800); text-decoration-color: var(--gold-500); }
+
+/* ---------- SELECTION ---------- */
+::selection { background: var(--gold-200); color: var(--cafe-900); }
+
+
+html, body { margin:0; padding:0; }
+* { box-sizing:border-box; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<!-- BABEL-BLOCK-1 · components_v2 (Hero, NavBar, BadgeRow, StatsBand, Compare table, Footer, etc.) -->
 <script>
 /* global React */
 // Landing UI kit — gold + café brand chrome.
@@ -725,7 +1015,7 @@ Object.assign(window, {
 });
 
 </script>
-<!-- BABEL-BLOCK-2 -->
+<!-- BABEL-BLOCK-2 · sections_v2 (ProofShots, Stakes, FounderSeal, MejorasEnCamino, TesterRecruit, etc.) -->
 <script>
 /* global React */
 // Loom Landing v2 — secciones nuevas (Sales Canon baked-in)
@@ -1667,7 +1957,7 @@ Object.assign(window, {
 });
 
 </script>
-<!-- BABEL-BLOCK-3 -->
+<!-- BABEL-BLOCK-3 · app_v2 (root composition + ReactDOM render) -->
 <script>
 /* global React, NavBar, Hero, BadgeRow, ProofShots, DemoVideos, Stakes, StatsBand, V4Patch, FeaturesGrid, Compare, PersonaCards, FounderSeal, MejorasEnCamino, TesterRecruit, FAQ, Footer */
 
