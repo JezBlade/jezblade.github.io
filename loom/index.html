@@ -5,6 +5,7 @@
 <title>Loom Framing — calculadora de framing en español</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Loom Framing — la calculadora de framing en español, hecha por un framer. Códigos IRC 2021, lista de materiales a PDF y checklist de inspección, todo offline en tu Android.">
+
 <script type="application/ld+json">
 {
   "@context":"https://schema.org","@type":"SoftwareApplication","name":"Loom Framing",
@@ -289,6 +290,80 @@ a:hover { color: var(--gold-800); text-decoration-color: var(--gold-500); }
 /* ---------- SELECTION ---------- */
 ::selection { background: var(--gold-200); color: var(--cafe-900); }
 
+/* ===========================================================
+   MOBILE-FIRST RESPONSIVE — Loom landing v2
+   CANON: el framero visita desde el TELÉFONO. Mobile = viewport
+   PRIMARIO de toda surface pública; desktop secundario. Estos
+   overrides usan !important porque los componentes traen estilos
+   inline (mayor especificidad). Dos breakpoints:
+     ≤900px  tablet — colapsa grids 4/3-col a 2-col
+     ≤600px  phone  — stacking total, hamburguesa, CTAs full-width
+   =========================================================== */
+
+/* ---- TABLET (≤900px): 4/3-col → 2-col ---- */
+@media (max-width: 900px) {
+  .lm-grid-4,
+  .lm-proof-grid { grid-template-columns: 1fr 1fr !important; }
+  .lm-grid-3 { grid-template-columns: 1fr 1fr !important; gap: 14px !important; }
+  .lm-demo-grid { grid-template-columns: 280px 1fr !important; gap: 24px !important; }
+}
+
+/* ---- PHONE (≤600px): mobile-first stack ---- */
+@media (max-width: 600px) {
+  /* global: aprieta el padding horizontal de secciones/footer (sin tocar el vertical) */
+  #root section,
+  #root footer { padding-left: 18px !important; padding-right: 18px !important; }
+
+  /* L1 · NavBar → hamburguesa, logo 1 línea, sticky flaco */
+  .lm-nav { padding: 11px 18px !important; }
+  .lm-nav__links { display: none !important; }
+  .lm-nav__burger { display: flex !important; }
+  .lm-nav__wordmark { font-size: 19px !important; }
+
+  /* L2 · Hero CTAs apilados full-width */
+  .lm-hero-cta { flex-direction: column !important; gap: 12px !important; }
+  .lm-hero-cta > a { width: 100% !important; justify-content: center !important; box-sizing: border-box !important; }
+
+  /* L3 · ProofShots → 2×2 (imagen más grande que en fila de 4) */
+  .lm-proof-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+
+  /* L4 · Stakes → SIN arriba, CON abajo */
+  .lm-stakes-grid { grid-template-columns: 1fr !important; }
+
+  /* L5 · Compare → una card por feature, cada alternativa etiquetada. Sin scroll horizontal. */
+  .lm-compare-wrap { border: 0 !important; border-radius: 0 !important; background: transparent !important; }
+  .lm-compare-table thead { display: none !important; }
+  .lm-compare-table,
+  .lm-compare-table tbody,
+  .lm-compare-table tr,
+  .lm-compare-table td { display: block !important; width: 100% !important; }
+  .lm-compare-table tr { background: var(--cream) !important; border: 1px solid var(--line) !important; border-radius: 12px !important; margin-bottom: 12px !important; padding: 4px 0 8px !important; overflow: hidden !important; }
+  .lm-compare-table td:first-child { font-weight: 800 !important; font-size: 16px !important; color: var(--cafe-900) !important; padding: 14px 16px 10px !important; border: 0 !important; }
+  .lm-compare-table td:not(:first-child) { display: flex !important; justify-content: space-between !important; align-items: center !important; text-align: left !important; padding: 10px 16px !important; border-top: 1px solid var(--line) !important; background: transparent !important; }
+  .lm-compare-table td:not(:first-child)::before { content: attr(data-col); font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--cafe-500); }
+
+  /* L6 · cards que se cortaban → stack 1-col */
+  .lm-grid-3,
+  .lm-grid-4,
+  .lm-gives-grid { grid-template-columns: 1fr !important; }
+  .lm-tester-card { padding: 30px 20px !important; }
+
+  /* DemoVideos → stack, video full-width acotado */
+  .lm-demo-grid { grid-template-columns: 1fr !important; gap: 22px !important; }
+  .lm-demo-grid > a { width: 100% !important; max-width: 320px !important; }
+
+  /* FounderSeal → foto arriba, texto abajo, centrado */
+  .lm-founder-grid { grid-template-columns: 1fr !important; justify-items: center !important; text-align: center !important; gap: 22px !important; }
+
+  /* StatsBand → 2×2 (4 números en fila quedan muy flacos en teléfono) */
+  .lm-stats { grid-template-columns: 1fr 1fr !important; gap: 26px 16px !important; }
+
+  /* Display headings: en móvil envuelven a 2 líneas — el line-height 1 de escritorio
+     deja que los glifos del display font choquen con el párrafo. Aflojamos + capamos. */
+  #root section h1 { font-size: 54px !important; line-height: 1.02 !important; margin: 0 0 18px !important; }
+  #root section h2 { font-size: clamp(30px, 8.5vw, 40px) !important; line-height: 1.07 !important; }
+}
+
 
 html, body { margin:0; padding:0; }
 * { box-sizing:border-box; }
@@ -298,7 +373,7 @@ html, body { margin:0; padding:0; }
 </head>
 <body>
 <div id="root"></div>
-<!-- BABEL-BLOCK-1 · components_v2 (Hero, NavBar, BadgeRow, StatsBand, Compare table, Footer, etc.) -->
+
 <script>
 /* global React */
 // Landing UI kit — gold + café brand chrome.
@@ -311,8 +386,12 @@ const {
 } = React;
 
 // ─────────── NavBar ───────────
+// Mobile-first: logo en 1 línea (nowrap), links colapsan a hamburguesa <600px.
 function NavBar() {
+  const [menuOpen, setMenuOpen] = useS_land(false);
+  const LINKS = ['Herramientas', 'En la obra', "Pa' quién es", 'Preguntas'];
   return /*#__PURE__*/React.createElement("nav", {
+    className: "lm-nav",
     style: {
       background: 'var(--cafe-900)',
       borderBottom: '1px solid rgba(184,148,31,0.2)',
@@ -322,7 +401,7 @@ function NavBar() {
       justifyContent: 'space-between',
       position: 'sticky',
       top: 0,
-      zIndex: 10
+      zIndex: 20
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -339,7 +418,8 @@ function NavBar() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      border: '1px solid var(--gold-700)'
+      border: '1px solid var(--gold-700)',
+      flexShrink: 0
     }
   }, /*#__PURE__*/React.createElement("svg", {
     viewBox: "0 0 100 100",
@@ -355,25 +435,28 @@ function NavBar() {
   }), /*#__PURE__*/React.createElement("path", {
     d: "M44 82 V60 H56 V82"
   }))), /*#__PURE__*/React.createElement("div", {
+    className: "lm-nav__wordmark",
     style: {
       fontFamily: 'var(--font-display)',
       fontWeight: 900,
       fontSize: 22,
       textTransform: 'uppercase',
       color: 'var(--cream)',
-      letterSpacing: '-0.005em'
+      letterSpacing: '-0.005em',
+      whiteSpace: 'nowrap'
     }
   }, "Loom", /*#__PURE__*/React.createElement("span", {
     style: {
       color: 'var(--gold-500)'
     }
   }, "."), " Framing")), /*#__PURE__*/React.createElement("div", {
+    className: "lm-nav__links",
     style: {
       display: 'flex',
       gap: 28,
       alignItems: 'center'
     }
-  }, ['Herramientas', 'En la obra', "Pa' quién es", 'Preguntas'].map(item => /*#__PURE__*/React.createElement("a", {
+  }, LINKS.map(item => /*#__PURE__*/React.createElement("a", {
     key: item,
     href: "#",
     style: {
@@ -393,9 +476,89 @@ function NavBar() {
       fontFamily: 'var(--font-body)',
       fontSize: 14,
       fontWeight: 700,
-      textDecoration: 'none'
+      textDecoration: 'none',
+      whiteSpace: 'nowrap'
     }
-  }, "Descargar  \u2192")));
+  }, "Descargar  \u2192")), /*#__PURE__*/React.createElement("button", {
+    className: "lm-nav__burger",
+    onClick: () => setMenuOpen(o => !o),
+    "aria-label": "Men\xFA",
+    "aria-expanded": menuOpen,
+    style: {
+      display: 'none',
+      background: 'transparent',
+      border: '1px solid rgba(184,148,31,0.4)',
+      borderRadius: 8,
+      width: 44,
+      height: 44,
+      alignItems: 'center',
+      justifyContent: 'center',
+      cursor: 'pointer',
+      padding: 0
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "22",
+    height: "22",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--gold-500)",
+    strokeWidth: "2.4",
+    strokeLinecap: "round"
+  }, menuOpen ? /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("path", {
+    d: "M5 5l14 14"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M19 5L5 19"
+  })) : /*#__PURE__*/React.createElement("g", null, /*#__PURE__*/React.createElement("path", {
+    d: "M3 6h18"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M3 12h18"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M3 18h18"
+  })))), menuOpen && /*#__PURE__*/React.createElement("div", {
+    className: "lm-nav__menu",
+    style: {
+      position: 'absolute',
+      top: '100%',
+      left: 0,
+      right: 0,
+      background: 'var(--cafe-900)',
+      borderBottom: '1px solid rgba(184,148,31,0.3)',
+      boxShadow: '0 14px 30px rgba(0,0,0,0.4)',
+      display: 'flex',
+      flexDirection: 'column',
+      padding: '8px 18px 18px',
+      gap: 2
+    }
+  }, LINKS.map(item => /*#__PURE__*/React.createElement("a", {
+    key: item,
+    href: "#",
+    onClick: () => setMenuOpen(false),
+    style: {
+      color: 'rgba(250,249,247,0.85)',
+      textDecoration: 'none',
+      fontFamily: 'var(--font-body)',
+      fontSize: 16,
+      fontWeight: 600,
+      padding: '14px 6px',
+      borderBottom: '1px solid rgba(250,249,247,0.08)'
+    }
+  }, item)), /*#__PURE__*/React.createElement("a", {
+    href: "https://play.google.com/apps/testing/com.loomframing.app",
+    style: {
+      background: 'var(--gold-500)',
+      color: 'var(--cafe-900)',
+      padding: '15px 18px',
+      borderRadius: 9,
+      marginTop: 12,
+      textAlign: 'center',
+      fontFamily: 'var(--font-body)',
+      fontSize: 15,
+      fontWeight: 800,
+      textDecoration: 'none',
+      textTransform: 'uppercase',
+      letterSpacing: '0.03em'
+    }
+  }, "Descargar en Google Play  \u2192")));
 }
 
 // ─────────── Hero ───────────
@@ -453,6 +616,7 @@ function Hero() {
       color: 'rgba(250,249,247,0.85)'
     }
   }, "El compa\xF1ero que sabe m\xE1s \u2014 en tu bolsa, en la obra.", /*#__PURE__*/React.createElement("br", null), "Saca el header antes de que el super te lo pregunte."), /*#__PURE__*/React.createElement("div", {
+    className: "lm-hero-cta",
     style: {
       display: 'flex',
       justifyContent: 'center',
@@ -547,6 +711,7 @@ function BadgeRow() {
 function StatsBand() {
   const STATS = [['15+', 'Calculadoras de campo'], ['106', 'Artículos y tips pro'], ['29', 'Items de inspección'], ['20+', 'Tablas IRC 2021']];
   return /*#__PURE__*/React.createElement("section", {
+    className: "lm-stats",
     style: {
       background: 'var(--cafe-800)',
       color: 'var(--cream)',
@@ -618,6 +783,7 @@ function V4Patch() {
       letterSpacing: '-0.01em'
     }
   }, "Lo que ya trae v4"), /*#__PURE__*/React.createElement("div", {
+    className: "lm-grid-4",
     style: {
       display: 'grid',
       gridTemplateColumns: 'repeat(4, 1fr)',
@@ -715,6 +881,7 @@ function FeaturesGrid() {
       color: 'var(--cafe-700)'
     }
   }, "No es una app gen\xE9rica. Es tu gu\xEDa de campo profesional."), /*#__PURE__*/React.createElement("div", {
+    className: "lm-grid-3",
     style: {
       display: 'grid',
       gridTemplateColumns: 'repeat(3, 1fr)',
@@ -795,6 +962,7 @@ function PersonaCards() {
       letterSpacing: '-0.01em'
     }
   }, "Para frameros reales"), /*#__PURE__*/React.createElement("div", {
+    className: "lm-grid-3",
     style: {
       display: 'grid',
       gridTemplateColumns: 'repeat(3, 1fr)',
@@ -1015,7 +1183,7 @@ Object.assign(window, {
 });
 
 </script>
-<!-- BABEL-BLOCK-2 · sections_v2 (ProofShots, Stakes, FounderSeal, MejorasEnCamino, TesterRecruit, etc.) -->
+
 <script>
 /* global React */
 // Loom Landing v2 — secciones nuevas (Sales Canon baked-in)
@@ -1075,6 +1243,7 @@ function ProofShots() {
       color: 'rgba(250,249,247,0.7)'
     }
   }, "Lo que el framer ve antes de bajarla. Sin humo: la pantalla real."), /*#__PURE__*/React.createElement("div", {
+    className: "lm-proof-grid",
     style: {
       display: 'grid',
       gridTemplateColumns: 'repeat(4, 1fr)',
@@ -1094,7 +1263,7 @@ function ProofShots() {
       boxShadow: '0 12px 30px rgba(0,0,0,0.35)'
     }
   }, /*#__PURE__*/React.createElement("img", {
-    src: 'assets/' + id + '.png',
+    src: '../../assets/' + id + '.png',
     alt: t,
     loading: "lazy",
     style: {
@@ -1169,6 +1338,7 @@ function Stakes() {
       letterSpacing: '-0.01em'
     }
   }, "La obra con y sin Loom"), /*#__PURE__*/React.createElement("div", {
+    className: "lm-stakes-grid",
     style: {
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
@@ -1341,6 +1511,7 @@ function Compare() {
       color: 'var(--cafe-700)'
     }
   }, "Sin tirarle a nadie. Nom\xE1s lo que Loom hace que lo dem\xE1s no."), /*#__PURE__*/React.createElement("div", {
+    className: "lm-compare-wrap",
     style: {
       border: '1px solid var(--line)',
       borderRadius: 14,
@@ -1348,6 +1519,7 @@ function Compare() {
       background: 'var(--cream)'
     }
   }, /*#__PURE__*/React.createElement("table", {
+    className: "lm-compare-table",
     style: {
       width: '100%',
       borderCollapse: 'collapse',
@@ -1387,6 +1559,7 @@ function Compare() {
     }
   }, label), vals.map((v, i) => /*#__PURE__*/React.createElement("td", {
     key: i,
+    "data-col": COLS[i],
     style: {
       padding: '15px 14px',
       textAlign: 'center',
@@ -1417,6 +1590,7 @@ function FounderSeal() {
       color: 'var(--cream)'
     }
   }, /*#__PURE__*/React.createElement("div", {
+    className: "lm-founder-grid",
     style: {
       maxWidth: 860,
       margin: '0 auto',
@@ -1426,7 +1600,7 @@ function FounderSeal() {
       alignItems: 'center'
     }
   }, /*#__PURE__*/React.createElement("img", {
-    src: "assets/founder-jesus.png",
+    src: "../../assets/founder-jesus.png",
     alt: "Jes\xFAs, fundador de Loom Framing",
     width: "180",
     height: "180",
@@ -1496,6 +1670,7 @@ function TesterRecruit() {
       color: 'var(--cream)'
     }
   }, /*#__PURE__*/React.createElement("div", {
+    className: "lm-tester-card",
     style: {
       maxWidth: 880,
       margin: '0 auto',
@@ -1573,6 +1748,7 @@ function TesterRecruit() {
       marginBottom: 32
     }
   }, TAKEN, " de ", GOAL, " \xB7 faltan ", GOAL - TAKEN, " pa' desbloquear el lanzamiento"), /*#__PURE__*/React.createElement("div", {
+    className: "lm-gives-grid",
     style: {
       display: 'grid',
       gridTemplateColumns: 'repeat(3, 1fr)',
@@ -1682,6 +1858,7 @@ function DemoVideos() {
       color: 'rgba(250,249,247,0.72)'
     }
   }, "60 segundos. La pantalla de verdad, resolviendo una pared de verdad."), /*#__PURE__*/React.createElement("div", {
+    className: "lm-demo-grid",
     style: {
       display: 'grid',
       gridTemplateColumns: '320px 1fr',
@@ -1957,7 +2134,7 @@ Object.assign(window, {
 });
 
 </script>
-<!-- BABEL-BLOCK-3 · app_v2 (root composition + ReactDOM render) -->
+
 <script>
 /* global React, NavBar, Hero, BadgeRow, ProofShots, DemoVideos, Stakes, StatsBand, V4Patch, FeaturesGrid, Compare, PersonaCards, FounderSeal, MejorasEnCamino, TesterRecruit, FAQ, Footer */
 
