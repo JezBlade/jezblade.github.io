@@ -1651,18 +1651,16 @@ function FounderSeal() {
   }, "\u2014 Jes\xFAs (JezBlade) \xB7 framer & fundador de Loom"))));
 }
 
-// ─────────── TesterRecruit — Cialdini scarcity (REAL) + unity + commitment ───────────
-// El cap de 12 del closed testing de Google es un límite VERDADERO (canon: fair game).
-// Escasez honesta: 9 tomados, 3 libres — dual-coded (forma + número + color, no solo
-// color). Reciprocidad real (qué gana el tester). Unidad (hermandad). SIN countdown
-// inventado, SIN "X viéndola ahora". OJO CANON: 12 NO es un cap — es el umbral real de
-// Google Play (12 testers activos 14 días) que DESBLOQUEA production/lanzamiento público.
-// Por eso el copy es META compartida, no escasez de asientos (eso sería mentira: la
-// puerta abre tanto como el equipo decida). Zeigarnik honesto: loop genuinamente abierto.
+// ─────────── TesterRecruit — invitación abierta + progreso + unity ───────────
+// 12 = umbral mínimo de Google Play (12 testers activos 14 días) pa' desbloquear
+// production. NO es un cap — es el piso. Copy = invitación abierta + progreso
+// ("ya somos 9, éntrale"), NUNCA escasez ("quedan X" / "cupo limitado").
+// Reciprocidad real (qué gana el tester). Unidad (crew, no hermandad).
+// SIN countdown inventado, SIN "X viéndola ahora".
 function TesterRecruit() {
   const TAKEN = 9,
     GOAL = 12;
-  const GIVES = [['Antes que nadie', 'Bajas la v4 mientras los demás esperan la pública.'], ['Tu palabra pesa', 'Lo que reportas moldea la herramienta — feature por feature.'], ['Entras a la hermandad', 'Tu nombre en el crew que la levantó, desde el cimiento.']];
+  const GIVES = [['Antes que nadie', 'Bajas la v4 mientras los dem\xE1s esperan la p\xFAblica.'], ['Tu palabra pesa', 'Lo que reportas moldea la herramienta \u2014 feature por feature.'], ['Entras al crew', 'Tu nombre entre los que la levantaron desde el cimiento.']];
   return /*#__PURE__*/React.createElement("section", {
     style: {
       background: 'var(--cafe-900)',
@@ -1690,7 +1688,7 @@ function TesterRecruit() {
       color: 'var(--gold-500)',
       textAlign: 'center'
     }
-  }, "La meta que abre el lanzamiento"), /*#__PURE__*/React.createElement("h2", {
+  }, "Invitaci\xF3n abierta"), /*#__PURE__*/React.createElement("h2", {
     style: {
       margin: '8px auto 4px',
       fontFamily: 'var(--font-display)',
@@ -1702,7 +1700,7 @@ function TesterRecruit() {
       textAlign: 'center',
       letterSpacing: '-0.015em'
     }
-  }, "Ll\xE9vanos a los 12"), /*#__PURE__*/React.createElement("p", {
+  }, "\xC9ntrale al crew"), /*#__PURE__*/React.createElement("p", {
     style: {
       margin: '0 auto 26px',
       maxWidth: 540,
@@ -1747,7 +1745,7 @@ function TesterRecruit() {
       letterSpacing: '0.04em',
       marginBottom: 32
     }
-  }, TAKEN, " de ", GOAL, " \xB7 faltan ", GOAL - TAKEN, " pa' desbloquear el lanzamiento"), /*#__PURE__*/React.createElement("div", {
+  }, "Ya somos ", TAKEN, " \u2014 \xE9ntrale t\xFA tambi\xE9n, entre m\xE1s mejor"), /*#__PURE__*/React.createElement("div", {
     className: "lm-gives-grid",
     style: {
       display: 'grid',
@@ -2161,7 +2159,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.c
       a.__loomTracked=true;
       a.addEventListener('click',function(){
         var dest=/play\.google/.test(href)?'play_store':/whatsapp/.test(href)?'whatsapp':/tiktok/.test(href)?'tiktok':/instagram/.test(href)?'instagram':/youtu/.test(href)?'youtube':'other';
-        if(window.gtag)gtag('event','cta_click',Object.assign({destination:dest,landing_version:'v2'},utm));});});}
+        if(window.gtag){gtag('event','cta_click',Object.assign({destination:dest,landing_version:'v2'},utm));
+        if(dest==='whatsapp')gtag('event','tester_optin',Object.assign({landing_version:'v2'},utm));}});});}
   if(document.readyState!=='loading')wire();else document.addEventListener('DOMContentLoaded',wire);
   setTimeout(wire,1600);
 })();
