@@ -70,14 +70,16 @@ jobs:
             FAIL=1
           fi
 
-          # Check 2: content patterns in diff
+          # Check 2: content patterns in ADDED lines only
+          # Scan only added lines (^+, excluding the +++ file header) so that
+          # REMOVING an internal codename (a remediation) does not trip the detector.
           # Exclude self-referential files that legitimately contain the patterns
           # in detection rules (gitignore deny-list, hook code, workflow code)
           DIFF_HITS=$(git diff "$BASE" "$HEAD" \
             -- ':(exclude).github/workflows/internal-leak-detector.yml' \
                ':(exclude).husky/pre-commit' \
                ':(exclude).gitignore' \
-            | grep -i -E "$PATTERN" || true)
+            | grep -E '^\+' | grep -vE '^\+\+\+' | grep -i -E "$PATTERN" || true)
           if [ -n "$DIFF_HITS" ]; then
             echo "::error::Internal codename patterns detected in diff content:"
             echo "$DIFF_HITS" | head -20
