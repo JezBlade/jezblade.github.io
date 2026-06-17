@@ -679,7 +679,7 @@ function Hero() {
       fontSize: 12,
       color: 'rgba(250,249,247,0.45)'
     }
-  }, "9 de 12 frameros pa' abrir el lanzamiento \xB7 closed testing"));
+  }, "Hecha por un framero, pa' frameros \xB7 \xE9ntrale al closed testing"));
 }
 
 // ─────────── BadgeRow ───────────
@@ -1669,15 +1669,12 @@ function FounderSeal() {
   }, "\u2014 Jes\xFAs (JezBlade) \xB7 framer & fundador de Loom"))));
 }
 
-// ─────────── TesterRecruit — invitación abierta + progreso + unity ───────────
-// 12 = umbral mínimo de Google Play (12 testers activos 14 días) pa' desbloquear
-// production. NO es un cap — es el piso. Copy = invitación abierta + progreso
-// ("ya somos 9, éntrale"), NUNCA escasez ("quedan X" / "cupo limitado").
-// Reciprocidad real (qué gana el tester). Unidad (crew, no hermandad).
-// SIN countdown inventado, SIN "X viéndola ahora".
+// ─────────── TesterRecruit — invitación abierta + reciprocidad + unity ───────────
+// CANON INVIOLABLE (2026-06-16): NUNCA conteos ni límites de testers en copy público
+// (sin números, sin grilla de progreso, sin escasez tipo "quedan X" / "cupo limitado").
+// Copy = invitación abierta + reciprocidad real (qué gana el tester) + unidad (crew).
+// SIN countdown inventado, SIN "X viéndola ahora", SIN cifras de testers.
 function TesterRecruit() {
-  const TAKEN = 9,
-    GOAL = 12;
   const GIVES = [['Antes que nadie', 'Bajas la v4 mientras los dem\xE1s esperan la p\xFAblica.'], ['Tu palabra pesa', 'Lo que reportas moldea la herramienta \u2014 feature por feature.'], ['Entras al crew', 'Tu nombre entre los que la levantaron desde el cimiento.']];
   return /*#__PURE__*/React.createElement("section", {
     style: {
@@ -1728,33 +1725,7 @@ function TesterRecruit() {
       lineHeight: 1.5,
       color: 'rgba(250,249,247,0.78)'
     }
-  }, "Google pide 12 frameros prob\xE1ndola activos pa' abrir el lanzamiento p\xFAblico. Ya van 9. No es un cupo que se cierra \u2014 es la meta que, cuando la pegamos, le abre la puerta a todo el gremio."), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      justifyContent: 'center',
-      gap: 9,
-      flexWrap: 'wrap',
-      marginBottom: 14
-    }
-  }, Array.from({
-    length: GOAL
-  }).map((_, i) => /*#__PURE__*/React.createElement("span", {
-    key: i,
-    style: {
-      width: 34,
-      height: 34,
-      borderRadius: 8,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontFamily: 'var(--font-mono)',
-      fontSize: 14,
-      fontWeight: 700,
-      background: i < TAKEN ? 'var(--gold-500)' : 'transparent',
-      color: i < TAKEN ? 'var(--cafe-900)' : 'var(--gold-500)',
-      border: i < TAKEN ? '1px solid var(--gold-500)' : '1.5px dashed var(--gold-700)'
-    }
-  }, i < TAKEN ? '✓' : '+'))), /*#__PURE__*/React.createElement("div", {
+  }, "El closed testing est\xE1 abierto pa' todo framero que quiera entrarle. Cada quien que la prueba le abre la puerta m\xE1s r\xE1pido a todo el gremio \u2014 y tu reporte la moldea antes de que salga al p\xFAblico."), /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: 'center',
       fontFamily: 'var(--font-mono)',
@@ -1763,7 +1734,7 @@ function TesterRecruit() {
       letterSpacing: '0.04em',
       marginBottom: 32
     }
-  }, "Ya somos ", TAKEN, " \u2014 \xE9ntrale t\xFA tambi\xE9n, entre m\xE1s mejor"), /*#__PURE__*/React.createElement("div", {
+  }, "Entre m\xE1s frameros le entran, m\xE1s r\xE1pido le abre la puerta a todo el gremio \u2014 \xE9ntrale t\xFA tambi\xE9n"), /*#__PURE__*/React.createElement("div", {
     className: "lm-gives-grid",
     style: {
       display: 'grid',
