@@ -7,9 +7,12 @@
   <meta http-equiv="refresh" content="0; url=https://loomframing.com/">
   <meta name="robots" content="noindex, follow">
   <!-- Loom Framing se mudó a su dominio propio. Esta página redirige y consolida el SEO. -->
+  <!-- 2026-08-13: se agregó location.search al replace. Sin eso el redirect TIRABA las UTMs del quinteto Bitly
+       (?utm_source=youtube|instagram|blog...) y GA4 etiquetaba todo como 'jezblade.github.io / referral'.
+       La atribución por canal estuvo muerta desde el 3-jun. NO quitar location.search. -->
   <meta property="og:url" content="https://loomframing.com/">
   <meta property="og:title" content="Loom Framing — calculadora de framing en español">
-  <script>location.replace("https://loomframing.com/" + (location.hash || ""));</script>
+  <script>location.replace("https://loomframing.com/" + location.search + (location.hash || ""));</script>
 </head>
 <body>
   <p>Loom Framing se mudó a <a href="https://loomframing.com/">loomframing.com</a>. Redirigiendo…</p>
