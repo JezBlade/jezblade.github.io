@@ -5,7 +5,7 @@ GitHub Pages site for **Loom Framing App** — professional Android app for wood
 ## Live
 
 - **Landing:** https://jezblade.github.io/loom/
-- **Download:** [Google Play — Closed Testing](https://play.google.com/apps/testing/com.loomframing.app)
+- **Download:** [Google Play](https://play.google.com/store/apps/details?id=com.loomframing.app&referrer=utm_source%3Dgithub.com%26utm_medium%3Dreadme%26utm_campaign%3Dportafolio)
 - **Privacy Policy:** https://jezblade.github.io/privacy-policy.html
 
 ## About Loom Framing
@@ -13,7 +13,7 @@ GitHub Pages site for **Loom Framing App** — professional Android app for wood
 Professional framing calculator app for Android, built for Hispanic framers in Idaho.
 
 - 15+ field calculators (headers, studs, birdsmouth, rake wall, vaulted wall, and more)
-- IRC 2021 code reference — nailing schedules, header tables, Simpson hardware
+- Idaho IRC 2018 code reference — nailing schedules, header tables, Simpson hardware
 - Inspection checklist — 29 items across 7 categories
 - BOM generator with PDF export
 - Plan viewer with Plan Intelligence (detects LVLs, trusses, hangers)
