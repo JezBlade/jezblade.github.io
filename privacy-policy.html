@@ -27,7 +27,7 @@
 <p class="meta">Aplicación Android <code>com.loomframing.app</code> · Vigente desde: 29 de septiembre de 2026 · Sustituye a la versión del 13 de marzo de 2026</p>
 <p class="lang-switch"><a href="#en">English version below ↓</a></p>
 
-<p>Loom Framing es una herramienta de oficio para frameros: calculadoras, manual, glosario, checklist de inspección y visor de planos. Está hecha para trabajar <strong>sin cuenta, sin señal y sin anuncios</strong>. Esta política dice, sin rodeos, qué datos toca la app, cuáles se quedan en tu teléfono y cuáles salen de él.</p>
+<p>Loom Framing es una herramienta de oficio para frameros: calculadoras, manual, glosario, checklist de inspección y visor de planos. Está hecha para trabajar <strong>off-line, sin cuenta y sin anuncios</strong>. Esta política dice, sin rodeos, qué datos toca la app, cuáles se quedan en tu teléfono y cuáles salen de él.</p>
 
 <h2>1. Lo que se queda en tu teléfono</h2>
 <p>Todo tu trabajo vive en tu dispositivo: proyectos, planos (PDF e imágenes) que importes, cálculos, cut lists, fotos de evidencia de inspección y preferencias. Loom no crea cuentas ni te pide nombre, correo ni teléfono. Si desinstalas la app, esos datos se van con ella.</p>
@@ -36,19 +36,22 @@
 <p>La app pide permiso de cámara solo cuando tú tomas una foto de evidencia para el checklist de pre-inspección. Las fotos se guardan localmente. No se suben a ningún servidor.</p>
 
 <h3>Lectura de planos escaneados (OCR)</h3>
-<p>Para leer texto de fotocopias o planos escaneados, Loom usa Google ML Kit Text Recognition, que corre <strong>100 % en el dispositivo</strong>. Ese proceso no usa red y no envía imágenes ni texto a ningún lado.</p>
+<p>Para leer texto de fotocopias o planos escaneados, Loom usa Google ML Kit Text Recognition, que corre <strong>100 % en el dispositivo</strong>: tus imágenes y el texto que lee nunca salen del teléfono. El componente sí le manda a Google datos técnicos de diagnóstico (ver 2.2).</p>
 
 <h3>Recursos de obra</h3>
 <p>La sección de Recursos de Obra abre el teléfono, el mapa o el navegador de tu dispositivo con la información del proveedor. Loom no pide permisos de contactos, ubicación ni teléfono, y no registra a quién llamas ni qué abres.</p>
 
 <h2>2. Lo que sale de tu teléfono</h2>
-<p>Hoy, una sola cosa: los reportes de fallos. Más abajo explicamos también una función de análisis en la nube que todavía no está activa, para que sepas de antemano cómo funcionará.</p>
+<p>Hoy, dos cosas, las dos técnicas y ninguna con tu contenido: los reportes de fallos (2.1) y el diagnóstico del lector de texto (2.2). Más abajo explicamos también una función de análisis en la nube que todavía no está activa, para que sepas de antemano cómo funcionará.</p>
 
 <h3>2.1 Reportes de fallos (automático)</h3>
-<p>Loom usa <strong>Firebase Crashlytics</strong> (Google) para enterarse cuando la app truena. Cuando ocurre un fallo, se envía a Google un reporte técnico: la traza del error, modelo del dispositivo, versión de Android, versión de la app y un identificador de instalación de Firebase que no está ligado a tu identidad. No incluye tus planos, fotos, cálculos ni datos personales. Este es el único dato que Loom comparte con un tercero. Política de privacidad de Firebase: <a href="https://firebase.google.com/support/privacy">firebase.google.com/support/privacy</a>.</p>
-<p>Loom <strong>no</strong> usa Firebase Analytics ni ningún otro sistema de analítica, telemetría de uso o rastreo de comportamiento.</p>
+<p>Loom usa <strong>Firebase Crashlytics</strong> (Google) para enterarse cuando la app truena. Cuando ocurre un fallo, se envía a Google un reporte técnico: la traza del error, modelo del dispositivo, versión de Android, versión de la app y un identificador de instalación de Firebase que no está ligado a tu identidad. No incluye tus planos, fotos, cálculos ni datos personales. Junto con el diagnóstico de 2.2, es lo único que Loom comparte con un tercero. Política de privacidad de Firebase: <a href="https://firebase.google.com/support/privacy">firebase.google.com/support/privacy</a>.</p>
+<p>Loom <strong>no</strong> usa Firebase Analytics, no tiene analítica propia y no rastrea tu comportamiento. Fuera de los datos técnicos de 2.1 y 2.2, nada sale de tu teléfono.</p>
 
-<h3>2.2 Análisis de plano en la nube (función futura, solo si tú la pides)</h3>
+<h3>2.2 Diagnóstico del lector de texto (automático)</h3>
+<p>El componente de Google que lee el texto de los planos (ML Kit) le manda a Google datos técnicos para diagnóstico y estadísticas de uso de esa función: fabricante, modelo y versión del sistema del dispositivo, nombre y versión de la app, un identificador por instalación que no está pensado para identificarte a ti ni a tu teléfono, métricas de rendimiento (como la latencia), la configuración y versión de la función, el tamaño de lo que entra y sale, el tipo de evento y los códigos de error. <strong>Nunca</strong> manda tus imágenes ni el texto leído. Viaja cifrado (HTTPS) y Google no lo pasa a terceros. Detalle de Google: <a href="https://developers.google.com/ml-kit/android-data-disclosure">developers.google.com/ml-kit/android-data-disclosure</a>.</p>
+
+<h3>2.3 Análisis de plano en la nube (función futura, solo si tú la pides)</h3>
 <p>Loom tiene preparada una función opcional de análisis de planos con IA ("Inteligencia del plano"). <strong>En la versión actual esta función no está activa: la app no envía ningún contenido de tus planos a ningún servidor.</strong> Cuando la activemos, funcionará así, y esta política se actualizará el mismo día:</p>
 <ul>
   <li><strong>Solo a petición tuya:</strong> nada viaja de forma automática ni en segundo plano; tú disparas el análisis a mano en la hoja que quieras.</li>
@@ -64,7 +67,7 @@
   <li>No usa tu ubicación.</li>
   <li>No usa el micrófono.</li>
   <li>No muestra anuncios ni usa el identificador de publicidad de Android.</li>
-  <li>No vende, alquila ni comparte tus datos con nadie, fuera de los reportes de fallos descritos en 2.1.</li>
+  <li>No vende, alquila ni comparte tus datos con nadie. Lo único que sale son los datos técnicos de 2.1 y 2.2, que van a Google como proveedor de esos componentes.</li>
   <li>No accede a tus contactos, calendario, SMS ni a otras apps.</li>
 </ul>
 
@@ -77,8 +80,9 @@
 <h2>6. Tus derechos y cómo borrar datos</h2>
 <ul>
   <li><strong>Datos locales:</strong> bórralos desde la app (borrar proyecto) o desinstalándola.</li>
-  <li><strong>Análisis en la nube:</strong> no hay nada que borrar — hoy la función no está activa, y cuando lo esté no almacenará planos ni resultados (ver 2.2).</li>
+  <li><strong>Análisis en la nube:</strong> no hay nada que borrar — hoy la función no está activa, y cuando lo esté no almacenará planos ni resultados (ver 2.3).</li>
   <li><strong>Reportes de fallos:</strong> se rigen por la retención de Firebase Crashlytics (Google); no contienen datos que te identifiquen personalmente.</li>
+  <li><strong>Diagnóstico del lector de texto:</strong> se rige por la retención de Google; no contiene tus planos, fotos ni texto.</li>
 </ul>
 <p>Puedes ejercer cualquier derecho de acceso, corrección o borrado escribiendo a <a href="mailto:chuchangero@hotmail.com">chuchangero@hotmail.com</a>.</p>
 
@@ -97,7 +101,7 @@
 <p class="meta">Android app <code>com.loomframing.app</code> · Effective: September 29, 2026 · Replaces the March 13, 2026 version</p>
 <p class="lang-switch"><a href="#es">Versión en español arriba ↑</a></p>
 
-<p>Loom Framing is a trade tool for framers: calculators, a field manual, a glossary, an inspection checklist and a plan viewer. It is built to work <strong>with no account, no signal and no ads</strong>. This policy states plainly what data the app touches, what stays on your phone, and what leaves it.</p>
+<p>Loom Framing is a trade tool for framers: calculators, a field manual, a glossary, an inspection checklist and a plan viewer. It is built to work <strong>offline, with no account and no ads</strong>. This policy states plainly what data the app touches, what stays on your phone, and what leaves it.</p>
 
 <h2>1. What stays on your phone</h2>
 <p>All your work lives on your device: projects, plans (PDFs and images) you import, calculations, cut lists, inspection evidence photos and preferences. Loom does not create accounts and never asks for your name, email or phone number. Uninstall the app and that data goes with it.</p>
@@ -106,19 +110,22 @@
 <p>The app requests camera permission only when you take an evidence photo for the pre-inspection checklist. Photos are stored locally and are not uploaded anywhere.</p>
 
 <h3>Reading scanned plans (OCR)</h3>
-<p>To read text from photocopies or scanned plans, Loom uses Google ML Kit Text Recognition, which runs <strong>entirely on-device</strong>. That process uses no network and sends no images or text anywhere.</p>
+<p>To read text from photocopies or scanned plans, Loom uses Google ML Kit Text Recognition, which runs <strong>entirely on-device</strong>: your images and the text it reads never leave your phone. The component does send Google technical diagnostic data (see 2.2).</p>
 
 <h3>Jobsite resources</h3>
 <p>The Jobsite Resources section opens your phone's dialer, maps or browser with the supplier's details. Loom does not request contacts, location or phone permissions, and does not log whom you call or what you open.</p>
 
 <h2>2. What leaves your phone</h2>
-<p>Today, one thing only: crash reports. Below we also describe a cloud analysis feature that is not yet active, so you know in advance how it will work.</p>
+<p>Today, two things, both technical and neither containing your content: crash reports (2.1) and text-reader diagnostics (2.2). Below we also describe a cloud analysis feature that is not yet active, so you know in advance how it will work.</p>
 
 <h3>2.1 Crash reports (automatic)</h3>
-<p>Loom uses <strong>Firebase Crashlytics</strong> (Google) to learn when the app crashes. When a crash happens, a technical report is sent to Google: the stack trace, device model, Android version, app version and a Firebase installation identifier that is not tied to your identity. It does not include your plans, photos, calculations or personal data. This is the only data Loom shares with a third party. Firebase privacy policy: <a href="https://firebase.google.com/support/privacy">firebase.google.com/support/privacy</a>.</p>
-<p>Loom does <strong>not</strong> use Firebase Analytics or any other analytics, usage telemetry or behavioral tracking.</p>
+<p>Loom uses <strong>Firebase Crashlytics</strong> (Google) to learn when the app crashes. When a crash happens, a technical report is sent to Google: the stack trace, device model, Android version, app version and a Firebase installation identifier that is not tied to your identity. It does not include your plans, photos, calculations or personal data. Together with the diagnostics in 2.2, this is the only data Loom shares with a third party. Firebase privacy policy: <a href="https://firebase.google.com/support/privacy">firebase.google.com/support/privacy</a>.</p>
+<p>Loom does <strong>not</strong> use Firebase Analytics, has no analytics of its own and does not track your behavior. Beyond the technical data in 2.1 and 2.2, nothing leaves your phone.</p>
 
-<h3>2.2 Cloud plan analysis (future feature, only when you ask for it)</h3>
+<h3>2.2 Text-reader diagnostics (automatic)</h3>
+<p>Google's text-reading component (ML Kit) sends Google technical data for diagnostics and usage statistics of that feature: device manufacturer, model and OS version, app name and version, a per-installation identifier that is not intended to identify you or your device, performance metrics (such as latency), the feature's configuration and version, input and output size, event type and error codes. It <strong>never</strong> sends your images or the text it reads. It travels encrypted (HTTPS) and Google does not pass it to third parties. Google's details: <a href="https://developers.google.com/ml-kit/android-data-disclosure">developers.google.com/ml-kit/android-data-disclosure</a>.</p>
+
+<h3>2.3 Cloud plan analysis (future feature, only when you ask for it)</h3>
 <p>Loom has an optional AI plan-analysis feature ("Plan Intelligence") ready. <strong>In the current version this feature is not active: the app does not send any of your plan content to any server.</strong> When we enable it, it will work as follows, and this policy will be updated the same day:</p>
 <ul>
   <li><strong>Only at your request:</strong> nothing is sent automatically or in the background; you trigger the analysis manually on the sheet you choose.</li>
@@ -134,7 +141,7 @@
   <li>Does not use your location.</li>
   <li>Does not use the microphone.</li>
   <li>Does not show ads or use the Android advertising ID.</li>
-  <li>Does not sell, rent or share your data with anyone, other than the crash reports described in 2.1.</li>
+  <li>Does not sell, rent or share your data with anyone. The only data that leaves your phone is the technical data in 2.1 and 2.2, which goes to Google as the provider of those components.</li>
   <li>Does not access your contacts, calendar, SMS or other apps.</li>
 </ul>
 
@@ -147,8 +154,9 @@
 <h2>6. Your rights and how to delete data</h2>
 <ul>
   <li><strong>Local data:</strong> delete it from within the app (delete project) or by uninstalling.</li>
-  <li><strong>Cloud analysis:</strong> nothing to delete — the feature is not active today, and when it is, it will store neither plans nor results (see 2.2).</li>
+  <li><strong>Cloud analysis:</strong> nothing to delete — the feature is not active today, and when it is, it will store neither plans nor results (see 2.3).</li>
   <li><strong>Crash reports:</strong> governed by Firebase Crashlytics (Google) retention; they contain no personally identifying data.</li>
+  <li><strong>Text-reader diagnostics:</strong> governed by Google's retention; they contain none of your plans, photos or text.</li>
 </ul>
 <p>You can exercise any right of access, correction or deletion by writing to <a href="mailto:chuchangero@hotmail.com">chuchangero@hotmail.com</a>.</p>
 
