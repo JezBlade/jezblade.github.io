@@ -1,6 +1,6 @@
-# FrameCore (antes Loom Framing) — Public Site
+# FrameCore — Public Site
 
-GitHub Pages site for **FrameCore** (formerly Loom Framing App) — professional Android app for wood framers.
+GitHub Pages site for **FrameCore** — professional Android app for wood framers.
 
 ## Live
 
@@ -21,7 +21,7 @@ Professional framing app for Android, built for Hispanic wood framers: born in I
 
 ## Repository Scope
 
-This repository contains **only** the public web presence for FrameCore (formerly Loom Framing):
+This repository contains **only** the public web presence for FrameCore:
 
 - Redirects to loomframing.com (`loom/`)
 - Privacy policy (required by Google Play)
