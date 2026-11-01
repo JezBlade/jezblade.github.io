@@ -28,7 +28,10 @@
 <p>FrameCore es el nombre nuevo de la app que se publicó como Loom Framing App. El paquete (<code>com.loomframing.app</code>) y la dirección de esta política no cambian.</p>
 
 <h2>1. Lo que se queda en tu teléfono</h2>
-<p>Todo tu trabajo vive en tu dispositivo: proyectos, planos (PDF e imágenes) que importes, cálculos, cut lists, fotos de evidencia de inspección y preferencias. FrameCore no crea cuentas ni te pide nombre, correo ni teléfono. Si desinstalas la app, esos datos se van con ella.</p>
+<p>Todo tu trabajo vive en tu dispositivo: proyectos, planos (PDF e imágenes) que importes, cálculos, cut lists, fotos de evidencia de inspección y preferencias. FrameCore no crea cuentas ni te pide nombre, correo ni teléfono. Si desinstalas la app, esos datos se van con ella, salvo lo que guarde el respaldo de Android (abajo).</p>
+
+<h3>Respaldo de Android</h3>
+<p>Si tienes prendido el respaldo de Android, tu teléfono puede guardar una copia de los datos de la app en tu propia cuenta de Google, y regresarla si reinstalas o cambias de teléfono. Lo hace Android, bajo los términos de Google y con su tope de tamaño, así que puede no incluir todo. Esa copia es tuya: FrameCore no la recibe ni la puede ver. Lo prendes o lo apagas en los ajustes de respaldo de tu teléfono.</p>
 
 <h3>Cámara</h3>
 <p>La app pide permiso de cámara solo cuando tú tomas una foto de evidencia para el checklist de pre-inspección. Las fotos se guardan localmente. No se suben a ningún servidor.</p>
@@ -40,11 +43,11 @@
 <p>La sección de Recursos de Obra abre el teléfono, el mapa o el navegador de tu dispositivo con la información del proveedor. FrameCore no pide permisos de contactos, ubicación ni teléfono, y no registra a quién llamas ni qué abres.</p>
 
 <h2>2. Lo que sale de tu teléfono</h2>
-<p>Hoy, dos cosas, las dos técnicas y ninguna con tu contenido: los reportes de fallos (2.1) y el diagnóstico del lector de texto (2.2). Y, solo si tú la escribes, tu reseña de la tienda, que va directo a Google Play (2.4). Más abajo explicamos también una función de análisis en la nube que todavía no está activa, para que sepas de antemano cómo funcionará.</p>
+<p>Hoy, dos cosas, las dos técnicas y ninguna con tu contenido: los reportes de fallos (2.1) y el diagnóstico del lector de texto (2.2). Y, solo si tú la escribes, tu reseña de la tienda, que va directo a Google Play (2.4). El respaldo de Android, si lo tienes prendido, lo maneja tu teléfono (sección 1). Más abajo explicamos también una función de análisis en la nube que todavía no está activa, para que sepas de antemano cómo funcionará.</p>
 
 <h3>2.1 Reportes de fallos (automático)</h3>
 <p>FrameCore usa <strong>Firebase Crashlytics</strong> (Google) para enterarse cuando la app truena. Cuando ocurre un fallo, se envía a Google un reporte técnico: la traza del error, modelo del dispositivo, versión de Android, versión de la app y un identificador de instalación de Firebase que no está ligado a tu identidad. No incluye tus planos, fotos, cálculos ni datos personales. Junto con el diagnóstico de 2.2, es lo único que FrameCore comparte con un tercero. Política de privacidad de Firebase: <a href="https://firebase.google.com/support/privacy">firebase.google.com/support/privacy</a>.</p>
-<p>FrameCore <strong>no</strong> usa Firebase Analytics, no tiene analítica propia y no rastrea tu comportamiento. Fuera de los datos técnicos de 2.1 y 2.2, y de la reseña que tú decidas escribir (2.4), nada sale de tu teléfono.</p>
+<p>FrameCore <strong>no</strong> usa Firebase Analytics, no manda analítica a ningún servidor y no rastrea tu comportamiento. Solo anota en tu teléfono unas marcas internas de uso (por ejemplo, que ya se usó el teclado), sin tus planos, tus números ni tus búsquedas, y no las manda a ningún lado. Fuera de los datos técnicos de 2.1 y 2.2, de la reseña que tú decidas escribir (2.4) y del respaldo de Android si lo tienes prendido (sección 1), nada sale de tu teléfono.</p>
 
 <h3>2.2 Diagnóstico del lector de texto (automático)</h3>
 <p>El componente de Google que lee el texto de los planos (ML Kit) le manda a Google datos técnicos para diagnóstico y estadísticas de uso de esa función: fabricante, modelo y versión del sistema del dispositivo, nombre y versión de la app, un identificador por instalación que no está pensado para identificarte a ti ni a tu teléfono, métricas de rendimiento (como la latencia), la configuración y versión de la función, el tamaño de lo que entra y sale, el tipo de evento y los códigos de error. <strong>Nunca</strong> manda tus imágenes ni el texto leído. Viaja cifrado (HTTPS) y Google no lo pasa a terceros. Detalle de Google: <a href="https://developers.google.com/ml-kit/android-data-disclosure">developers.google.com/ml-kit/android-data-disclosure</a>.</p>
@@ -68,7 +71,7 @@
   <li>No usa tu ubicación.</li>
   <li>No usa el micrófono.</li>
   <li>No muestra anuncios ni usa el identificador de publicidad de Android.</li>
-  <li>No vende, alquila ni comparte tus datos con nadie. Lo único que sale son los datos técnicos de 2.1 y 2.2, que van a Google como proveedor de esos componentes, y la reseña que tú escribas, que va a Google Play (2.4).</li>
+  <li>No vende, alquila ni comparte tus datos con nadie. Lo único que sale son los datos técnicos de 2.1 y 2.2, que van a Google como proveedor de esos componentes, y la reseña que tú escribas, que va a Google Play (2.4). El respaldo de Android, si lo tienes prendido, va a tu propia cuenta de Google (sección 1).</li>
   <li>No accede a tus contactos, calendario, SMS ni a otras apps.</li>
 </ul>
 
@@ -85,6 +88,8 @@
   <li><strong>Reportes de fallos:</strong> se rigen por la retención de Firebase Crashlytics (Google); no contienen datos que te identifiquen personalmente.</li>
   <li><strong>Diagnóstico del lector de texto:</strong> se rige por la retención de Google; no contiene tus planos, fotos ni texto.</li>
   <li><strong>Reseña:</strong> edítala o bórrala desde tu cuenta de Google Play; la app no la guarda.</li>
+  <li><strong>Respaldo de Android:</strong> apágalo o bórralo desde los ajustes de respaldo de tu teléfono o desde tu cuenta de Google.</li>
+  <li><strong>Marcas internas de uso:</strong> se borran al desinstalar la app o al borrar sus datos en los ajustes de Android.</li>
 </ul>
 <p>Puedes ejercer cualquier derecho de acceso, corrección o borrado escribiendo a <a href="mailto:chuchangero@hotmail.com">chuchangero@hotmail.com</a>.</p>
 
@@ -107,7 +112,10 @@
 <p>FrameCore is the new name of the app previously published as Loom Framing App. The package name (<code>com.loomframing.app</code>) and the address of this policy are unchanged.</p>
 
 <h2>1. What stays on your phone</h2>
-<p>All your work lives on your device: projects, plans (PDFs and images) you import, calculations, cut lists, inspection evidence photos and preferences. FrameCore does not create accounts and never asks for your name, email or phone number. Uninstall the app and that data goes with it.</p>
+<p>All your work lives on your device: projects, plans (PDFs and images) you import, calculations, cut lists, inspection evidence photos and preferences. FrameCore does not create accounts and never asks for your name, email or phone number. Uninstall the app and that data goes with it, except for anything Android backup keeps (below).</p>
+
+<h3>Android backup</h3>
+<p>If you have Android backup turned on, your phone may save a copy of the app's data to your own Google account and bring it back if you reinstall or switch phones. Android does this, under Google's terms and within its size limit, so it may not include everything. That copy is yours: FrameCore never receives it and cannot see it. You turn it on or off in your phone's backup settings.</p>
 
 <h3>Camera</h3>
 <p>The app requests camera permission only when you take an evidence photo for the pre-inspection checklist. Photos are stored locally and are not uploaded anywhere.</p>
@@ -119,11 +127,11 @@
 <p>The Jobsite Resources section opens your phone's dialer, maps or browser with the supplier's details. FrameCore does not request contacts, location or phone permissions, and does not log whom you call or what you open.</p>
 
 <h2>2. What leaves your phone</h2>
-<p>Today, two things, both technical and neither containing your content: crash reports (2.1) and text-reader diagnostics (2.2). And, only if you write it, your store review, which goes straight to Google Play (2.4). Below we also describe a cloud analysis feature that is not yet active, so you know in advance how it will work.</p>
+<p>Today, two things, both technical and neither containing your content: crash reports (2.1) and text-reader diagnostics (2.2). And, only if you write it, your store review, which goes straight to Google Play (2.4). Android backup, if you have it on, is handled by your phone (section 1). Below we also describe a cloud analysis feature that is not yet active, so you know in advance how it will work.</p>
 
 <h3>2.1 Crash reports (automatic)</h3>
 <p>FrameCore uses <strong>Firebase Crashlytics</strong> (Google) to learn when the app crashes. When a crash happens, a technical report is sent to Google: the stack trace, device model, Android version, app version and a Firebase installation identifier that is not tied to your identity. It does not include your plans, photos, calculations or personal data. Together with the diagnostics in 2.2, this is the only data FrameCore shares with a third party. Firebase privacy policy: <a href="https://firebase.google.com/support/privacy">firebase.google.com/support/privacy</a>.</p>
-<p>FrameCore does <strong>not</strong> use Firebase Analytics, has no analytics of its own and does not track your behavior. Beyond the technical data in 2.1 and 2.2, and any review you choose to write (2.4), nothing leaves your phone.</p>
+<p>FrameCore does <strong>not</strong> use Firebase Analytics, does not send analytics to any server and does not track your behavior. It only keeps a few internal usage marks on your phone (for example, that the keypad has been used), with none of your plans, numbers or searches, and never sends them anywhere. Beyond the technical data in 2.1 and 2.2, any review you choose to write (2.4) and Android backup if you have it on (section 1), nothing leaves your phone.</p>
 
 <h3>2.2 Text-reader diagnostics (automatic)</h3>
 <p>Google's text-reading component (ML Kit) sends Google technical data for diagnostics and usage statistics of that feature: device manufacturer, model and OS version, app name and version, a per-installation identifier that is not intended to identify you or your device, performance metrics (such as latency), the feature's configuration and version, input and output size, event type and error codes. It <strong>never</strong> sends your images or the text it reads. It travels encrypted (HTTPS) and Google does not pass it to third parties. Google's details: <a href="https://developers.google.com/ml-kit/android-data-disclosure">developers.google.com/ml-kit/android-data-disclosure</a>.</p>
@@ -147,7 +155,7 @@
   <li>Does not use your location.</li>
   <li>Does not use the microphone.</li>
   <li>Does not show ads or use the Android advertising ID.</li>
-  <li>Does not sell, rent or share your data with anyone. The only data that leaves your phone is the technical data in 2.1 and 2.2, which goes to Google as the provider of those components, and any review you write, which goes to Google Play (2.4).</li>
+  <li>Does not sell, rent or share your data with anyone. The only data that leaves your phone is the technical data in 2.1 and 2.2, which goes to Google as the provider of those components, and any review you write, which goes to Google Play (2.4). Android backup, if you have it on, goes to your own Google account (section 1).</li>
   <li>Does not access your contacts, calendar, SMS or other apps.</li>
 </ul>
 
@@ -164,6 +172,8 @@
   <li><strong>Crash reports:</strong> governed by Firebase Crashlytics (Google) retention; they contain no personally identifying data.</li>
   <li><strong>Text-reader diagnostics:</strong> governed by Google's retention; they contain none of your plans, photos or text.</li>
   <li><strong>Review:</strong> edit or delete it from your Google Play account; the app does not store it.</li>
+  <li><strong>Android backup:</strong> turn it off or delete it from your phone's backup settings or your Google account.</li>
+  <li><strong>Internal usage marks:</strong> deleted when you uninstall the app or clear its data in Android settings.</li>
 </ul>
 <p>You can exercise any right of access, correction or deletion by writing to <a href="mailto:chuchangero@hotmail.com">chuchangero@hotmail.com</a>.</p>
 
